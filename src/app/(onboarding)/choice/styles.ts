@@ -1,10 +1,10 @@
 import styled from 'styled-components/native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Image as ExpoImage } from "expo-image";
+import { Image as ExpoImage } from 'expo-image'
 
-// @ts-ignore
-import logo from "../../../../assets/logo.png"
+import logo from '../../../../assets/logo.png'
+// import logo from '@/assets/logo.png'
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -16,14 +16,13 @@ export const Header = styled(LinearGradient)`
   align-items: center;
 `
 
-export const Image = styled(ExpoImage)
-  .attrs({
-    source: logo,
-    resizeMode: "contain"
-  })`
-    width: 160;
-    height: 160;
-  `
+export const Image = styled(ExpoImage).attrs({
+  source: logo,
+  resizeMode: 'contain',
+})`
+  width: 160;
+  height: 160;
+`
 
 export const Text = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
@@ -37,6 +36,3 @@ export const Content = styled.View`
   padding: 45px 26px;
   justify-content: space-between;
 `
-
-
-

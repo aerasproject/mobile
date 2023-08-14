@@ -1,7 +1,5 @@
-import { Redirect } from "expo-router";
+import { Redirect } from 'expo-router'
 
 export default function Root() {
-  return (
-    <Redirect href="/welcome/" />
-  )
+  return <Redirect href="/welcome/" />
 }

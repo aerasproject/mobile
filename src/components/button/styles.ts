@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from 'styled-components/native'
 
 export const VariantsText = {
   primary: {
@@ -6,8 +6,8 @@ export const VariantsText = {
   },
   'primary-outline': {
     color: '#0051b6',
-  }
-};
+  },
+}
 
 export const VariantsContainer = {
   primary: {
@@ -19,8 +19,8 @@ export const VariantsContainer = {
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#0051b6',
-  }
-};
+  },
+}
 
 export const Container = styled.TouchableOpacity`
   flex: 1;
@@ -31,7 +31,7 @@ export const Container = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.BRAND}
+  background-color: ${({ theme }) => theme.COLORS.BRAND};
 `
 
 export const Title = styled.Text`
@@ -39,5 +39,5 @@ export const Title = styled.Text`
 `
 
 export const Loading = styled.ActivityIndicator.attrs(({ theme }) => ({
-  color: theme.COLORS.WHITE
+  color: theme.COLORS.WHITE,
 }))``
