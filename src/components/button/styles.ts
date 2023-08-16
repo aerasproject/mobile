@@ -1,41 +1,47 @@
-import styled from 'styled-components/native'
+import { DefaultTheme } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 
-export const VariantsText = {
-  primary: {
-    color: '#fff',
-  },
-  'primary-outline': {
-    color: '#0051b6',
-  },
+import { ButtonProps } from '.'
+
+type Props = Pick<ButtonProps, 'type'>
+
+const containerModifiers = {
+  primary: (theme: DefaultTheme) => css`
+    background-color: ${theme.COLORS.BRAND};
+  `,
+  'primary-outline': (theme: DefaultTheme) => css`
+    background-color: transparent;
+    border: 1px solid ${theme.COLORS.BRAND};
+  `,
 }
 
-export const VariantsContainer = {
-  primary: {
-    backgroundColor: '#0051b6',
-    borderWidth: 1,
-    borderColor: '#0051b6',
-  },
-  'primary-outline': {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#0051b6',
-  },
+const textModifiers = {
+  primary: (theme: DefaultTheme) => css`
+    color: ${theme.COLORS.WHITE};
+  `,
+  'primary-outline': (theme: DefaultTheme) => css`
+    color: ${theme.COLORS.BRAND};
+  `,
 }
 
-export const Container = styled.TouchableOpacity`
-  flex: 1;
-  min-height: 56px;
-  max-height: 56px;
-  border-radius: 6px;
+export const Container = styled.TouchableOpacity<Props>`
+  ${({ theme, type }) => css`
+    flex: 1;
+    min-height: 56px;
+    max-height: 56px;
+    border-radius: 6px;
 
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.BRAND};
+    ${!!type && containerModifiers[type](theme)}
+  `}
 `
 
-export const Title = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+export const Title = styled.Text<Props>`
+  ${({ theme, type }) => css`
+    ${!!type && textModifiers[type](theme)}
+  `}
 `
 
 export const Loading = styled.ActivityIndicator.attrs(({ theme }) => ({

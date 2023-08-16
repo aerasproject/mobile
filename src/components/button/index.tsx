@@ -1,35 +1,25 @@
 import { forwardRef } from 'react'
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 
-import {
-  Container,
-  Loading,
-  Title,
-  VariantsContainer,
-  VariantsText,
-} from './styles'
+import { Container, Loading, Title } from './styles'
 
-type Props = TouchableOpacityProps & {
+export type ButtonProps = TouchableOpacityProps & {
   title: string
   isLoading?: boolean
   type?: 'primary' | 'primary-outline'
 }
 
-export const Button = forwardRef<TouchableOpacity, Props>(
+export const Button = forwardRef<TouchableOpacity, ButtonProps>(
   ({ title, isLoading = false, type = 'primary', ...rest }, ref) => {
     return (
       <Container
         ref={ref}
+        type={type}
         activeOpacity={0.7}
         disabled={isLoading}
-        style={VariantsContainer[type]}
         {...rest}
       >
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <Title style={VariantsText[type]}>{title}</Title>
-        )}
+        {isLoading ? <Loading /> : <Title type={type}>{title}</Title>}
       </Container>
     )
   },
