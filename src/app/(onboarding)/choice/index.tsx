@@ -23,7 +23,7 @@ export default function ChoiceScreen() {
           <Link href="/(onboarding)/sign-up/" asChild>
             <Button title="Criar cadastro como cliente" />
           </Link>
-          <Link href="/" asChild>
+          <Link href="/(onboarding)/sign-in/" asChild>
             <Text
               style={{
                 textAlign: 'center',
