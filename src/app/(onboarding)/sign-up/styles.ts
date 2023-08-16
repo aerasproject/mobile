@@ -15,6 +15,13 @@ export const Content = styled.View`
 export const Span = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.XS}px;
   text-align: center;
+  color: ${({ theme }) => theme.COLORS.GRAY_300};
+`
+
+export const Strong = styled.Text`
+  font-size: ${({ theme }) => theme.FONT_SIZE.XS}px;
+  color: ${({ theme }) => theme.COLORS.BRAND};
+  font-weight: bold;
 `
 
 export const WrapperInputs = styled.View`
