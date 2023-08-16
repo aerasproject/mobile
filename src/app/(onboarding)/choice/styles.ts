@@ -1,12 +1,10 @@
 import styled from 'styled-components/native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { Image as ExpoImage } from 'expo-image'
 
-import logo from '../../../../assets/logo.png'
-// import logo from '@/assets/logo.png'
+import aerasLogo from '../../../../assets/logo.png'
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled.ScrollView`
   flex: 1;
 `
 
@@ -17,11 +15,11 @@ export const Header = styled(LinearGradient)`
 `
 
 export const Image = styled(ExpoImage).attrs({
-  source: logo,
-  resizeMode: 'contain',
+  source: aerasLogo,
+  contentFit: 'contain',
 })`
-  width: 160;
-  height: 160;
+  width: 160px;
+  height: 160px;
 `
 
 export const Text = styled.Text`
@@ -35,4 +33,10 @@ export const Content = styled.View`
   flex: 1;
   padding: 45px 26px;
   justify-content: space-between;
+`
+
+export const WrapperButtons = styled.View`
+  display: flex;
+  flex-direction: columns;
+  gap: 32px;
 `
