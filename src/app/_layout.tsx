@@ -2,7 +2,7 @@ import { Slot } from 'expo-router'
 import { ThemeProvider } from 'styled-components/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import { UserProvider } from '@/contexts/userContext'
+import { UserProvider } from '@/contexts/user-context'
 
 import theme from '@/theme'
 
