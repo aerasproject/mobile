@@ -15,7 +15,7 @@ export const Container = styled.View`
 export const Label = styled.Text<Props>`
   padding-left: 8px;
   color: ${({ theme, hasError }) =>
-    hasError ? theme.COLORS.ERROR : theme.COLORS.GRAY_300};
+    hasError ? theme.COLORS.ERROR : theme.COLORS.GRAY_500};
 `
 
 export const Input = styled(TextInput).attrs<Props>({

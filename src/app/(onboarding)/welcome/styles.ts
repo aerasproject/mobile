@@ -2,7 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 import styled from 'styled-components/native'
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   flex: 1;
   background-color: #dbf2ff;
 `
@@ -13,17 +13,16 @@ export const Header = styled(LinearGradient)`
   justify-content: flex-end;
 `
 
-export const Content = styled.View`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 45px 26px;
+export const Title = styled.Text`
+  font-weight: 500;
+  font-size: ${({ theme }) => theme.FONT_SIZE.XXXL}px;
+  color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
-export const Title = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.XXXL}px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.COLORS.WHITE};
+export const Content = styled.View`
+  flex: 1;
+  padding: 45px 26px;
+  justify-content: space-between;
 `
 
 export const Description = styled.Text`

@@ -4,13 +4,12 @@ import { Image as ExpoImage } from 'expo-image'
 
 import aerasLogo from '../../../../assets/logo.png'
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   flex: 1;
 `
 
 export const Header = styled(LinearGradient)`
-  height: 300px;
-  padding: 26px;
+  padding: 32px;
   align-items: center;
 `
 
@@ -23,20 +22,25 @@ export const Image = styled(ExpoImage).attrs({
 `
 
 export const Text = styled.Text`
+  line-height: 24px;
+  text-align: center;
   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
   color: ${({ theme }) => theme.COLORS.WHITE};
-  text-align: center;
-  line-height: 24px;
 `
 
 export const Content = styled.View`
   flex: 1;
-  padding: 45px 26px;
+  padding: 32px 26px;
   justify-content: space-between;
 `
 
-export const WrapperButtons = styled.View`
+export const BtnText = styled.Text`
+  line-height: 24px;
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  color: ${({ theme }) => theme.COLORS.BRAND};
+`
+
+export const Wrapper = styled.View`
   display: flex;
-  flex-direction: columns;
   gap: 32px;
 `

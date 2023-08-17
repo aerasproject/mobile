@@ -30,7 +30,7 @@ export default function SignIn() {
   async function onSubmit(data: FormValues) {
     // TODO: SEND DATA TO API
     console.log(data)
-    router.push('/(client)/dashboard/')
+    router.push('/(client)/dashboard/home/')
   }
 
   return (

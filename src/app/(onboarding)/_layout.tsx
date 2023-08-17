@@ -14,8 +14,20 @@ export default function Layout() {
         },
       }}
     >
-      <Stack.Screen name="welcome/index" />
-      <Stack.Screen name="choice/index" />
+      <Stack.Screen
+        name="welcome/index"
+        options={{
+          headerTitle: '',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="choice/index"
+        options={{
+          headerTitle: '',
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="sign-up/index"
         options={{

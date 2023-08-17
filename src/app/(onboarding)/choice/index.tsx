@@ -19,21 +19,14 @@ export default function ChoiceScreen() {
         </S.Text>
       </S.Header>
       <S.Content>
-        <S.WrapperButtons>
+        <S.Wrapper>
           <Link href="/(onboarding)/sign-up/" asChild>
             <Button title="Criar cadastro como cliente" />
           </Link>
-          <Link href="/(onboarding)/sign-in/" asChild>
-            <Text
-              style={{
-                textAlign: 'center',
-                color: theme.COLORS.BRAND,
-              }}
-            >
-              Iniciar Sessão
-            </Text>
+          <Link href="/(onboarding)/sign-in/">
+            <S.BtnText>Iniciar Sessão</S.BtnText>
           </Link>
-        </S.WrapperButtons>
+        </S.Wrapper>
 
         <Button
           variants="primary-outline"

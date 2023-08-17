@@ -12,27 +12,27 @@ export default function MenuNav() {
     {
       icon: 'home',
       label: 'Início',
-      href: `/(client)/dashboard/`,
+      href: `/(client)/dashboard/home/`,
     },
     {
       icon: 'settings',
       label: 'Equipamentos',
-      href: `/(client)/dashboard/`,
+      href: `/(client)/dashboard/home/`,
     },
     {
       icon: 'map-pin',
       label: 'Endereços',
-      href: `/(client)/dashboard/`,
+      href: `/(client)/dashboard/home/`,
     },
     {
       icon: 'shopping-bag',
       label: 'Aeras Assist',
-      href: `/(client)/dashboard/`,
+      href: `/(client)/dashboard/home/`,
     },
     {
       icon: 'message-square',
       label: 'FAQ',
-      href: `/(client)/dashboard/`,
+      href: `/(client)/dashboard/home/`,
     },
   ]
 

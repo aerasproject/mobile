@@ -1,14 +1,11 @@
 import styled from 'styled-components/native'
-import { LinearGradient } from 'expo-linear-gradient'
 
 export const Container = styled.ScrollView`
   flex: 1;
 `
 
-export const Header = styled(LinearGradient).attrs((prop) => ({
-  colors: prop.theme.COLORS.LINEAR_GRADIENT,
-}))`
-  min-height: 300px;
+export const Header = styled.View`
+  background-color: ${({ theme }) => theme.COLORS.BRAND};
   gap: 24px;
   padding: 26px;
   align-items: center;
