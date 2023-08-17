@@ -1,5 +1,6 @@
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'expo-router'
 import { z } from 'zod'
 
 import { Button } from '@/components/button'
@@ -16,6 +17,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 export default function SignIn() {
+  const router = useRouter()
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,6 +30,7 @@ export default function SignIn() {
   async function onSubmit(data: FormValues) {
     // TODO: SEND DATA TO API
     console.log(data)
+    router.push('/(client)/dashboard/')
   }
 
   return (
