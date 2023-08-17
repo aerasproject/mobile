@@ -16,7 +16,7 @@ export default function Dashboard() {
         {!hasAddresses && (
           <EmptyBox
             title="Nenhum endereço cadastrado"
-            href="/(onboarding)/choice/"
+            href="/(client)/address/create/"
             icon={<Feather name="map-pin" size={24} color="#0051B6" />}
           />
         )}

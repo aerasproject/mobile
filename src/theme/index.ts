@@ -4,7 +4,8 @@ export default {
 
     WHITE: '#FFFFFF',
 
-    BRAND: '#0051B6',
+    // BRAND: '#0051B6',
+    BRAND: '#0167E9',
 
     GREEN_LIGHT: '#00ECA0',
 

@@ -6,7 +6,7 @@ export const Container = styled.ScrollView.attrs({
   },
 })``
 
-export const Content = styled.View`
+export const Form = styled.View`
   flex: 1;
   padding: 26px;
   justify-content: space-between;

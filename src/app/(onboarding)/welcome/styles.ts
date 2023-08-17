@@ -23,11 +23,11 @@ export const Content = styled.View`
 export const Title = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.XXXL}px;
   font-weight: 500;
-  color: #fff;
+  color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
 export const Description = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
-  color: ${({ theme }) => theme.COLORS.GRAY};
+  color: ${({ theme }) => theme.COLORS.GRAY_500};
   line-height: 24px;
 `

@@ -35,7 +35,10 @@ export default function ChoiceScreen() {
           </Link>
         </S.WrapperButtons>
 
-        <Button type="primary-outline" title="Cadastro prestador de serviço" />
+        <Button
+          variants="primary-outline"
+          title="Cadastro prestador de serviço"
+        />
       </S.Content>
     </S.Container>
   )

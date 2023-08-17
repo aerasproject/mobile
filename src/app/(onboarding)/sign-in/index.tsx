@@ -19,7 +19,7 @@ type FormValues = z.infer<typeof formSchema>
 export default function SignIn() {
   const router = useRouter()
 
-  const form = useForm({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
@@ -40,8 +40,9 @@ export default function SignIn() {
         subtitle="Hora de logar"
         title="Entrar na sua conta"
       />
+      {/* TODO: REMOVE CONTAINER AND USE ONLY CONTENT */}
       <S.Container>
-        <S.Content>
+        <S.Form>
           <S.WrapperInputs>
             <Controller
               name="email"
@@ -80,7 +81,7 @@ export default function SignIn() {
             />
             <Button title="Entrar" onPress={form.handleSubmit(onSubmit)} />
           </S.WrapperInputs>
-        </S.Content>
+        </S.Form>
       </S.Container>
     </>
   )
