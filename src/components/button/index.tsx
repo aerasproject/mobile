@@ -6,20 +6,20 @@ import { Container, Loading, Title } from './styles'
 export type ButtonProps = TouchableOpacityProps & {
   title: string
   isLoading?: boolean
-  type?: 'primary' | 'primary-outline'
+  variants?: 'primary' | 'primary-outline' | 'white-outline'
 }
 
 export const Button = forwardRef<TouchableOpacity, ButtonProps>(
-  ({ title, isLoading = false, type = 'primary', ...rest }, ref) => {
+  ({ title, isLoading = false, variants = 'primary', ...rest }, ref) => {
     return (
       <Container
         ref={ref}
-        type={type}
+        variants={variants}
         activeOpacity={0.7}
         disabled={isLoading}
         {...rest}
       >
-        {isLoading ? <Loading /> : <Title type={type}>{title}</Title>}
+        {isLoading ? <Loading /> : <Title variants={variants}>{title}</Title>}
       </Container>
     )
   },
