@@ -1,7 +1,12 @@
+import { useAuth } from '@/hooks/use-auth'
+import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'expo-router'
+import { Alert } from 'react-native'
 import { z } from 'zod'
+
+import { AppError } from '@/utils/app-error'
 
 import { Button } from '@/components/button'
 import { Input } from '@/components/input'
@@ -17,7 +22,10 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 export default function SignIn() {
+  const { signIn } = useAuth()
   const router = useRouter()
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -27,10 +35,19 @@ export default function SignIn() {
     },
   })
 
-  async function onSubmit(data: FormValues) {
-    // TODO: SEND DATA TO API
-    console.log(data)
-    router.push('/(client)/dashboard/home/')
+  async function onSubmit({ email, password }: FormValues) {
+    try {
+      setIsLoading(true)
+      await signIn(email, password)
+      router.push('/(client)/dashboard/home')
+    } catch (error) {
+      const isAppError = error instanceof AppError
+      if (isAppError) {
+        Alert.alert(error.message)
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -79,7 +96,12 @@ export default function SignIn() {
                 />
               )}
             />
-            <Button title="Entrar" onPress={form.handleSubmit(onSubmit)} />
+            <Button
+              title="Entrar"
+              isLoading={isLoading}
+              disabled={isLoading}
+              onPress={form.handleSubmit(onSubmit)}
+            />
           </S.WrapperInputs>
         </S.Form>
       </S.Container>
