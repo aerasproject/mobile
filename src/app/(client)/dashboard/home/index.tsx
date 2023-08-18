@@ -4,8 +4,11 @@ import { Feather } from '@expo/vector-icons'
 import { EmptyBox } from '@/components/empty-box'
 
 import * as S from './styles'
+import { useAuth } from '@/hooks/use-auth'
 
 export default function Dashboard() {
+  const { user } = useAuth()
+
   const [addresses, setAddresses] = useState([])
 
   const hasAddresses = addresses.length > 0
@@ -22,6 +25,7 @@ export default function Dashboard() {
         )}
       </S.Header>
       <S.Content>
+        <S.Text>username: {user.name}</S.Text>
         <S.Text>
           O planejamento e informações de manutenção dos equipamentos vão
           aparecer aqui
