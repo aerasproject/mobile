@@ -33,8 +33,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         password,
       })
 
-      console.log(data.user)
-
       if (data.user) {
         setUser(data.user)
         storageUserSave(data.user)

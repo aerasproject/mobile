@@ -11,8 +11,6 @@ export async function storageUserSave(user: UserDTO) {
 export async function storageUserLoad(): Promise<UserDTO> {
   const storage = await AsyncStorage.getItem(USER_STORAGE)
 
-  console.log('storage', storage)
-
   const user: UserDTO = storage ? JSON.parse(storage) : {}
 
   return user
