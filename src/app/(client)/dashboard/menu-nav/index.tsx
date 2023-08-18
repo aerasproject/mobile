@@ -1,15 +1,16 @@
 import { Href, Link } from 'expo-router'
 import { Feather } from '@expo/vector-icons'
 
+import { useAuth } from '@/hooks/use-auth'
+
 import { Button } from '@/components/button'
 
 import * as S from './styles'
-import { useAuth } from '@/hooks/use-auth'
 
 type Icon = keyof typeof Feather.glyphMap
 
 export default function MenuNav() {
-  const { user } = useAuth()
+  const { user, signOut } = useAuth()
 
   const routes = [
     {
@@ -44,6 +45,7 @@ export default function MenuNav() {
       <S.Header>
         <S.Username>{user.name}</S.Username>
         <Button variants="white-outline" title="Ver e editar perfil" />
+        <Button variants="white-outline" title="Sair" onPress={signOut} />
       </S.Header>
       <S.Content>
         {routes.map((route) => (

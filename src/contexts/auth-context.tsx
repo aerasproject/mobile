@@ -3,7 +3,11 @@ import { createContext, useEffect, useState } from 'react'
 
 import { UserDTO } from '@/dtos/user-dto'
 
-import { storageUserSave, storageUserLoad } from '@/storage/storage-user'
+import {
+  storageUserSave,
+  storageUserLoad,
+  storageUserRemove,
+} from '@/storage/storage-user'
 
 import { api } from '@/lib/axios'
 
@@ -14,6 +18,7 @@ type AuthContextProviderProps = {
 type AuthContextDataProps = {
   user: UserDTO
   signIn: (email: string, password: string) => Promise<void>
+  signOut: () => Promise<void>
   isLoadingUserStorage: boolean
 }
 
@@ -42,11 +47,24 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }
 
+  async function signOut() {
+    try {
+      setIsLoadingUserStorage(true)
+      setUser({} as UserDTO)
+      await storageUserRemove()
+      router.replace('/(onboarding)/welcome/')
+    } catch (error) {
+      throw error
+    } finally {
+      setIsLoadingUserStorage(false)
+    }
+  }
+
   async function loadUserData() {
     try {
       const userLogged = await storageUserLoad()
 
-      if (userLogged) {
+      if (userLogged.id) {
         setUser(userLogged)
         router.replace('/(client)/dashboard/home')
       } else {
@@ -64,7 +82,9 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, signIn, isLoadingUserStorage }}>
+    <AuthContext.Provider
+      value={{ user, signIn, signOut, isLoadingUserStorage }}
+    >
       {children}
     </AuthContext.Provider>
   )

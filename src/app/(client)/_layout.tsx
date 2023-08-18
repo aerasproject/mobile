@@ -1,12 +1,13 @@
-import { Pressable } from 'react-native'
-import { Link, Stack } from 'expo-router'
+import { Button, Pressable } from 'react-native'
+import { Link, Stack, useRouter } from 'expo-router'
 import { Feather } from '@expo/vector-icons'
 
-export default function Layout() {
+export default function ClientLayout() {
+  const router = useRouter()
+
   return (
     <Stack
       screenOptions={{
-        animation: 'fade',
         headerStyle: {
           backgroundColor: '#0167E9',
         },
@@ -20,21 +21,25 @@ export default function Layout() {
           headerTintColor: '#FFFFFF',
           headerShadowVisible: false,
           headerRight: () => (
-            <Link asChild href="/(client)/dashboard/menu-nav">
-              <Pressable>
-                <Feather name="menu" size={32} color="#FFFFFF" />
-              </Pressable>
-            </Link>
+            <Button
+              title="Modal"
+              onPress={() => router.push('/(client)/dashboard/menu-nav')}
+            />
+            // <Link asChild href="/(client)/dashboard/menu-nav">
+            //   <Pressable>
+            //     <Feather name="menu" size={32} color="#FFFFFF" />
+            //   </Pressable>
+            // </Link>
           ),
         }}
       />
       <Stack.Screen
         name="dashboard/menu-nav/index"
         options={{
-          presentation: 'modal',
-          headerTintColor: '#FFFFFF',
-          headerTitle: '',
-          headerShadowVisible: false,
+          presentation: 'formSheet',
+          // headerTintColor: '#FFFFFF',
+          // headerTitle: '',
+          // headerShadowVisible: false,
         }}
       />
       <Stack.Screen

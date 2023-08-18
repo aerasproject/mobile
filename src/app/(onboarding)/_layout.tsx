@@ -2,13 +2,12 @@ import { Stack, useNavigation } from 'expo-router'
 import { TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 
-export default function Layout() {
+export default function OnboardingLayout() {
   const navigation = useNavigation()
 
   return (
     <Stack
       screenOptions={{
-        animation: 'fade',
         headerStyle: {
           backgroundColor: '#0167E9',
         },
