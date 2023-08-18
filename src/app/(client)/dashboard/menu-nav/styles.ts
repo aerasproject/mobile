@@ -32,10 +32,10 @@ export const ItemNav = styled.Pressable`
 `
 
 export const ItemTitle = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
 `
 
 export const ItemSubtitle = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.SM};
+  font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
   color: ${({ theme }) => theme.COLORS.GRAY_500};
 `

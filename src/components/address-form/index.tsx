@@ -24,10 +24,14 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-export function AddressForm() {
+type AddressFormProps = {
+  initialData?: any
+}
+
+export function AddressForm({ initialData }: AddressFormProps) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: initialData || {
       name: '',
       street: '',
       number: '',
