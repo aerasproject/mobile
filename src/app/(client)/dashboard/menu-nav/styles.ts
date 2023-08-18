@@ -14,7 +14,7 @@ export const Header = styled.View`
 
 export const Username = styled.Text`
   text-align: center;
-  font-size: ${({ theme }) => theme.FONT_SIZE.XXXL};
+  font-size: ${({ theme }) => theme.FONT_SIZE.XXXL}px;
   font-weight: bold;
   color: ${({ theme }) => theme.COLORS.WHITE};
 `
