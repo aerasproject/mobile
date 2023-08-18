@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { TextInput } from 'react-native'
 import styled from 'styled-components/native'
 
@@ -6,7 +7,6 @@ type Props = {
 }
 
 export const Container = styled.View`
-  flex: 1;
   gap: 8px;
   background-color: transparent;
   border-radius: 8px;
