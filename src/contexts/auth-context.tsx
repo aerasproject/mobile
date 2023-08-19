@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import { useRouter } from 'expo-router'
 import { createContext, useEffect, useState } from 'react'
 
@@ -8,6 +9,11 @@ import {
   storageUserLoad,
   storageUserRemove,
 } from '@/storage/storage-user'
+import {
+  storageAuthTokenSave,
+  storageAuthTokenGet,
+  storageAuthTokenRemove,
+} from '@/storage/storage-auth-token'
 
 import { api } from '@/lib/axios'
 
@@ -31,27 +37,55 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   const [user, setUser] = useState<UserDTO>({} as UserDTO)
 
+  function updateUserAndToken(userData: UserDTO, token: string) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    setUser(userData)
+  }
+
+  async function storageUserAndTokenSave(userData: UserDTO, token: string) {
+    try {
+      setIsLoadingUserStorage(true)
+
+      await storageUserSave(userData)
+      await storageAuthTokenSave(token)
+    } catch (error) {
+      throw error
+    } finally {
+      setIsLoadingUserStorage(false)
+    }
+  }
+
   async function signIn(email: string, password: string) {
     try {
-      const { data } = await api.post('/authentication', {
+      const response = await api.post('/authentication', {
         email,
         password,
       })
 
-      if (data.user) {
-        setUser(data.user)
-        storageUserSave(data.user)
+      const { user, token } = response.data
+
+      console.log(token)
+
+      if (user && token) {
+        await storageUserAndTokenSave(user, token)
+        updateUserAndToken(user, token)
+        router.replace('/(client)/dashboard/home')
       }
     } catch (error) {
       throw error
+    } finally {
+      setIsLoadingUserStorage(false)
     }
   }
 
   async function signOut() {
     try {
       setIsLoadingUserStorage(true)
+
       setUser({} as UserDTO)
       await storageUserRemove()
+      await storageAuthTokenRemove()
+
       router.replace('/(onboarding)/welcome/')
     } catch (error) {
       throw error
@@ -62,10 +96,11 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   async function loadUserData() {
     try {
-      const userLogged = await storageUserLoad()
+      const user = await storageUserLoad()
+      const token = await storageAuthTokenGet()
 
-      if (userLogged.id) {
-        setUser(userLogged)
+      if (user.id && token) {
+        updateUserAndToken(user, token)
         router.replace('/(client)/dashboard/home')
       } else {
         router.replace('/(onboarding)/welcome/')
