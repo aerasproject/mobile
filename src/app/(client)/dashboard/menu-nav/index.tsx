@@ -26,7 +26,7 @@ export default function MenuNav() {
     {
       icon: 'map-pin',
       label: 'Endereços',
-      href: `/(client)/dashboard/home/`,
+      href: `/(client)/dashboard/addresses/`,
     },
     {
       icon: 'shopping-bag',
