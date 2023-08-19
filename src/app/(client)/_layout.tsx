@@ -51,6 +51,15 @@ export default function ClientLayout() {
           headerShadowVisible: false,
         }}
       />
+      <Stack.Screen
+        name="dashboard/addresses/index"
+        options={{
+          headerTitle: 'Lista de endereços',
+          headerTitleAlign: 'center',
+          headerTintColor: '#FFFFFF',
+          headerShadowVisible: false,
+        }}
+      />
     </Stack>
   )
 }

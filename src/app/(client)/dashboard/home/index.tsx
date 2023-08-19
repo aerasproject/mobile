@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Feather } from '@expo/vector-icons'
 
+import { useAuth } from '@/hooks/use-auth'
+
 import { EmptyBox } from '@/components/empty-box'
 
 import * as S from './styles'
-import { useAuth } from '@/hooks/use-auth'
 
 export default function Dashboard() {
   const { user } = useAuth()
