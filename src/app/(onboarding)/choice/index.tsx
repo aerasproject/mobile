@@ -23,9 +23,7 @@ export default function ChoiceScreen() {
           <Link href="/(onboarding)/sign-up/" asChild>
             <Button title="Criar cadastro como cliente" />
           </Link>
-          <Link href="/(onboarding)/sign-in/">
-            <S.BtnText>Iniciar Sessão</S.BtnText>
-          </Link>
+          <Link href="/(onboarding)/sign-in/">Iniciar Sessão</Link>
         </S.Wrapper>
 
         <Button

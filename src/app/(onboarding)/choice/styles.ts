@@ -34,12 +34,6 @@ export const Content = styled.View`
   justify-content: space-between;
 `
 
-export const BtnText = styled.Text`
-  line-height: 24px;
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
-  color: ${({ theme }) => theme.COLORS.BRAND};
-`
-
 export const Wrapper = styled.View`
   display: flex;
   gap: 32px;
