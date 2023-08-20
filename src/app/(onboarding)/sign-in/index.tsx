@@ -39,7 +39,7 @@ export default function SignIn() {
     try {
       setIsLoading(true)
       await signIn(email, password)
-      router.push('/(client)/dashboard/home')
+      router.push('/dashboard/home/')
     } catch (error) {
       const isAppError = error instanceof AppError
       if (isAppError) {
