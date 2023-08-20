@@ -9,6 +9,10 @@ export async function storageAuthTokenSave(token: string) {
 export async function storageAuthTokenGet() {
   const token = await AsyncStorage.getItem(AUTH_TOKEN_STORAGE)
 
+  if (token) {
+    return token.replace(/['"]+/g, '')
+  }
+
   return token
 }
 
