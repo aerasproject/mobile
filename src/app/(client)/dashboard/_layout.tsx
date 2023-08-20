@@ -1,6 +1,5 @@
-import { Button, Pressable } from 'react-native'
-import { Link, Stack, useRouter } from 'expo-router'
-import { Feather } from '@expo/vector-icons'
+import { Button } from 'react-native'
+import { Stack, useRouter } from 'expo-router'
 
 export default function ClientLayout() {
   const router = useRouter()
@@ -14,7 +13,7 @@ export default function ClientLayout() {
       }}
     >
       <Stack.Screen
-        name="dashboard/home/index"
+        name="home/index"
         options={{
           headerTitle: 'Início',
           headerTitleAlign: 'center',
@@ -23,36 +22,28 @@ export default function ClientLayout() {
           headerRight: () => (
             <Button
               title="Modal"
-              onPress={() => router.push('/(client)/dashboard/menu-nav')}
+              onPress={() => router.push('/(client)/dashboard/menu-nav/')}
             />
-            // <Link asChild href="/(client)/dashboard/menu-nav">
-            //   <Pressable>
-            //     <Feather name="menu" size={32} color="#FFFFFF" />
-            //   </Pressable>
-            // </Link>
           ),
         }}
       />
       <Stack.Screen
-        name="dashboard/menu-nav/index"
+        name="menu-nav/index"
         options={{
-          presentation: 'formSheet',
-          // headerTintColor: '#FFFFFF',
-          // headerTitle: '',
-          // headerShadowVisible: false,
+          presentation: 'modal',
         }}
       />
       <Stack.Screen
-        name="dashboard/address/create/index"
+        name="address/index"
         options={{
-          headerTitle: 'Cadastrar endereço',
+          headerTitle: 'Endereço',
           headerTitleAlign: 'center',
           headerTintColor: '#FFFFFF',
           headerShadowVisible: false,
         }}
       />
       <Stack.Screen
-        name="dashboard/addresses/index"
+        name="addresses/index"
         options={{
           headerTitle: 'Lista de endereços',
           headerTitleAlign: 'center',
