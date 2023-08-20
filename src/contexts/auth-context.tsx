@@ -1,4 +1,3 @@
-/* eslint-disable dot-notation */
 import { useRouter } from 'expo-router'
 import { createContext, useEffect, useState } from 'react'
 
@@ -38,7 +37,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<UserDTO>({} as UserDTO)
 
   function updateUserAndToken(userData: UserDTO, token: string) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
+
     setUser(userData)
   }
 
@@ -63,8 +63,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       })
 
       const { user, token } = response.data
-
-      console.log(token)
 
       if (user && token) {
         await storageUserAndTokenSave(user, token)
@@ -96,12 +94,14 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   async function loadUserData() {
     try {
+      setIsLoadingUserStorage(true)
+
       const user = await storageUserLoad()
       const token = await storageAuthTokenGet()
 
       if (user.id && token) {
         updateUserAndToken(user, token)
-        router.replace('/(client)/dashboard/home')
+        router.replace('/(client)/dashboard/home/')
       } else {
         router.replace('/(onboarding)/welcome/')
       }
