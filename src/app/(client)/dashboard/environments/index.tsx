@@ -1,14 +1,17 @@
-import { Alert, Text } from 'react-native'
-import { useEffect, useState } from 'react'
-import { useLocalSearchParams } from 'expo-router'
+import { Alert } from 'react-native'
+import { useCallback, useState } from 'react'
+import { Link, useFocusEffect, useLocalSearchParams } from 'expo-router'
 import { FlatList } from 'react-native-gesture-handler'
 import { Feather } from '@expo/vector-icons'
 
 import { api } from '@/lib/axios'
+
 import { AppError } from '@/utils/app-error'
-import { EnvironmentDTO } from '@/dtos/enviroment-dto'
+
+import { EnvironmentDTO } from '@/dtos/environment-dto'
 
 import { Button } from '@/components/button'
+import { Loading } from '@/components/loading'
 
 import * as S from './styles'
 
@@ -35,13 +38,11 @@ export default function Environments() {
     }
   }
 
-  useEffect(() => {
-    fetchEnvironments()
-  }, [addressId])
-
-  if (isLoading) {
-    return <Text>Loading...</Text>
-  }
+  useFocusEffect(
+    useCallback(() => {
+      fetchEnvironments()
+    }, [addressId]),
+  )
 
   return (
     <S.Container>
@@ -49,6 +50,8 @@ export default function Environments() {
         <S.Title>Ambientes Cadastrados</S.Title>
         <S.Subtitle>Endereço: {addressName}</S.Subtitle>
       </S.Header>
+
+      {isLoading && <Loading variants="secondary" />}
 
       <FlatList
         data={environments}
@@ -61,10 +64,15 @@ export default function Environments() {
         )}
       />
 
-      <Button
-        title="Cadastrar novo ambiente"
-        onPress={() => console.log('TODO: Cadastrar novo ambiente')}
-      />
+      <Link
+        asChild
+        href={{
+          pathname: '/(client)/dashboard/environment',
+          params: { addressId, addressName },
+        }}
+      >
+        <Button title="Cadastrar novo ambiente" />
+      </Link>
     </S.Container>
   )
 }
