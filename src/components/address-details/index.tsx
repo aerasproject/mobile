@@ -23,6 +23,7 @@ export function AddressDetails({ address }: AddressDetailsProps) {
         <S.Title>{address.name}</S.Title>
         <S.Subtitle>5 equipamentos cadastrados</S.Subtitle>
 
+        {/* TODO: Add um divider style */}
         {/* DIVIDER */}
 
         <S.Wrapper>
@@ -64,15 +65,7 @@ export function AddressDetails({ address }: AddressDetailsProps) {
           asChild
           href={{
             pathname: '/(client)/dashboard/address',
-            params: {
-              name: address.name,
-              street: address.street,
-              number: address.number,
-              complement: address.complement || '',
-              neighborhood: address.neighborhood,
-              city: address.city,
-              state: address.state,
-            },
+            params: { addressId: address.id },
           }}
         >
           <Button title="Editar" />
