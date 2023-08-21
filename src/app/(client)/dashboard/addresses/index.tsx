@@ -20,8 +20,9 @@ export default function Addresses() {
     {} as AddressDTO,
   )
 
-  // TODO: Implementar lógica para definir endereço principal e passar como prop para o componente AddressCard
-  const [isMainAddress, setIsMainAddress] = useState(true)
+  // TODO: Implementar lógica para definir endereço principal
+  // e passar como prop para o componente AddressCard
+  // const [isMainAddress, setIsMainAddress] = useState(true)
 
   function openModal(address: AddressDTO) {
     modalRef.current?.toggle()
@@ -33,7 +34,6 @@ export default function Addresses() {
       setIsLoading(true)
 
       const response = await api.get('/client/address')
-      console.log(response.data)
 
       setAddresses(response.data)
     } catch (error) {

@@ -85,7 +85,7 @@ export function AddressForm({ initialData }: AddressFormProps) {
   }
 
   const title = initialData?.name ? 'Editar endereço' : 'Cadastrar endereço'
-  const action = initialData?.name ? 'Editar' : 'Cadastrar'
+  const action = initialData?.name ? 'Salvar alterações' : 'Cadastrar'
 
   return (
     <>
@@ -202,6 +202,26 @@ export function AddressForm({ initialData }: AddressFormProps) {
             />
           )}
         />
+        <S.Title>{`Id Address: ${initialData?.id}`}</S.Title>
+        {initialData && (
+          <Link
+            asChild
+            href={{
+              pathname: '/(client)/dashboard/environments/',
+              params: {
+                addressId: initialData.id,
+                addressName: initialData.name,
+              },
+            }}
+          >
+            <Button
+              variants="primary-outline"
+              title="Ver e adicionar ambientes"
+              isLoading={isLoading}
+              disabled={isLoading}
+            />
+          </Link>
+        )}
         <Button
           title={action}
           onPress={form.handleSubmit(onSubmit)}
