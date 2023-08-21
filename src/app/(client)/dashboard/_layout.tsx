@@ -51,6 +51,15 @@ export default function ClientLayout() {
           headerShadowVisible: false,
         }}
       />
+      <Stack.Screen
+        name="environments/index"
+        options={{
+          headerTitle: 'Lista de ambientes',
+          // headerTitleAlign: 'center',
+          headerTintColor: '#FFFFFF',
+          headerShadowVisible: false,
+        }}
+      />
     </Stack>
   )
 }
