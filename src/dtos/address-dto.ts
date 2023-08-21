@@ -1,4 +1,4 @@
-import { EnvironmentDTO } from './enviroment-dto'
+import { EnvironmentDTO } from './environment-dto'
 
 export type AddressDTO = {
   id: number
