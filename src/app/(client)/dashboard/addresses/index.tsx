@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { Alert, FlatList, Text } from 'react-native'
+import { useFocusEffect } from 'expo-router'
 
 import { api } from '@/lib/axios'
 import { AddressDTO } from '@/dtos/address-dto'
 
 import { Button } from '@/components/button'
 import { AddressCard } from '@/components/address-card'
-import { AddressDetails } from '@/components/address-details'
 import { Modal, ModalRef } from '@/components/modal'
+import { AddressDetails } from '@/components/address-details'
 
 import * as S from './styles'
 
@@ -43,9 +44,11 @@ export default function Addresses() {
     }
   }
 
-  useEffect(() => {
-    fetchAddresses()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      fetchAddresses()
+    }, []),
+  )
 
   return (
     <>
@@ -61,12 +64,13 @@ export default function Addresses() {
         {addresses.length ? (
           <FlatList
             data={addresses}
-            keyExtractor={(item) => item.name}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <AddressCard address={item} openModal={() => openModal(item)} />
             )}
           />
         ) : (
+          // TODO: Implementar componente para exibir mensagem empty
           <Text>Nenhum endereço cadastrado</Text>
         )}
       </S.Container>

@@ -52,7 +52,7 @@ export default function Environments() {
 
       <FlatList
         data={environments}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <S.EnvironmentCard>
             <S.EnvironmentCardTitle>{item.name}</S.EnvironmentCardTitle>
