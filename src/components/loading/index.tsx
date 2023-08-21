@@ -1,9 +1,13 @@
 import { Container, LoadIndicator } from './styles'
 
-export function Loading() {
+export type LoadingProps = {
+  variants?: 'primary' | 'secondary'
+}
+
+export function Loading({ variants = 'primary' }: LoadingProps) {
   return (
-    <Container>
-      <LoadIndicator size="large" />
+    <Container variants={variants}>
+      <LoadIndicator size={60} />
     </Container>
   )
 }

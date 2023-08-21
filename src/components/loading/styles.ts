@@ -1,14 +1,28 @@
-import styled from 'styled-components/native'
+import styled, { DefaultTheme, css } from 'styled-components/native'
 
-import theme from '@/theme'
+import { LoadingProps } from '@/components/loading'
 
-export const Container = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  background-color: ${theme.COLORS.BRAND};
+type Props = Pick<LoadingProps, 'variants'>
+
+const containerModifiers = {
+  primary: (theme: DefaultTheme) => css`
+    background-color: ${theme.COLORS.BRAND};
+  `,
+  secondary: () => css`
+    background-color: transparent;
+  `,
+}
+
+export const Container = styled.View<Props>`
+  ${({ theme, variants }) => css`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    ${!!variants && containerModifiers[variants](theme)}
+  `}
 `
 
-export const LoadIndicator = styled.ActivityIndicator.attrs(() => ({
+export const LoadIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
   color: theme.COLORS.GREEN_LIGHT,
 }))``
