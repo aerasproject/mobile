@@ -23,6 +23,7 @@ export const Subtitle = styled.Text`
 `
 
 export const EnvironmentCard = styled.View`
+  margin-bottom: 8px;
   background-color: #f8f8f8;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.COLORS.GRAY_100};
