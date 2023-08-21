@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Alert } from 'react-native'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -36,6 +36,7 @@ type AddressFormProps = {
 
 export function AddressForm({ initialData }: AddressFormProps) {
   const { user } = useAuth()
+  const router = useRouter()
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -57,9 +58,12 @@ export function AddressForm({ initialData }: AddressFormProps) {
       setIsLoading(true)
 
       if (initialData) {
-        // TODO: Update address
+        await api.put<AddressDTO>(`/client/address/${initialData.id}`, data)
+
+        router.push('/(client)/dashboard/addresses/')
       } else {
         const response = await api.post<AddressDTO>('/client/address', {
+          userId: user.id,
           street: data.street,
           number: data.number,
           city: data.city,
@@ -67,13 +71,16 @@ export function AddressForm({ initialData }: AddressFormProps) {
           name: data.name,
           complement: data.complement,
           neighborhood: data.neighborhood,
-          userId: user.id,
         })
 
-        console.log(response.data)
+        router.push({
+          pathname: '/(client)/dashboard/environments/',
+          params: {
+            addressId: response.data.id,
+            addressName: response.data.name,
+          },
+        })
       }
-
-      // router.push('/(client)/dashboard/home')
     } catch (error) {
       const isAppError = error instanceof AppError
       if (isAppError) {
@@ -84,8 +91,8 @@ export function AddressForm({ initialData }: AddressFormProps) {
     }
   }
 
-  const title = initialData?.name ? 'Editar endereço' : 'Cadastrar endereço'
-  const action = initialData?.name ? 'Salvar alterações' : 'Cadastrar'
+  const title = initialData ? 'Editar endereço' : 'Cadastrar endereço'
+  const action = initialData ? 'Salvar alterações' : 'Cadastrar'
 
   return (
     <>
@@ -202,7 +209,6 @@ export function AddressForm({ initialData }: AddressFormProps) {
             />
           )}
         />
-        <S.Title>{`Id Address: ${initialData?.id}`}</S.Title>
         {initialData && (
           <Link
             asChild
