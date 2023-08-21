@@ -1,3 +1,5 @@
+import { EnvironmentDTO } from './enviroment-dto'
+
 export type AddressDTO = {
   id: number
   name: string
@@ -7,6 +9,7 @@ export type AddressDTO = {
   neighborhood: string
   city: string
   state: string
-  postalCode?: string
+  postalCode: string | null
   isFavorite?: boolean
+  environments: EnvironmentDTO[]
 }
