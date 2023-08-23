@@ -8,6 +8,7 @@ import { Button } from '@/components/button'
 import { Modal, ModalRef } from '@/components/modal'
 
 import * as S from './styles'
+import { useAddress } from '@/hooks/use-address'
 
 type AddressesModalProps = {
   addresses: AddressDTO[]
@@ -15,6 +16,13 @@ type AddressesModalProps = {
 }
 
 export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
+  const { setMainAddress } = useAddress()
+
+  function handleSelectAddress(address: AddressDTO) {
+    modalRef.current?.toggle()
+    setMainAddress(address)
+  }
+
   return (
     <Modal ref={modalRef} height="85%">
       <S.Container>
@@ -23,7 +31,7 @@ export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
           data={addresses}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <S.AddressItemContainer onPress={() => modalRef.current?.toggle()}>
+            <S.AddressItemContainer onPress={() => handleSelectAddress(item)}>
               <S.AddressItemTitle>{item.name}</S.AddressItemTitle>
               <Ionicons name="ios-chevron-forward" size={24} color="black" />
             </S.AddressItemContainer>
