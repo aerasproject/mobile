@@ -67,6 +67,14 @@ export default function ClientLayout() {
           headerShadowVisible: false,
         }}
       />
+      <Stack.Screen
+        name="equipment/index"
+        options={{
+          headerTitle: 'Equipamento',
+          headerTintColor: '#FFFFFF',
+          headerShadowVisible: false,
+        }}
+      />
     </Stack>
   )
 }
