@@ -3,17 +3,19 @@ import { Alert, FlatList, Text } from 'react-native'
 import { Link, useFocusEffect } from 'expo-router'
 
 import { api } from '@/lib/axios'
+
 import { AddressDTO } from '@/dtos/address-dto'
 
+import { Loading } from '@/components/loading'
 import { Button } from '@/components/button'
+import { ModalRefProps } from '@/components/modal'
 import { AddressCard } from '@/components/address-card'
-import { Modal, ModalRef } from '@/components/modal'
-import { AddressDetails } from '@/components/address-details'
+import { AddressDetailsModal } from '@/components/modals/address-details-modal'
 
 import * as S from './styles'
 
 export default function Addresses() {
-  const modalRef = useRef<ModalRef>(null)
+  const modalRef = useRef<ModalRefProps>(null)
 
   const [isLoading, setIsLoading] = useState(false)
   const [addresses, setAddresses] = useState<AddressDTO[]>([])
@@ -52,16 +54,14 @@ export default function Addresses() {
 
   return (
     <>
-      <Modal ref={modalRef} height="75%">
-        <AddressDetails address={selectedAddress} />
-      </Modal>
+      <AddressDetailsModal address={selectedAddress} modalRef={modalRef} />
 
       <S.Container>
         <Link asChild href="/(client)/dashboard/address/">
           <Button title="Cadastrar novo endereço" />
         </Link>
 
-        {isLoading && <Text>Carregando...</Text>}
+        {isLoading && <Loading />}
 
         {addresses.length ? (
           <FlatList

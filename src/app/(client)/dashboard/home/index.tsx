@@ -15,10 +15,10 @@ import { useAddress } from '@/hooks/use-address'
 
 import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
-import { ModalRef } from '@/components/modal'
+import { ModalRefProps } from '@/components/modal'
 import { EmptyBox } from '@/components/empty-box'
 import { AddressesModal } from '@/components/modals/addresses-modal'
-import { EquipmentDetailsModal } from '@/components/modals/equipment-details-modal'
+import { AddressAndEquipmentDetailsModal } from '@/components/modals/address-and-equipment-details-modal'
 
 import AirConditioner from '@/assets/images/air-conditioning.png'
 
@@ -27,8 +27,8 @@ import * as S from './styles'
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 
 export default function Dashboard() {
-  const addressesModalRef = useRef<ModalRef>(null)
-  const equipmentDetailsModalRef = useRef<ModalRef>(null)
+  const addressesModalRef = useRef<ModalRefProps>(null)
+  const equipmentDetailsModalRef = useRef<ModalRefProps>(null)
 
   const { mainAddress, setMainAddress } = useAddress()
 
@@ -133,7 +133,7 @@ export default function Dashboard() {
             itemWidth={Math.round(SCREEN_WIDTH * 0.8)}
             renderItem={({ item }) => (
               <S.EquipmentContainer>
-                <EquipmentDetailsModal
+                <AddressAndEquipmentDetailsModal
                   equipment={item}
                   modalRef={equipmentDetailsModalRef}
                 />

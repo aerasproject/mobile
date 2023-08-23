@@ -21,7 +21,7 @@ export default function MenuNav() {
     {
       icon: 'settings',
       label: 'Equipamentos',
-      href: `/(client)/dashboard/home/`,
+      href: `/(client)/dashboard/equipments/`,
     },
     {
       icon: 'map-pin',

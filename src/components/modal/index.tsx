@@ -8,11 +8,11 @@ type ModalProps = {
   children: React.ReactNode
 }
 
-export type ModalRef = {
+export type ModalRefProps = {
   toggle: () => void
 }
 
-export const Modal = forwardRef<ModalRef, ModalProps>(
+export const Modal = forwardRef<ModalRefProps, ModalProps>(
   ({ height = '50%', children }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
