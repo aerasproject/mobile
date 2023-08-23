@@ -23,7 +23,7 @@ export const Select = styled.View`
   border-radius: 8px;
   height: 56px;
   color: ${({ theme }) => theme.COLORS.GRAY_500};
-  border: ${({ theme }) => `1px solid ${theme.COLORS.GRAY_100}`};
+  border: ${({ theme }) => `1px solid ${theme.COLORS.GRAY_200}`};
 `
 
 export const ErrorMessage = styled.Text`
