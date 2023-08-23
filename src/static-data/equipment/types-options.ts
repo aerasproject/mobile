@@ -1,0 +1,17 @@
+export const types = [
+  { label: 'Self Contained', value: 'Self Contained', id: 1 },
+  { label: 'Split', value: 'Split', id: 2 },
+  { label: 'Chiller', value: 'Chiller', id: 3 },
+  { label: 'ACJ', value: 'ACJ', id: 4 },
+  { label: 'VRF', value: 'VRF', id: 5 },
+  { label: 'UC-Cond-VRF', value: 'UC-Cond-VRF', id: 6 },
+  { label: 'Fan Coil', value: 'Fan Coil', id: 7 },
+  { label: 'Fancolete', value: 'Fancolete', id: 8 },
+  { label: 'Torre', value: 'Torre', id: 9 },
+  { label: 'Ventilador/Exaustor', value: 'Ventilador/Exaustor', id: 10 },
+  { label: 'Quadro Elétrico', value: 'Quadro Elétrico', id: 11 },
+  { label: 'Bomba d´Agua', value: 'Bomba d´Agua', id: 12 },
+  { label: 'Câmara Fria', value: 'Câmara Fria', id: 13 },
+  { label: 'Refrigerador', value: 'Refrigerador', id: 14 },
+  { label: 'Dutos & Acessórios', value: 'Dutos & Acessórios', id: 15 },
+]
