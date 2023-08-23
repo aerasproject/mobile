@@ -1,9 +1,14 @@
-import { Text } from 'react-native'
-import { useLocalSearchParams } from 'expo-router'
+import { Alert } from 'react-native'
 import { useEffect, useState } from 'react'
+import { useLocalSearchParams } from 'expo-router'
 
 import { EquipmentDTO } from '@/dtos'
 
+import { api } from '@/lib/axios'
+
+import { AppError } from '@/utils/app-error'
+
+import { Loading } from '@/components/loading'
 import { EquipmentForm } from '@/components/equipment-form'
 
 import * as S from './styles'
@@ -17,9 +22,15 @@ export default function Address() {
   async function fetchEquipment() {
     try {
       setIsLoading(true)
-      // TODO: Fetch Equipment
+
+      const response = await api.get(`/equipment/${equipmentId}`)
+
+      setEquipment(response.data)
     } catch (error) {
-      console.log(error)
+      const isAppError = error instanceof AppError
+      if (isAppError) {
+        Alert.alert(error.message)
+      }
     } finally {
       setIsLoading(false)
     }
@@ -30,7 +41,7 @@ export default function Address() {
   }, [equipmentId])
 
   if (isLoading) {
-    return <Text>Carregando...</Text>
+    return <Loading variants="secondary" />
   }
 
   return (

@@ -21,7 +21,7 @@ import * as S from './styles'
 export function DropdownAddresses() {
   const modalRef = useRef<ModalRefProps>(null)
 
-  const { mainAddress, setMainAddress } = useAddress()
+  const { mainAddress } = useAddress()
 
   const [isLoading, setIsLoading] = useState(false)
   const [addresses, setAddresses] = useState<AddressDTO[]>([])
@@ -31,10 +31,6 @@ export function DropdownAddresses() {
       setIsLoading(true)
 
       const response = await api.get('/client/address')
-
-      if (response.data.length) {
-        setMainAddress(response.data[0])
-      }
 
       setAddresses(response.data)
     } catch (error) {

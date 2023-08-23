@@ -22,7 +22,7 @@ export const TitleHeader = styled.Text`
 `
 
 export const Content = styled.View`
-  background-color: ${({ theme }) => theme.COLORS.GRAY_100};
+  background-color: ${({ theme }) => theme.COLORS.GRAY_200};
   padding: 16px;
 `
 

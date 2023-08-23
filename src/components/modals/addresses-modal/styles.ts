@@ -14,7 +14,7 @@ export const Title = styled.Text`
 
 export const AddressItemContainer = styled.TouchableOpacity`
   ${({ theme }) => css`
-    background-color: ${theme.COLORS.GRAY_100};
+    background-color: ${theme.COLORS.GRAY_200};
     padding: 16px;
     border-radius: 8px;
     display: flex;

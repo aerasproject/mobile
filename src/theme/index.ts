@@ -10,7 +10,8 @@ export default {
     GREEN_LIGHT: '#00ECA0',
     SUCCESS: '#5EC375',
 
-    GRAY_100: '#e1e1e1',
+    GRAY_100: '#F8F8F8',
+    GRAY_200: '#e1e1e1',
     GRAY_300: '#96999d',
     GRAY_500: '#50555C',
 

@@ -20,6 +20,6 @@ export const MainAddress = styled.Text`
   text-align: center;
   margin-top: 8px;
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
-  color: ${({ theme }) => theme.COLORS.GRAY_100};
+  color: ${({ theme }) => theme.COLORS.GRAY_200};
   line-height: 20px;
 `

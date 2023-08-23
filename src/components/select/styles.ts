@@ -23,7 +23,7 @@ export const Wrapper = styled.View<Props>`
   border: ${({ theme, hasError }) =>
     hasError
       ? `1px solid ${theme.COLORS.ERROR}`
-      : `1px solid ${theme.COLORS.GRAY_100}`};
+      : `1px solid ${theme.COLORS.GRAY_200}`};
 `
 
 export const ErrorMessage = styled.Text`

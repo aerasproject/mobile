@@ -2,14 +2,14 @@ import { Picker, PickerProps } from '@react-native-picker/picker'
 
 import * as S from './styles'
 
-type Item = {
+export type ItemProps = {
   label: string
   value: string
 }
 
 type SelectProps = PickerProps & {
   label: string
-  items: Item[]
+  items: ItemProps[]
   errorMessage?: string
 }
 

@@ -1,7 +1,10 @@
+import { Alert } from 'react-native'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 
 import { api } from '@/lib/axios'
+
+import { AppError } from '@/utils/app-error'
 
 import { AddressDTO } from '@/dtos/address-dto'
 
@@ -24,7 +27,10 @@ export default function Address() {
 
       setAddress(response.data)
     } catch (error) {
-      console.log(error)
+      const isAppError = error instanceof AppError
+      if (isAppError) {
+        Alert.alert(error.message)
+      }
     } finally {
       setIsLoading(false)
     }
