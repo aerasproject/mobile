@@ -1,6 +1,8 @@
+import { Feather } from '@expo/vector-icons'
+
 import { AddressDTO } from '@/dtos/address-dto'
 
-import { Button } from '../button'
+import { formatNameAddress } from '@/utils/format-name-address'
 
 import * as S from './styles'
 
@@ -15,18 +17,26 @@ export function AddressCard({
   isMain = false,
   openModal,
 }: AddressCardProps) {
-  const { name, number } = address
-
-  const fullAddress = name ? `${name}, ${number}` : 'Endereço sem nome'
+  const fullAddress = formatNameAddress(address)
 
   return (
     <S.Container isMain={isMain}>
       {!!isMain && <S.Badge>Sendo visualizado</S.Badge>}
 
-      <S.Name>{address.name}</S.Name>
-      <S.Street>{fullAddress}</S.Street>
+      <S.Circle>
+        <S.CircleText>RBC</S.CircleText>
+      </S.Circle>
 
-      <Button title="Ver detalhes" onPress={openModal} />
+      <S.Content>
+        <S.AddressWrap>
+          <S.AddressName>{address.name}</S.AddressName>
+          <S.AddressStreet>{fullAddress}</S.AddressStreet>
+        </S.AddressWrap>
+
+        <S.BtnIcon onPress={openModal}>
+          <Feather name="eye" size={24} color="#ffffff" />
+        </S.BtnIcon>
+      </S.Content>
     </S.Container>
   )
 }
