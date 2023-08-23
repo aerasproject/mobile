@@ -8,6 +8,7 @@ export default {
     BRAND: '#0167E9',
 
     GREEN_LIGHT: '#00ECA0',
+    SUCCESS: '#5EC375',
 
     GRAY_100: '#e1e1e1',
     GRAY_300: '#96999d',

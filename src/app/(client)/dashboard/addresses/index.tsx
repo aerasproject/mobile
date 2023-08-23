@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 import { Alert, FlatList, Text } from 'react-native'
-import { useFocusEffect } from 'expo-router'
+import { Link, useFocusEffect } from 'expo-router'
 
 import { api } from '@/lib/axios'
 import { AddressDTO } from '@/dtos/address-dto'
@@ -57,7 +57,9 @@ export default function Addresses() {
       </Modal>
 
       <S.Container>
-        <Button title="Cadastrar novo endereço" />
+        <Link asChild href="/(client)/dashboard/address/">
+          <Button title="Cadastrar novo endereço" />
+        </Link>
 
         {isLoading && <Text>Carregando...</Text>}
 

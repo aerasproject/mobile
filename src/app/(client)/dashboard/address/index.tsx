@@ -1,4 +1,3 @@
-import { Text } from 'react-native'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 
@@ -6,6 +5,7 @@ import { api } from '@/lib/axios'
 
 import { AddressDTO } from '@/dtos/address-dto'
 
+import { Loading } from '@/components/loading'
 import { AddressForm } from '@/components/address-form'
 
 import * as S from './styles'
@@ -35,7 +35,7 @@ export default function Address() {
   }, [addressId])
 
   if (isLoading) {
-    return <Text>Carregando...</Text>
+    return <Loading variants="secondary" />
   }
 
   return (

@@ -8,8 +8,11 @@ import { z } from 'zod'
 import statesBR from '@/static-data/states-br'
 
 import { api } from '@/lib/axios'
+
 import { useAuth } from '@/hooks/use-auth'
+
 import { AppError } from '@/utils/app-error'
+
 import { AddressDTO } from '@/dtos/address-dto'
 
 import { Input } from '@/components/input'

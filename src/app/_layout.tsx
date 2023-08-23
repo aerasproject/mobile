@@ -7,6 +7,7 @@ import { Loading } from '@/components/loading'
 import { useAuth } from '@/hooks/use-auth'
 
 import { AuthContextProvider } from '@/contexts/auth-context'
+import { AddressContextProvider } from '@/contexts/address-context'
 
 import theme from '@/theme'
 
@@ -17,7 +18,9 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <AuthContextProvider>
-          {isLoadingUserStorage ? <Loading /> : <Slot />}
+          <AddressContextProvider>
+            {isLoadingUserStorage ? <Loading /> : <Slot />}
+          </AddressContextProvider>
         </AuthContextProvider>
       </ThemeProvider>
     </SafeAreaProvider>
