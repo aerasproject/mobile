@@ -17,6 +17,10 @@ const containerModifiers = {
     background-color: transparent;
     border: 1px solid ${theme.COLORS.WHITE};
   `,
+  'danger-outline': (theme: DefaultTheme) => css`
+    background-color: transparent;
+    border: 1px solid ${theme.COLORS.ERROR};
+  `,
 }
 
 const textModifiers = {
@@ -28,6 +32,9 @@ const textModifiers = {
   `,
   'white-outline': (theme: DefaultTheme) => css`
     color: ${theme.COLORS.WHITE};
+  `,
+  'danger-outline': (theme: DefaultTheme) => css`
+    color: ${theme.COLORS.ERROR};
   `,
 }
 
