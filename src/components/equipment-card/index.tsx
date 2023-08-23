@@ -1,6 +1,6 @@
-import { EquipmentDTO } from '@/dtos'
+import { Feather } from '@expo/vector-icons'
 
-import { Button } from '@/components/button'
+import { EquipmentDTO } from '@/dtos'
 
 import * as S from './styles'
 
@@ -13,8 +13,16 @@ export function EquipmentCard({ equipment, openModal }: EquipmentCardProps) {
   return (
     <S.Container>
       <S.Name>{equipment.name}</S.Name>
-      <S.Badge>{equipment.tag}</S.Badge>
-      <Button title="Ver detalhes" onPress={openModal} />
+      <S.Wrapper>
+        <S.Badge>TAG5712</S.Badge>
+        <S.PMOCCode>
+          <S.PMOCCodeLabel>Código PMOC</S.PMOCCodeLabel>
+          <S.PMOCCodeText>123456</S.PMOCCodeText>
+        </S.PMOCCode>
+        <S.BtnIcon onPress={openModal}>
+          <Feather name="eye" size={24} color="#ffffff" />
+        </S.BtnIcon>
+      </S.Wrapper>
     </S.Container>
   )
 }
