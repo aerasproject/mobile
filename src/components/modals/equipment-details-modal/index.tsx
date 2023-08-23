@@ -20,8 +20,6 @@ export function EquipmentDetailsModal({
 }: EquipmentDetailsModalProps) {
   const { mainAddress } = useAddress()
 
-  console.log('equipment', equipment)
-
   return (
     <Modal ref={modalRef} height="75%">
       <S.Container>
@@ -31,35 +29,35 @@ export function EquipmentDetailsModal({
 
         <S.Content>
           <S.Title>{equipment.name}</S.Title>
-          <S.Badge>{equipment.tag}</S.Badge>
+          {!!equipment.tag && <S.Badge>{equipment.tag}</S.Badge>}
 
           {/* TODO: Add um divider style */}
           {/* DIVIDER */}
 
           <S.Wrapper>
             <S.Box>
-              <S.Label>Rua</S.Label>
+              <S.Label>Marca</S.Label>
               <S.Text>{equipment.brand}</S.Text>
             </S.Box>
             <S.Box>
-              <S.Label>Rua</S.Label>
-              <S.Text>{equipment.model}</S.Text>
+              <S.Label>Model</S.Label>
+              <S.Text>{equipment.model || '-'}</S.Text>
             </S.Box>
             <S.Box>
-              <S.Label>Rua</S.Label>
+              <S.Label>Voltagem</S.Label>
               <S.Text>{equipment.voltage}</S.Text>
             </S.Box>
             <S.Box>
-              <S.Label>Rua</S.Label>
+              <S.Label>Tipo</S.Label>
               <S.Text>{equipment.type}</S.Text>
             </S.Box>
             <S.Box>
-              <S.Label>Rua</S.Label>
+              <S.Label>Capacidade</S.Label>
               <S.Text>{equipment.capacity}</S.Text>
             </S.Box>
             <S.Box>
-              <S.Label>Rua</S.Label>
-              <S.Text>{equipment.environment?.name}</S.Text>
+              <S.Label>Ambiente</S.Label>
+              <S.Text>{equipment.environment?.name || 'Sem ambiente'}</S.Text>
             </S.Box>
           </S.Wrapper>
         </S.Content>
@@ -70,7 +68,7 @@ export function EquipmentDetailsModal({
             asChild
             href={{
               pathname: '/(client)/dashboard/equipment',
-              // params: { addressId: address.id },
+              params: { equipmentId: equipment.id },
             }}
           >
             <Button title="Editar" />
