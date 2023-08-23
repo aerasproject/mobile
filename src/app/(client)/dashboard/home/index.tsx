@@ -1,24 +1,61 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { Alert, Dimensions } from 'react-native'
 import { useFocusEffect } from 'expo-router'
-import { Alert, Pressable } from 'react-native'
 import { Ionicons, Feather } from '@expo/vector-icons'
+import { Image } from 'expo-image'
+import Carousel from 'react-native-snap-carousel'
 
 import { api } from '@/lib/axios'
 
-import { AddressDTO } from '@/dtos/address-dto'
+import { AppError } from '@/utils/app-error'
 
+import { AddressDTO, EquipmentDTO } from '@/dtos'
+
+import { useAddress } from '@/hooks/use-address'
+
+import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
 import { ModalRef } from '@/components/modal'
 import { EmptyBox } from '@/components/empty-box'
 import { AddressesModal } from '@/components/modals/addresses-modal'
+import { EquipmentDetailsModal } from '@/components/modals/equipment-details-modal'
+
+import AirConditioner from '@/assets/images/air-conditioning.png'
 
 import * as S from './styles'
 
-export default function Dashboard() {
-  const modalRef = useRef<ModalRef>(null)
+const { width: SCREEN_WIDTH } = Dimensions.get('window')
 
-  const [addresses, setAddresses] = useState<AddressDTO[]>([])
+export default function Dashboard() {
+  const addressesModalRef = useRef<ModalRef>(null)
+  const equipmentDetailsModalRef = useRef<ModalRef>(null)
+
+  const { mainAddress, setMainAddress } = useAddress()
+
   const [isLoading, setIsLoading] = useState(false)
+  const [addresses, setAddresses] = useState<AddressDTO[]>([])
+  const [equipments, setEquipments] = useState<EquipmentDTO[]>([])
+
+  async function fetchEquipments() {
+    try {
+      setIsLoading(true)
+
+      const response = await api.get('/equipment', {
+        params: {
+          addressId: mainAddress.id,
+        },
+      })
+
+      setEquipments(response.data)
+    } catch (error) {
+      const isAppError = error instanceof AppError
+      if (isAppError) {
+        Alert.alert(error.message)
+      }
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   async function fetchAddresses() {
     try {
@@ -26,9 +63,16 @@ export default function Dashboard() {
 
       const response = await api.get('/client/address')
 
+      if (response.data.length) {
+        setMainAddress(response.data[0])
+      }
+
       setAddresses(response.data)
     } catch (error) {
-      Alert.alert('Erro ao buscar endereços')
+      const isAppError = error instanceof AppError
+      if (isAppError) {
+        Alert.alert(error.message)
+      }
     } finally {
       setIsLoading(false)
     }
@@ -40,8 +84,16 @@ export default function Dashboard() {
     }, []),
   )
 
+  useEffect(() => {
+    fetchEquipments()
+  }, [mainAddress])
+
   function openAddressesModal() {
-    modalRef.current?.toggle()
+    addressesModalRef.current?.toggle()
+  }
+
+  function openEquipmentDetailsModal() {
+    equipmentDetailsModalRef.current?.toggle()
   }
 
   if (isLoading) {
@@ -50,19 +102,61 @@ export default function Dashboard() {
 
   return (
     <>
-      <AddressesModal addresses={addresses} modalRef={modalRef} />
+      <AddressesModal addresses={addresses} modalRef={addressesModalRef} />
       <S.Container>
         <S.Header>
           {!addresses.length && (
             <EmptyBox
               title="Nenhum endereço cadastrado"
               href="/(client)/dashboard/address/"
-              icon={<Feather name="map-pin" size={24} color="#0051B6" />}
+              icon={<Feather name="map-pin" size={32} color="#0051B6" />}
             />
           )}
-          <Pressable onPress={openAddressesModal}>
+
+          <S.BtnModal onPress={openAddressesModal}>
+            <S.MainAddressName>{mainAddress.name}</S.MainAddressName>
             <Ionicons name="ios-chevron-down" size={32} color="#ffffff" />
-          </Pressable>
+          </S.BtnModal>
+
+          {!equipments.length && (
+            <EmptyBox
+              title="Nenhum equipamento cadastrado"
+              href="/(client)/dashboard/equipment/"
+              icon={<Feather name="settings" size={32} color="#0051B6" />}
+            />
+          )}
+
+          <Carousel
+            data={equipments}
+            sliderWidth={SCREEN_WIDTH}
+            useScrollView={true}
+            itemWidth={Math.round(SCREEN_WIDTH * 0.8)}
+            renderItem={({ item }) => (
+              <S.EquipmentContainer>
+                <EquipmentDetailsModal
+                  equipment={item}
+                  modalRef={equipmentDetailsModalRef}
+                />
+                <Image
+                  alt="Air conditioning image"
+                  source={AirConditioner}
+                  contentFit="contain"
+                  transition={1000}
+                  style={{ width: '100%', height: 108 }}
+                />
+                <S.EquipmentEnv>{item.environment?.name}</S.EquipmentEnv>
+                <S.EquipmentName>{item.name}</S.EquipmentName>
+                <S.EquipmentBrand>{item.brand}</S.EquipmentBrand>
+                <S.Badge>Manutenção em dia</S.Badge>
+
+                <Button
+                  variants="white-outline"
+                  title="Mais informações"
+                  onPress={openEquipmentDetailsModal}
+                />
+              </S.EquipmentContainer>
+            )}
+          />
         </S.Header>
         <S.Content>
           <S.Text>
