@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Alert, Dimensions } from 'react-native'
-import { useFocusEffect } from 'expo-router'
-import { Ionicons, Feather } from '@expo/vector-icons'
+import { useFocusEffect, useRouter } from 'expo-router'
+import { Ionicons, Feather, AntDesign } from '@expo/vector-icons'
 import Carousel from 'react-native-snap-carousel'
 
 import { api } from '@/lib/axios'
@@ -24,6 +24,8 @@ import * as S from './styles'
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 
 export default function Dashboard() {
+  const router = useRouter()
+
   const addressesModalRef = useRef<ModalRefProps>(null)
   const equipmentDetailsModalRef = useRef<ModalRefProps>(null)
 
@@ -116,6 +118,13 @@ export default function Dashboard() {
             <Ionicons name="ios-chevron-down" size={32} color="#ffffff" />
           </S.BtnModal>
 
+          <S.NewEquipmentBtn
+            onPress={() => router.push('/(client)/dashboard/equipment/')}
+          >
+            <AntDesign name="pluscircleo" size={24} color="#ffffff" />
+            <S.NewEquipmentText>Novo equipamento</S.NewEquipmentText>
+          </S.NewEquipmentBtn>
+
           {!equipments.length && (
             <EmptyBox
               title="Nenhum equipamento cadastrado"
@@ -136,7 +145,9 @@ export default function Dashboard() {
                   modalRef={equipmentDetailsModalRef}
                 />
                 <S.ImageAC />
-                <S.EquipmentEnv>{item.environment?.name}</S.EquipmentEnv>
+                <S.EquipmentEnv>
+                  {item.environment?.name || 'Sem ambiente'}
+                </S.EquipmentEnv>
                 <S.EquipmentName>{item.name}</S.EquipmentName>
                 <S.EquipmentBrand>{item.brand}</S.EquipmentBrand>
                 <S.Badge>Manutenção em dia</S.Badge>

@@ -21,6 +21,9 @@ const containerModifiers = {
     background-color: transparent;
     border: 1px solid ${theme.COLORS.ERROR};
   `,
+  'danger-raw': () => css`
+    background-color: transparent;
+  `,
 }
 
 const textModifiers = {
@@ -34,6 +37,9 @@ const textModifiers = {
     color: ${theme.COLORS.WHITE};
   `,
   'danger-outline': (theme: DefaultTheme) => css`
+    color: ${theme.COLORS.ERROR};
+  `,
+  'danger-raw': (theme: DefaultTheme) => css`
     color: ${theme.COLORS.ERROR};
   `,
 }
