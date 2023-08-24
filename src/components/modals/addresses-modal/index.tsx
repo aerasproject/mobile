@@ -1,18 +1,19 @@
+import { Link } from 'expo-router'
 import { FlatList } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'
-import { Link } from 'expo-router'
 
-import { AddressDTO } from '@/dtos/address-dto'
+import { AddressDTO } from '@/dtos'
+
+import { useAddress } from '@/hooks/use-address'
 
 import { Button } from '@/components/button'
-import { Modal, ModalRef } from '@/components/modal'
+import { Modal, ModalRefProps } from '@/components/modal'
 
 import * as S from './styles'
-import { useAddress } from '@/hooks/use-address'
 
 type AddressesModalProps = {
   addresses: AddressDTO[]
-  modalRef: React.RefObject<ModalRef>
+  modalRef: React.RefObject<ModalRefProps>
 }
 
 export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {

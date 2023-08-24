@@ -6,7 +6,7 @@ import { api } from '@/lib/axios'
 
 import { AppError } from '@/utils/app-error'
 
-import { AddressDTO } from '@/dtos/address-dto'
+import { AddressDTO } from '@/dtos'
 
 import { Loading } from '@/components/loading'
 import { AddressForm } from '@/components/address-form'

@@ -8,7 +8,7 @@ import { api } from '@/lib/axios'
 
 import { AppError } from '@/utils/app-error'
 
-import { EnvironmentDTO } from '@/dtos/environment-dto'
+import { EnvironmentDTO } from '@/dtos'
 
 import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'

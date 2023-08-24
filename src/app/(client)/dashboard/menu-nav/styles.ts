@@ -1,5 +1,4 @@
 import styled from 'styled-components/native'
-import { Link } from 'expo-router'
 
 export const Container = styled.View`
   flex: 1;
@@ -13,9 +12,9 @@ export const Header = styled.View`
 `
 
 export const Username = styled.Text`
+  font-weight: bold;
   text-align: center;
   font-size: ${({ theme }) => theme.FONT_SIZE.XXXL}px;
-  font-weight: bold;
   color: ${({ theme }) => theme.COLORS.WHITE};
 `
 

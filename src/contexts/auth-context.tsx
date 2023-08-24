@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router'
 import { createContext, useEffect, useState } from 'react'
 
-import { UserDTO } from '@/dtos/user-dto'
+import { UserDTO } from '@/dtos'
 
 import {
   storageUserSave,
@@ -101,6 +101,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
       if (user.id && token) {
         updateUserAndToken(user, token)
+
         router.replace('/(client)/dashboard/home/')
       } else {
         router.replace('/(onboarding)/welcome/')

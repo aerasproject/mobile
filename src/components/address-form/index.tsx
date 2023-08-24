@@ -13,7 +13,7 @@ import { useAuth } from '@/hooks/use-auth'
 
 import { AppError } from '@/utils/app-error'
 
-import { AddressDTO } from '@/dtos/address-dto'
+import { AddressDTO } from '@/dtos'
 
 import { Input } from '@/components/input'
 import { Button } from '@/components/button'

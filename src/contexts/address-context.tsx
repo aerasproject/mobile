@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
 
-import { AddressDTO } from '@/dtos/address-dto'
+import { AddressDTO } from '@/dtos'
 
 type AddressContextProviderProps = {
   children: React.ReactNode

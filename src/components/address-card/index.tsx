@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons'
 
-import { AddressDTO } from '@/dtos/address-dto'
+import { AddressDTO } from '@/dtos'
 
 import { formatNameAddress } from '@/utils/format-name-address'
 

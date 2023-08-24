@@ -4,7 +4,7 @@ import { Link, useFocusEffect } from 'expo-router'
 
 import { api } from '@/lib/axios'
 
-import { AddressDTO } from '@/dtos/address-dto'
+import { AddressDTO } from '@/dtos'
 
 import { Loading } from '@/components/loading'
 import { Button } from '@/components/button'

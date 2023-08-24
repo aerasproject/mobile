@@ -1,5 +1,4 @@
 import React from 'react'
-import { Text } from 'react-native'
 import { Link } from 'expo-router'
 
 import theme from '@/theme'
@@ -25,7 +24,6 @@ export default function ChoiceScreen() {
           </Link>
           <Link href="/(onboarding)/sign-in/">Iniciar Sessão</Link>
         </S.Wrapper>
-
         <Button
           variants="primary-outline"
           title="Cadastro prestador de serviço"
