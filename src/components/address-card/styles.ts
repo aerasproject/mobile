@@ -6,32 +6,52 @@ type Props = {
 
 export const Container = styled.View<Props>`
   ${({ theme, isMain }) => css`
-    padding: 16px;
-    background-color: ${isMain ? theme.COLORS.GRAY_200 : 'transparent'};
-    border-radius: 10px;
-    border: 1px solid #d4d4d4;
-    margin-bottom: 48px;
     position: relative;
+
+    margin-bottom: 48px;
+
+    padding: 16px;
+    border-radius: 10px;
+    background-color: ${isMain ? theme.COLORS.GRAY_200 : 'transparent'};
+    border: 1px solid ${theme.COLORS.GRAY_200};
   `}
 `
 
-export const Circle = styled.View`
+export const CircleName = styled.View`
   position: absolute;
   top: -30px;
   left: 16px;
-  background-color: ${({ theme }) => theme.COLORS.BRAND};
-  border-radius: 999px;
+
   width: 60px;
   height: 60px;
+  padding: 4px;
+
+  background-color: ${({ theme }) => theme.COLORS.BRAND};
+  border-radius: 999px;
   align-items: center;
   justify-content: center;
-  padding: 4px;
 `
 
-export const CircleText = styled.Text`
-  color: ${({ theme }) => theme.COLORS.WHITE};
-  font-size: ${({ theme }) => theme.FONT_SIZE.LG};
+export const CircleNameText = styled.Text`
   font-weight: bold;
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
+`
+
+export const CircleStar = styled.View`
+  position: absolute;
+  top: -30px;
+  left: 90px;
+
+  width: 60px;
+  height: 60px;
+  padding: 4px;
+
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
+  border-radius: 999px;
+  border: 1px solid ${({ theme }) => theme.COLORS.GRAY_200};
+  align-items: center;
+  justify-content: center;
 `
 
 export const Badge = styled.Text`
@@ -43,12 +63,15 @@ export const Badge = styled.Text`
   `}
 `
 
-export const AddressWrap = styled.View``
-
 export const Content = styled.View`
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
+  gap: 16px;
+`
+
+export const AddressWrap = styled.View`
+  flex: 1;
 `
 
 export const AddressName = styled.Text`
@@ -58,12 +81,14 @@ export const AddressName = styled.Text`
 `
 
 export const AddressStreet = styled.Text`
-  margin-top: 8px;
+  margin-top: 4px;
   color: #747474;
 `
 
 export const BtnIcon = styled.Pressable`
-  background-color: '#0051B6';
+  height: 40px;
+  width: 40px;
+  background-color: #0051b6;
   padding: 8px;
   border-radius: 999px;
 `

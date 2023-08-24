@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/native'
 export const Container = styled.View`
   ${({ theme }) => css`
     padding: 16px;
-    background-color: ${theme.COLORS.GRAY_200};
+    background-color: ${theme.COLORS.GRAY_100};
     border-radius: 12px;
     margin-bottom: 16px;
     gap: 16px;
@@ -27,6 +27,7 @@ export const Badge = styled.Text`
     background-color: ${theme.COLORS.BRAND};
     color: ${theme.COLORS.WHITE};
     border-radius: 999px;
+    font-weight: 500;
   `}
 `
 
@@ -47,7 +48,7 @@ export const PMOCCodeText = styled.Text`
 `
 
 export const BtnIcon = styled.Pressable`
-  background-color: '#0051B6';
+  background-color: #0051b6;
   padding: 8px;
   border-radius: 999px;
 `

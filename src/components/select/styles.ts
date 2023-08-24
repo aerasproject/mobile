@@ -8,6 +8,7 @@ export const Container = styled.View`
   gap: 8px;
   background-color: transparent;
   border-radius: 8px;
+  width: 100%;
 `
 
 export const Label = styled.Text<Props>`

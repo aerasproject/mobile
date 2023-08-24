@@ -8,6 +8,8 @@ export const Container = styled.View`
 `
 
 export const Header = styled.View`
+  border-top-width: 1px;
+  border-top-color: ${({ theme }) => theme.COLORS.GRAY_100};
   background-color: ${({ theme }) => theme.COLORS.BRAND};
   padding: 16px 32px;
 `

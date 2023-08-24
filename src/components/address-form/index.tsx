@@ -237,7 +237,14 @@ export function AddressForm({ initialData }: AddressFormProps) {
           isLoading={isLoading}
           disabled={isLoading}
         />
-        <Link href="/(client)/dashboard/home/">Cancelar</Link>
+        <Link asChild href="/(client)/dashboard/home/">
+          <Button
+            variants="danger-raw"
+            title="Cancelar"
+            isLoading={isLoading}
+            disabled={isLoading}
+          />
+        </Link>
       </S.Form>
     </>
   )

@@ -23,9 +23,12 @@ export function AddressCard({
     <S.Container isMain={isMain}>
       {!!isMain && <S.Badge>Sendo visualizado</S.Badge>}
 
-      <S.Circle>
-        <S.CircleText>RBC</S.CircleText>
-      </S.Circle>
+      <S.CircleName>
+        <S.CircleNameText>RBC</S.CircleNameText>
+      </S.CircleName>
+      <S.CircleStar>
+        <Feather name="star" size={24} color="#00ECA0" />
+      </S.CircleStar>
 
       <S.Content>
         <S.AddressWrap>

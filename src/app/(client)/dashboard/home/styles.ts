@@ -24,6 +24,18 @@ export const Content = styled.View`
   padding: 26px;
 `
 
+export const NewEquipmentBtn = styled.Pressable`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+`
+
+export const NewEquipmentText = styled.Text`
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
+`
+
 export const Text = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.COLORS.GRAY_500};
@@ -69,7 +81,7 @@ export const EquipmentName = styled.Text`
 `
 
 export const EquipmentBrand = styled.Text`
-  color: ${({ theme }) => theme.COLORS.GRAY_300};
+  color: ${({ theme }) => theme.COLORS.GRAY_200};
   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
   font-weight: 500;
 `

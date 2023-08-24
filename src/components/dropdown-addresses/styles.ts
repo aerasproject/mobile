@@ -19,6 +19,7 @@ export const MainAddressName = styled.Text`
 export const MainAddress = styled.Text`
   text-align: center;
   margin-top: 8px;
+  opacity: 0.8;
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
   color: ${({ theme }) => theme.COLORS.GRAY_200};
   line-height: 20px;
