@@ -23,6 +23,10 @@ export default function Address() {
     try {
       setIsLoading(true)
 
+      if (!equipmentId) {
+        return setEquipment(null)
+      }
+
       const response = await api.get(`/equipment/${equipmentId}`)
 
       setEquipment(response.data)

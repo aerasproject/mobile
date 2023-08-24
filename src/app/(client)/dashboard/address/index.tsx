@@ -23,6 +23,10 @@ export default function Address() {
     try {
       setIsLoading(true)
 
+      if (!addressId) {
+        return setAddress(null)
+      }
+
       const response = await api.get(`/client/address/${addressId}`)
 
       setAddress(response.data)
