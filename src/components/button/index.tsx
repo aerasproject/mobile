@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { forwardRef } from 'react'
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 
