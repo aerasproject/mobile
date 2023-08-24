@@ -11,6 +11,8 @@ import { AddressContextProvider } from '@/contexts/address-context'
 
 import theme from '@/theme'
 
+// SplashScreen.preventAutoHideAsync()
+
 export default function RootLayout() {
   const { isLoadingUserStorage } = useAuth()
 

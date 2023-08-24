@@ -67,23 +67,28 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
       setIsLoading(true)
 
       if (initialData) {
-        // TODO: Update Equipment
-        console.log(data)
-      } else {
-        // TODO: Create Equipment
-
-        await api.post('/equipment', {
+        await api.put(`/equipment/${initialData.id}`, {
           brand: data.brand,
           capacity: data.capacity,
-          environmentId: data.environmentId,
           name: data.name,
           type: data.type,
           voltage: data.voltage,
           addressId: mainAddress.id,
+          environmentId: data.environmentId,
         })
-
-        router.push('/(client)/dashboard/equipments/')
+      } else {
+        await api.post('/equipment', {
+          brand: data.brand,
+          capacity: data.capacity,
+          name: data.name,
+          type: data.type,
+          voltage: data.voltage,
+          addressId: mainAddress.id,
+          environmentId: data.environmentId,
+        })
       }
+
+      router.push('/(client)/dashboard/equipments/')
     } catch (error) {
       const isAppError = error instanceof AppError
       if (isAppError) {
@@ -94,7 +99,7 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
     }
   }
 
-  const title = initialData ? 'Editar equipamento' : 'Cadastrar equipamento'
+  const title = initialData ? 'Editar Equipamento' : 'Cadastrar Equipamento'
   const action = initialData ? 'Salvar alterações' : 'Cadastrar'
 
   return (
@@ -190,7 +195,14 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
           disabled={isLoading}
           onPress={form.handleSubmit(onSubmit)}
         />
-        <Link href="/(client)/dashboard/home/">Cancelar</Link>
+        <Link asChild href="/(client)/dashboard/home/">
+          <Button
+            variants="danger-raw"
+            title="Cancelar"
+            isLoading={isLoading}
+            disabled={isLoading}
+          />
+        </Link>
       </S.Form>
     </>
   )
