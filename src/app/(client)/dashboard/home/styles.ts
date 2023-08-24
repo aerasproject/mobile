@@ -1,4 +1,7 @@
 import styled, { css } from 'styled-components/native'
+import { Image as ExpoImage } from 'expo-image'
+
+import imageAC from '@/assets/images/air-conditioning.png'
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -40,6 +43,16 @@ export const MainAddressName = styled.Text`
 export const EquipmentContainer = styled.View`
   gap: 6px;
   align-items: center;
+`
+
+export const ImageAC = styled(ExpoImage).attrs({
+  source: imageAC,
+  contentFit: 'contain',
+  transition: 1000,
+  alt: 'Air Conditioning',
+})`
+  width: 100%;
+  height: 108px;
 `
 
 export const EquipmentEnv = styled.Text`

@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Alert, Dimensions } from 'react-native'
 import { useFocusEffect } from 'expo-router'
 import { Ionicons, Feather } from '@expo/vector-icons'
-import { Image } from 'expo-image'
 import Carousel from 'react-native-snap-carousel'
 
 import { api } from '@/lib/axios'
@@ -19,8 +18,6 @@ import { ModalRefProps } from '@/components/modal'
 import { EmptyBox } from '@/components/empty-box'
 import { AddressesModal } from '@/components/modals/addresses-modal'
 import { AddressAndEquipmentDetailsModal } from '@/components/modals/address-and-equipment-details-modal'
-
-import AirConditioner from '@/assets/images/air-conditioning.png'
 
 import * as S from './styles'
 
@@ -103,6 +100,7 @@ export default function Dashboard() {
   return (
     <>
       <AddressesModal addresses={addresses} modalRef={addressesModalRef} />
+
       <S.Container>
         <S.Header>
           {!addresses.length && (
@@ -137,13 +135,7 @@ export default function Dashboard() {
                   equipment={item}
                   modalRef={equipmentDetailsModalRef}
                 />
-                <Image
-                  alt="Air conditioning image"
-                  source={AirConditioner}
-                  contentFit="contain"
-                  transition={1000}
-                  style={{ width: '100%', height: 108 }}
-                />
+                <S.ImageAC />
                 <S.EquipmentEnv>{item.environment?.name}</S.EquipmentEnv>
                 <S.EquipmentName>{item.name}</S.EquipmentName>
                 <S.EquipmentBrand>{item.brand}</S.EquipmentBrand>

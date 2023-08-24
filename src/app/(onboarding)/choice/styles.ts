@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Image as ExpoImage } from 'expo-image'
 
-import aerasLogo from '../../../../assets/logo.png'
+import aerasLogo from '@/assets/images/aeras.png'
 
 export const Container = styled.View`
   flex: 1;
@@ -30,7 +30,7 @@ export const Text = styled.Text`
 
 export const Content = styled.View`
   flex: 1;
-  padding: 32px 26px;
+  padding: 32px 24px;
   justify-content: space-between;
 `
 
