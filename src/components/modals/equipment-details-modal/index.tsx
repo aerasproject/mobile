@@ -1,11 +1,15 @@
-import { Link } from 'expo-router'
+import { useState } from 'react'
+import { Alert } from 'react-native'
+import { Link, useRouter } from 'expo-router'
 
 import { EquipmentDTO } from '@/dtos'
 
 import { useAddress } from '@/hooks/use-address'
+import { useDeleteEquipment } from '@/hooks/equipments/use-delete'
 
 import { Button } from '@/components/button'
-import { Modal, ModalRefProps } from '@/components/modal'
+import { AlertModal } from '@/components/modals/alert-modal'
+import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
 
 import * as S from './styles'
 
@@ -18,22 +22,44 @@ export function EquipmentDetailsModal({
   equipment,
   modalRef,
 }: EquipmentDetailsModalProps) {
+  const router = useRouter()
   const { mainAddress } = useAddress()
+  const deleteEquipment = useDeleteEquipment()
+
+  const [isModalVisible, setModalVisible] = useState(false)
+
+  async function onConfirm() {
+    try {
+      deleteEquipment.mutate(equipment.id)
+
+      setModalVisible(false)
+      modalRef.current?.toggle()
+
+      router.push('/(client)/dashboard/equipments')
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Erro ao excluir equipamento')
+    }
+  }
+
+  const description = `Você deseja mesmo excluir o equipamento “${equipment.name}”, cadastrado no ambiente “${equipment.environment?.name}”?`
 
   return (
-    <Modal ref={modalRef} height="75%">
+    <ModalHalfScreen ref={modalRef} height="75%">
+      <AlertModal
+        description={description}
+        onConfirm={onConfirm}
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
+      />
+
       <S.Container>
         <S.Header>
           <S.TitleHeader>{mainAddress.name}</S.TitleHeader>
         </S.Header>
-
         <S.Content>
           <S.Title>{equipment.name}</S.Title>
           {!!equipment.tag && <S.Badge>{equipment.tag}</S.Badge>}
-
-          {/* TODO: Add um divider style */}
-          {/* DIVIDER */}
-
           <S.Wrapper>
             <S.Box>
               <S.Label>Marca</S.Label>
@@ -61,9 +87,12 @@ export function EquipmentDetailsModal({
             </S.Box>
           </S.Wrapper>
         </S.Content>
-
         <S.BtnWrapper>
-          <Button variants="danger-outline" title="Excluir" />
+          <Button
+            title="Excluir"
+            variants="danger-outline"
+            onPress={() => setModalVisible(true)}
+          />
           <Link
             asChild
             href={{
@@ -75,6 +104,6 @@ export function EquipmentDetailsModal({
           </Link>
         </S.BtnWrapper>
       </S.Container>
-    </Modal>
+    </ModalHalfScreen>
   )
 }
