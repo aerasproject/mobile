@@ -61,7 +61,7 @@ export default function Addresses() {
           <Button title="Cadastrar novo endereço" />
         </Link>
 
-        {isLoading && <Loading />}
+        {isLoading && <Loading variants="secondary" />}
 
         {addresses.length ? (
           <FlatList

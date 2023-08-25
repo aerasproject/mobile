@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 export const Container = styled.View`
   flex: 1;
-  gap: 32px;
+  gap: 16px;
   padding: 32px 26px;
 `
 

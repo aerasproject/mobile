@@ -46,10 +46,10 @@ const textModifiers = {
 
 export const Container = styled.TouchableOpacity<Props>`
   ${({ theme, variants }) => css`
-    width: 100%;
+    height: 56px;
+    min-width: 120px;
+
     padding: 8px 16px;
-    min-height: 56px;
-    max-height: 56px;
     border-radius: 6px;
 
     align-items: center;
