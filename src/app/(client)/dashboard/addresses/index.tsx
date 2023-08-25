@@ -8,7 +8,7 @@ import { AddressDTO } from '@/dtos'
 
 import { Loading } from '@/components/loading'
 import { Button } from '@/components/button'
-import { ModalRefProps } from '@/components/modal'
+import { ModalRefProps } from '@/components/modal-half-screen'
 import { AddressCard } from '@/components/address-card'
 import { AddressDetailsModal } from '@/components/modals/address-details-modal'
 

@@ -9,7 +9,7 @@ import { useGetAll } from '@/hooks/equipments/use-get-all'
 
 import { Loading } from '@/components/loading'
 import { Button } from '@/components/button'
-import { ModalRefProps } from '@/components/modal'
+import { ModalRefProps } from '@/components/modal-half-screen'
 import { EquipmentCard } from '@/components/equipment-card'
 import { DropdownAddresses } from '@/components/dropdown-addresses'
 import { EquipmentDetailsModal } from '@/components/modals/equipment-details-modal'

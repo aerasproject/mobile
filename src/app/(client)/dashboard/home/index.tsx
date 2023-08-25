@@ -14,7 +14,7 @@ import { useAddress } from '@/hooks/use-address'
 
 import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
-import { ModalRefProps } from '@/components/modal'
+import { ModalRefProps } from '@/components/modal-half-screen'
 import { EmptyBox } from '@/components/empty-box'
 import { AddressesModal } from '@/components/modals/addresses-modal'
 import { AddressAndEquipmentDetailsModal } from '@/components/modals/address-and-equipment-details-modal'

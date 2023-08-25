@@ -12,7 +12,7 @@ export type ModalRefProps = {
   toggle: () => void
 }
 
-export const Modal = forwardRef<ModalRefProps, ModalProps>(
+export const ModalHalfScreen = forwardRef<ModalRefProps, ModalProps>(
   ({ height = '50%', children }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -40,4 +40,4 @@ export const Modal = forwardRef<ModalRefProps, ModalProps>(
   },
 )
 
-Modal.displayName = 'Modal'
+ModalHalfScreen.displayName = 'ModalHalfScreen'

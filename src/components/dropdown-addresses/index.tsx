@@ -13,7 +13,7 @@ import { AppError } from '@/utils/app-error'
 import { formatNameAddress } from '@/utils/format-name-address'
 
 import { Loading } from '@/components/loading'
-import { ModalRefProps } from '@/components/modal'
+import { ModalRefProps } from '@/components/modal-half-screen'
 import { AddressesModal } from '@/components/modals/addresses-modal'
 
 import * as S from './styles'

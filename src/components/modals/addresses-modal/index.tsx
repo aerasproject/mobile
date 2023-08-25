@@ -7,7 +7,7 @@ import { AddressDTO } from '@/dtos'
 import { useAddress } from '@/hooks/use-address'
 
 import { Button } from '@/components/button'
-import { Modal, ModalRefProps } from '@/components/modal'
+import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
 
 import * as S from './styles'
 
@@ -25,7 +25,7 @@ export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
   }
 
   return (
-    <Modal ref={modalRef} height="85%">
+    <ModalHalfScreen ref={modalRef} height="85%">
       <S.Container>
         <S.Title>Endereços</S.Title>
         <FlatList
@@ -43,6 +43,6 @@ export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
           <Button title="Cadastrar novo endereço" />
         </Link>
       </S.Container>
-    </Modal>
+    </ModalHalfScreen>
   )
 }
