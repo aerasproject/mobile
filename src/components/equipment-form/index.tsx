@@ -20,6 +20,8 @@ import { Button } from '@/components/button'
 import { Select } from '@/components/select'
 
 import * as S from './styles'
+import { useCreateEquipment } from '@/hooks/equipments/use-create'
+import { useUpdateEquipment } from '@/hooks/equipments/use-update'
 
 const formSchema = z.object({
   name: z.string().min(3),
@@ -40,7 +42,8 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
   const router = useRouter()
   const { mainAddress } = useAddress()
 
-  const [isLoading, setIsLoading] = useState(false)
+  const createEquipment = useCreateEquipment()
+  const updateEquipment = useUpdateEquipment()
 
   const [formattedEnvironments, _] = useState(() => {
     return mainAddress.environments.map((env) => ({
@@ -63,42 +66,33 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
   })
 
   async function onSubmit(data: FormValues) {
-    try {
-      setIsLoading(true)
-
-      if (initialData) {
-        await api.put(`/equipment/${initialData.id}`, {
-          brand: data.brand,
-          capacity: data.capacity,
-          name: data.name,
-          type: data.type,
-          voltage: data.voltage,
-          addressId: mainAddress.id,
-          environmentId: data.environmentId,
-        })
-      } else {
-        await api.post('/equipment', {
-          brand: data.brand,
-          capacity: data.capacity,
-          name: data.name,
-          type: data.type,
-          voltage: data.voltage,
-          addressId: mainAddress.id,
-          environmentId: data.environmentId,
-        })
-      }
-
-      router.push('/(client)/dashboard/equipments/')
-    } catch (error) {
-      const isAppError = error instanceof AppError
-      if (isAppError) {
-        Alert.alert(error.message)
-      }
-    } finally {
-      setIsLoading(false)
+    if (initialData) {
+      updateEquipment.mutate({
+        brand: data.brand,
+        capacity: data.capacity,
+        name: data.name,
+        type: data.type,
+        voltage: data.voltage,
+        environmentId: data.environmentId,
+        addressId: mainAddress.id,
+        equipmentId: initialData.id,
+      })
+    } else {
+      createEquipment.mutate({
+        brand: data.brand,
+        capacity: data.capacity,
+        name: data.name,
+        type: data.type,
+        voltage: data.voltage,
+        environmentId: data.environmentId,
+        addressId: mainAddress.id,
+      })
     }
+
+    router.push('/(client)/dashboard/equipments/')
   }
 
+  const isLoading = createEquipment.isLoading || updateEquipment.isLoading
   const title = initialData ? 'Editar Equipamento' : 'Cadastrar Equipamento'
   const action = initialData ? 'Salvar alterações' : 'Cadastrar'
 
