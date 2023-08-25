@@ -1,14 +1,11 @@
 import { useCallback, useRef, useState } from 'react'
-import { Alert, FlatList, Text } from 'react-native'
+import { FlatList, Text } from 'react-native'
 import { Link, useFocusEffect } from 'expo-router'
-
-import { api } from '@/lib/axios'
 
 import { EquipmentDTO } from '@/dtos'
 
 import { useAddress } from '@/hooks/use-address'
-
-import { AppError } from '@/utils/app-error'
+import { useGetAll } from '@/hooks/equipments/use-get-all'
 
 import { Loading } from '@/components/loading'
 import { Button } from '@/components/button'
@@ -23,43 +20,41 @@ export default function Equipments() {
   const modalRef = useRef<ModalRefProps>(null)
 
   const { mainAddress } = useAddress()
+  const {
+    data: equipments,
+    isError,
+    isLoading,
+    refetch,
+  } = useGetAll(mainAddress.id)
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [equipments, setEquipments] = useState<EquipmentDTO[]>([])
+  const [selectedEquipment, setSelectedEquipment] = useState<EquipmentDTO>(
+    {} as EquipmentDTO,
+  )
 
-  function openModal() {
+  function openModal(equipment: EquipmentDTO) {
     modalRef.current?.toggle()
+    setSelectedEquipment(equipment)
   }
 
-  async function fetchEquipments() {
-    try {
-      setIsLoading(true)
-
-      const response = await api.get('/equipment', {
-        params: {
-          addressId: mainAddress.id,
-        },
-      })
-
-      setEquipments(response.data)
-    } catch (error) {
-      const isAppError = error instanceof AppError
-      if (isAppError) {
-        Alert.alert(error.message)
-      }
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const hasEquipment = equipments?.length > 0
 
   useFocusEffect(
     useCallback(() => {
-      fetchEquipments()
+      refetch()
     }, [mainAddress]),
   )
 
+  if (isError) {
+    return <Text>Erro ao carregar equipamentos</Text>
+  }
+
   return (
     <>
+      <EquipmentDetailsModal
+        modalRef={modalRef}
+        equipment={selectedEquipment}
+      />
+
       <S.Header>
         <DropdownAddresses />
       </S.Header>
@@ -70,21 +65,20 @@ export default function Equipments() {
         </Link>
 
         {isLoading && <Loading variants="secondary" />}
+        {!hasEquipment && <Text>Nenhum equipamento cadastrado</Text>}
 
-        {equipments.length ? (
-          <FlatList
-            data={equipments}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <>
-                <EquipmentDetailsModal equipment={item} modalRef={modalRef} />
-                <EquipmentCard equipment={item} openModal={openModal} />
-              </>
-            )}
-          />
-        ) : (
-          <Text>Nenhum equipamento cadastrado</Text>
-        )}
+        <FlatList
+          data={equipments}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <>
+              <EquipmentCard
+                equipment={item}
+                openModal={() => openModal(item)}
+              />
+            </>
+          )}
+        />
       </S.Container>
     </>
   )
