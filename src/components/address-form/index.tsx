@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { Alert } from 'react-native'
 import { Link, useRouter } from 'expo-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
@@ -7,11 +5,9 @@ import { z } from 'zod'
 
 import statesBR from '@/static-data/states-br'
 
-import { api } from '@/lib/axios'
-
 import { useAuth } from '@/hooks/use-auth'
-
-import { AppError } from '@/utils/app-error'
+import { useCreateAddress } from '@/hooks/addresses/use-create'
+import { useUpdateAddress } from '@/hooks/addresses/use-update'
 
 import { AddressDTO } from '@/dtos'
 
@@ -41,7 +37,8 @@ export function AddressForm({ initialData }: AddressFormProps) {
   const { user } = useAuth()
   const router = useRouter()
 
-  const [isLoading, setIsLoading] = useState(false)
+  const createAddress = useCreateAddress()
+  const updateAddress = useUpdateAddress()
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -57,43 +54,42 @@ export function AddressForm({ initialData }: AddressFormProps) {
   })
 
   async function onSubmit(data: FormValues) {
-    try {
-      setIsLoading(true)
+    if (initialData) {
+      await updateAddress.mutateAsync({
+        addressId: initialData.id,
+        street: data.street,
+        number: data.number,
+        city: data.city,
+        state: data.state,
+        name: data.name,
+        complement: data.complement,
+        neighborhood: data.neighborhood,
+      })
 
-      if (initialData) {
-        await api.put<AddressDTO>(`/client/address/${initialData.id}`, data)
+      router.push('/(client)/dashboard/addresses/')
+    } else {
+      const address = await createAddress.mutateAsync({
+        userId: user.id,
+        street: data.street,
+        number: data.number,
+        city: data.city,
+        state: data.state,
+        name: data.name,
+        complement: data.complement,
+        neighborhood: data.neighborhood,
+      })
 
-        router.push('/(client)/dashboard/addresses/')
-      } else {
-        const response = await api.post<AddressDTO>('/client/address', {
-          userId: user.id,
-          street: data.street,
-          number: data.number,
-          city: data.city,
-          state: data.state,
-          name: data.name,
-          complement: data.complement,
-          neighborhood: data.neighborhood,
-        })
-
-        router.push({
-          pathname: '/(client)/dashboard/environments/',
-          params: {
-            addressId: response.data.id,
-            addressName: response.data.name,
-          },
-        })
-      }
-    } catch (error) {
-      const isAppError = error instanceof AppError
-      if (isAppError) {
-        Alert.alert(error.message)
-      }
-    } finally {
-      setIsLoading(false)
+      router.push({
+        pathname: '/(client)/dashboard/environments/',
+        params: {
+          addressId: address.id,
+          addressName: address.name,
+        },
+      })
     }
   }
 
+  const isLoading = createAddress.isLoading || updateAddress.isLoading
   const title = initialData ? 'Editar endereço' : 'Cadastrar endereço'
   const action = initialData ? 'Salvar alterações' : 'Cadastrar'
 
