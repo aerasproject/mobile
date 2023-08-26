@@ -29,13 +29,11 @@ export function AddressCard({
       <S.CircleStar>
         <Feather name="star" size={24} color="#00ECA0" />
       </S.CircleStar>
-
       <S.Content>
         <S.AddressWrap>
           <S.AddressName>{address.name}</S.AddressName>
           <S.AddressStreet>{fullAddress}</S.AddressStreet>
         </S.AddressWrap>
-
         <S.BtnIcon onPress={openModal}>
           <Feather name="eye" size={24} color="#ffffff" />
         </S.BtnIcon>

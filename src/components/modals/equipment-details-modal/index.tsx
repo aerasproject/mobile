@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Alert } from 'react-native'
 import { Link, useRouter } from 'expo-router'
 
 import { EquipmentDTO } from '@/dtos'
@@ -29,17 +28,12 @@ export function EquipmentDetailsModal({
   const [isModalVisible, setModalVisible] = useState(false)
 
   async function onConfirm() {
-    try {
-      deleteEquipment.mutate(equipment.id)
+    deleteEquipment.mutate(equipment.id)
 
-      setModalVisible(false)
-      modalRef.current?.toggle()
+    setModalVisible(false)
+    modalRef.current?.toggle()
 
-      router.push('/(client)/dashboard/equipments')
-    } catch (error) {
-      console.log(error)
-      Alert.alert('Erro ao excluir equipamento')
-    }
+    router.push('/(client)/dashboard/equipments')
   }
 
   const description = `Você deseja mesmo excluir o equipamento “${equipment.name}”, cadastrado no ambiente “${equipment.environment?.name}”?`
@@ -52,7 +46,6 @@ export function EquipmentDetailsModal({
         isModalVisible={isModalVisible}
         setModalVisible={setModalVisible}
       />
-
       <S.Container>
         <S.Header>
           <S.TitleHeader>{mainAddress.name}</S.TitleHeader>

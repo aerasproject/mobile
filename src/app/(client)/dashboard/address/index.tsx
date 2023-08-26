@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react'
 import { Alert } from 'react-native'
 import { useLocalSearchParams } from 'expo-router'
-import { useEffect, useState } from 'react'
 
 import { api } from '@/lib/axios'
 
@@ -19,6 +19,8 @@ export default function Address() {
   const [isLoading, setIsLoading] = useState(false)
   const [address, setAddress] = useState<AddressDTO | null>(null)
 
+  // TODO: I try to use useQuery from react-query, but I don't know how to use it
+  // using this logic, I can't use the useQuery hook
   async function fetchAddress() {
     try {
       setIsLoading(true)
