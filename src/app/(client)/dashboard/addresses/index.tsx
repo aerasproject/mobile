@@ -1,10 +1,10 @@
-import { useCallback, useRef, useState } from 'react'
-import { Alert, FlatList, Text } from 'react-native'
-import { Link, useFocusEffect } from 'expo-router'
-
-import { api } from '@/lib/axios'
+import { useRef, useState } from 'react'
+import { FlatList, Text } from 'react-native'
+import { Link } from 'expo-router'
 
 import { AddressDTO } from '@/dtos'
+
+import { useGetAll } from '@/hooks/addresses/use-get-all'
 
 import { Loading } from '@/components/loading'
 import { Button } from '@/components/button'
@@ -17,40 +17,18 @@ import * as S from './styles'
 export default function Addresses() {
   const modalRef = useRef<ModalRefProps>(null)
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [addresses, setAddresses] = useState<AddressDTO[]>([])
+  const { data: addresses, isLoading } = useGetAll()
+
   const [selectedAddress, setSelectedAddress] = useState<AddressDTO>(
     {} as AddressDTO,
   )
-
-  // TODO: Implementar lógica para definir endereço principal
-  // e passar como prop para o componente AddressCard
-  // const [isMainAddress, setIsMainAddress] = useState(true)
 
   function openModal(address: AddressDTO) {
     modalRef.current?.toggle()
     setSelectedAddress(address)
   }
 
-  async function fetchAddresses() {
-    try {
-      setIsLoading(true)
-
-      const response = await api.get('/client/address')
-
-      setAddresses(response.data)
-    } catch (error) {
-      Alert.alert('Erro ao buscar endereços')
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  useFocusEffect(
-    useCallback(() => {
-      fetchAddresses()
-    }, []),
-  )
+  const hasAddresses = addresses?.length > 0
 
   return (
     <>
@@ -62,19 +40,15 @@ export default function Addresses() {
         </Link>
 
         {isLoading && <Loading variants="secondary" />}
+        {!hasAddresses && <Text>Nenhum endereço cadastrado</Text>}
 
-        {addresses.length ? (
-          <FlatList
-            data={addresses}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <AddressCard address={item} openModal={() => openModal(item)} />
-            )}
-          />
-        ) : (
-          // TODO: Implementar componente para exibir mensagem empty
-          <Text>Nenhum endereço cadastrado</Text>
-        )}
+        <FlatList
+          data={addresses}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <AddressCard address={item} openModal={() => openModal(item)} />
+          )}
+        />
       </S.Container>
     </>
   )
