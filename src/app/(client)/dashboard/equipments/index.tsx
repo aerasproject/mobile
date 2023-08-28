@@ -5,8 +5,9 @@ import { Link, useFocusEffect } from 'expo-router'
 import { EquipmentDTO } from '@/dtos'
 
 import { useAddress } from '@/hooks/use-address'
-import { useGetAll } from '@/hooks/equipments/use-get-all'
+import { useGetAllEquipments } from '@/hooks/equipments/use-get-all-equipments'
 
+import { EmptyBox } from '@/components/empty-box'
 import { Loading } from '@/components/loading'
 import { Button } from '@/components/button'
 import { ModalRefProps } from '@/components/modal-half-screen'
@@ -25,7 +26,7 @@ export default function Equipments() {
     isError,
     isLoading,
     refetch,
-  } = useGetAll(mainAddress.id)
+  } = useGetAllEquipments(mainAddress.id)
 
   const [selectedEquipment, setSelectedEquipment] = useState<EquipmentDTO>(
     {} as EquipmentDTO,
@@ -36,7 +37,7 @@ export default function Equipments() {
     setSelectedEquipment(equipment)
   }
 
-  const hasEquipment = equipments?.length > 0
+  const hasEquipment = equipments && equipments?.length > 0
 
   useFocusEffect(
     useCallback(() => {
@@ -45,7 +46,7 @@ export default function Equipments() {
   )
 
   if (isError) {
-    return <Text>Erro ao carregar equipamentos</Text>
+    return <EmptyBox title="Erro ao carregar de dados de equipamentos" />
   }
 
   return (
