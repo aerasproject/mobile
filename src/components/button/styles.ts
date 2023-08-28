@@ -24,6 +24,9 @@ const containerModifiers = {
   'danger-raw': () => css`
     background-color: transparent;
   `,
+  ghost: () => css`
+    background-color: transparent;
+  `,
 }
 
 const textModifiers = {
@@ -41,6 +44,9 @@ const textModifiers = {
   `,
   'danger-raw': (theme: DefaultTheme) => css`
     color: ${theme.COLORS.ERROR};
+  `,
+  ghost: (theme: DefaultTheme) => css`
+    color: ${theme.COLORS.BRAND};
   `,
 }
 

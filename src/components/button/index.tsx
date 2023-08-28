@@ -13,6 +13,7 @@ export type ButtonProps = TouchableOpacityProps & {
   | 'white-outline'
   | 'danger-outline'
   | 'danger-raw'
+  | 'ghost'
 }
 
 export const Button = forwardRef<TouchableOpacity, ButtonProps>(
