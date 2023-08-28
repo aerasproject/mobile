@@ -1,21 +1,17 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { Alert, Dimensions } from 'react-native'
+import { useCallback, useEffect, useRef } from 'react'
+import { Dimensions } from 'react-native'
 import { useFocusEffect, useRouter } from 'expo-router'
 import { Ionicons, Feather, AntDesign } from '@expo/vector-icons'
 import Carousel from 'react-native-snap-carousel'
 
-import { api } from '@/lib/axios'
-
-import { AppError } from '@/utils/app-error'
-
-import { AddressDTO, EquipmentDTO } from '@/dtos'
-
 import { useAddress } from '@/hooks/use-address'
+import { useGetAllAddresses } from '@/hooks/addresses/use-get-all-addresses'
+import { useGetAllEquipments } from '@/hooks/equipments/use-get-all-equipments'
 
 import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
-import { ModalRefProps } from '@/components/modal-half-screen'
 import { EmptyBox } from '@/components/empty-box'
+import { ModalRefProps } from '@/components/modal-half-screen'
 import { AddressesModal } from '@/components/modals/addresses-modal'
 import { AddressAndEquipmentDetailsModal } from '@/components/modals/address-and-equipment-details-modal'
 
@@ -31,56 +27,28 @@ export default function Dashboard() {
 
   const { mainAddress, setMainAddress } = useAddress()
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [addresses, setAddresses] = useState<AddressDTO[]>([])
-  const [equipments, setEquipments] = useState<EquipmentDTO[]>([])
+  const {
+    data: addresses,
+    isLoading: isLoadingAddresses,
+    isError: isErrorAddresses,
+    refetch: fetchAddresses,
+  } = useGetAllAddresses()
 
-  async function fetchEquipments() {
-    try {
-      setIsLoading(true)
-
-      const response = await api.get('/equipment', {
-        params: {
-          addressId: mainAddress.id,
-        },
-      })
-
-      setEquipments(response.data)
-    } catch (error) {
-      const isAppError = error instanceof AppError
-      if (isAppError) {
-        Alert.alert(error.message)
-      }
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  async function fetchAddresses() {
-    try {
-      setIsLoading(true)
-
-      const response = await api.get('/client/address')
-
-      if (response.data.length) {
-        setMainAddress(response.data[0])
-      }
-
-      setAddresses(response.data)
-    } catch (error) {
-      const isAppError = error instanceof AppError
-      if (isAppError) {
-        Alert.alert(error.message)
-      }
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const {
+    data: equipments,
+    isLoading: isLoadingEquipments,
+    isError: isErrorEquipments,
+    refetch: fetchEquipments,
+  } = useGetAllEquipments(mainAddress.id)
 
   useFocusEffect(
     useCallback(() => {
       fetchAddresses()
-    }, []),
+
+      if (addresses && addresses.length && !mainAddress) {
+        setMainAddress(addresses[0])
+      }
+    }, [addresses, fetchAddresses, mainAddress, setMainAddress]),
   )
 
   useEffect(() => {
@@ -95,7 +63,11 @@ export default function Dashboard() {
     equipmentDetailsModalRef.current?.toggle()
   }
 
-  if (isLoading) {
+  if (isErrorAddresses || isErrorEquipments) {
+    return <EmptyBox title="Erro ao carregar de endereços e equipamentos" />
+  }
+
+  if (isLoadingAddresses || isLoadingEquipments) {
     return <Loading />
   }
 
@@ -139,6 +111,7 @@ export default function Dashboard() {
             useScrollView={true}
             itemWidth={Math.round(SCREEN_WIDTH * 0.8)}
             renderItem={({ item }) => (
+              // TODO: Criar componente de equipamento
               <S.EquipmentContainer>
                 <AddressAndEquipmentDetailsModal
                   equipment={item}
