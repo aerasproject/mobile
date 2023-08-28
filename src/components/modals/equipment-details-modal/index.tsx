@@ -7,6 +7,7 @@ import { useAddress } from '@/hooks/use-address'
 import { useDeleteEquipment } from '@/hooks/equipments/use-delete'
 
 import { Button } from '@/components/button'
+import { InfoBox } from '@/components/info-box'
 import { AlertModal } from '@/components/modals/alert-modal'
 import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
 
@@ -48,39 +49,29 @@ export function EquipmentDetailsModal({
       />
       <S.Container>
         <S.Header>
-          <S.TitleHeader>{mainAddress.name}</S.TitleHeader>
+          <S.Circle>
+            <S.CircleText>RBC</S.CircleText>
+          </S.Circle>
+          <S.HeaderTitle>{mainAddress.name}</S.HeaderTitle>
         </S.Header>
-        <S.Content>
-          <S.Title>{equipment.name}</S.Title>
-          {!!equipment.tag && <S.Badge>{equipment.tag}</S.Badge>}
+        <S.Box>
+          <S.BoxHeader>
+            <S.EquipmentName>{equipment.name}</S.EquipmentName>
+            <S.Badge>TAG5712</S.Badge>
+          </S.BoxHeader>
           <S.Wrapper>
-            <S.Box>
-              <S.Label>Marca</S.Label>
-              <S.Text>{equipment.brand}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Model</S.Label>
-              <S.Text>{equipment.model || '-'}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Voltagem</S.Label>
-              <S.Text>{equipment.voltage}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Tipo</S.Label>
-              <S.Text>{equipment.type}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Capacidade</S.Label>
-              <S.Text>{equipment.capacity}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Ambiente</S.Label>
-              <S.Text>{equipment.environment?.name || 'Sem ambiente'}</S.Text>
-            </S.Box>
+            <InfoBox label="Marca" value={equipment.brand} />
+            <InfoBox label="Modelo" value={equipment.model || '-'} />
+            <InfoBox label="Voltagem" value={`${equipment.voltage}V`} />
+            <InfoBox label="Tipo" value={equipment.type} />
+            <InfoBox label="Capacidade" value={equipment.capacity} />
+            <InfoBox
+              label="Ambiente"
+              value={equipment.environment?.name || 'Sem ambiente'}
+            />
           </S.Wrapper>
-        </S.Content>
-        <S.BtnWrapper>
+        </S.Box>
+        <S.ButtonsWrapper>
           <Button
             title="Excluir"
             variants="danger-outline"
@@ -95,7 +86,7 @@ export function EquipmentDetailsModal({
           >
             <Button title="Editar" />
           </Link>
-        </S.BtnWrapper>
+        </S.ButtonsWrapper>
       </S.Container>
     </ModalHalfScreen>
   )
