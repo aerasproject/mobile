@@ -14,7 +14,7 @@ import { formatNameAddress } from '@/utils/format-name-address'
 
 import { Loading } from '@/components/loading'
 import { ModalRefProps } from '@/components/modal-half-screen'
-import { AddressesModal } from '@/components/modals/addresses-modal'
+import { AddressesModal } from '@/components/modal-half-screen/addresses-modal'
 
 import * as S from './styles'
 

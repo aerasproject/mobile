@@ -13,7 +13,7 @@ import { Button } from '@/components/button'
 import { ModalRefProps } from '@/components/modal-half-screen'
 import { EquipmentCard } from '@/components/equipment-card'
 import { DropdownAddresses } from '@/components/dropdown-addresses'
-import { EquipmentDetailsModal } from '@/components/modals/equipment-details-modal'
+import { EquipmentDetailsModal } from '@/components/modal-half-screen/equipment-details-modal'
 
 import * as S from './styles'
 

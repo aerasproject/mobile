@@ -10,7 +10,7 @@ import * as S from './styles'
 type Icon = keyof typeof Feather.glyphMap
 
 export default function MenuNav() {
-  const { user, signOut } = useAuth()
+  const { user } = useAuth()
 
   const routes = [
     {
@@ -44,8 +44,9 @@ export default function MenuNav() {
     <S.Container>
       <S.Header>
         <S.Username>{user.name}</S.Username>
-        <Button variants="white-outline" title="Ver e editar perfil" />
-        <Button variants="white-outline" title="Sair" onPress={signOut} />
+        <Link asChild href="/(client)/dashboard/profile/">
+          <Button variants="white-outline" title="Ver e editar perfil" />
+        </Link>
       </S.Header>
       <S.Content>
         {routes.map((route) => (

@@ -19,6 +19,7 @@ export default function Address() {
   const [isLoading, setIsLoading] = useState(false)
   const [equipment, setEquipment] = useState<EquipmentDTO | null>(null)
 
+  // TODO: CRIAR E UTILIZAR HOOK DE FETCH
   async function fetchEquipment() {
     try {
       setIsLoading(true)

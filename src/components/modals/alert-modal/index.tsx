@@ -11,6 +11,7 @@ type AlertModalProps = {
   description: string
   isModalVisible: boolean
   setModalVisible: (value: boolean) => void
+  isLoading: boolean
 }
 
 export function AlertModal({
@@ -18,6 +19,7 @@ export function AlertModal({
   isModalVisible,
   setModalVisible,
   description,
+  isLoading,
 }: AlertModalProps) {
   const [isMounted, setIsMounted] = useState(false)
 
@@ -48,9 +50,10 @@ export function AlertModal({
           <Button
             title="Cancel"
             variants="danger-outline"
+            isLoading={isLoading}
             onPress={() => setModalVisible(false)}
           />
-          <Button title="Excluir" onPress={onConfirm} />
+          <Button title="Excluir" onPress={onConfirm} isLoading={isLoading} />
         </S.ButtonsWrapper>
       </S.Content>
     </Modal>
