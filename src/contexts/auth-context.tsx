@@ -102,7 +102,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       if (user.id && token) {
         updateUserAndToken(user, token)
 
-        router.replace('/(client)/dashboard/home/')
+        // router.replace('/(client)/dashboard/home/')
+        router.replace('/(worker)/maintenance/')
       } else {
         router.replace('/(onboarding)/welcome/')
       }
