@@ -3,7 +3,6 @@ import styled from 'styled-components/native'
 
 export const Container = styled.View`
   flex: 1;
-  gap: 16px;
 `
 
 export const Header = styled.View`
@@ -19,11 +18,6 @@ export const TitleHeader = styled.Text`
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-size: 40px;
   font-weight: bold;
-`
-
-export const Content = styled.View`
-  background-color: ${({ theme }) => theme.COLORS.GRAY_200};
-  padding: 16px;
 `
 
 export const Badge = styled.Text`
@@ -45,23 +39,23 @@ export const Subtitle = styled.Text`
   color: #171717;
 `
 
-export const Text = styled.Text``
-
-export const Label = styled.Text`
-  color: #50555c;
-  font-size: 14px;
+export const Box = styled.View`
+  border-radius: 8px;
+  gap: 16px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_100};
+  padding: 16px;
+  flex: 1;
+  border-bottom-right-radius: 32px;
+  border-bottom-left-radius: 32px;
 `
 
 export const Wrapper = styled.View`
-  margin-top: 16px;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 32px;
 `
 
-export const Box = styled.View``
-
-export const BtnWrapper = styled.View`
+export const ButtonsWrapper = styled.View`
   gap: 8px;
   margin-top: 16px;
   justify-content: space-between;

@@ -5,6 +5,7 @@ import { AddressDTO } from '@/dtos'
 
 import { useDeleteAddress } from '@/hooks/addresses/use-delete'
 
+import { InfoBox } from '@/components/info-box'
 import { Button } from '@/components/button'
 import { AlertModal } from '@/components/modals/alert-modal'
 import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
@@ -21,12 +22,12 @@ export function AddressDetailsModal({
   modalRef,
 }: AddressDetailsModalProps) {
   const router = useRouter()
-  const deleteAddress = useDeleteAddress()
+  const { mutate, isLoading } = useDeleteAddress()
 
   const [isModalVisible, setModalVisible] = useState(false)
 
   async function onConfirm() {
-    deleteAddress.mutate(address.id)
+    mutate(address.id)
 
     setModalVisible(false)
     modalRef.current?.toggle()
@@ -37,52 +38,42 @@ export function AddressDetailsModal({
   const description = `Você deseja mesmo excluir o endereço "${address.name}"??`
 
   return (
-    <ModalHalfScreen ref={modalRef} height="75%">
+    <ModalHalfScreen ref={modalRef} height="80%">
       <AlertModal
         description={description}
         isModalVisible={isModalVisible}
         setModalVisible={setModalVisible}
         onConfirm={onConfirm}
+        isLoading={isLoading}
       />
       <S.Container>
         <S.Header>
           <S.TitleHeader>RBC</S.TitleHeader>
         </S.Header>
-        <S.Content>
+        <S.Box>
           <S.Badge>Endereço sendo visualizado</S.Badge>
           <S.Title>{address.name}</S.Title>
           <S.Subtitle>5 equipamentos cadastrados</S.Subtitle>
           <S.Wrapper>
-            <S.Box>
-              <S.Label>Rua</S.Label>
-              <S.Text>{address.street}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Numero</S.Label>
-              <S.Text>{address.number}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Complemento</S.Label>
-              <S.Text>{address.complement}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Bairro</S.Label>
-              <S.Text>{address.neighborhood}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Cidade</S.Label>
-              <S.Text>{address.city}</S.Text>
-            </S.Box>
-            <S.Box>
-              <S.Label>Estado</S.Label>
-              <S.Text>{address.state}</S.Text>
-            </S.Box>
+            <InfoBox label="Rua" value={address.street} />
+            <InfoBox label="Numero" value={address.number} />
+            <InfoBox label="Complemento" value={address.complement || '-'} />
+            <InfoBox label="Bairro" value={address.neighborhood} />
+            <InfoBox label="Cidade" value={address.city} />
+            <InfoBox label="Estado" value={address.state} />
+            {/* <InfoBox
+                label="Ambientes"
+                value={
+                  address.environments.map((env) => env.name + ', ') || '-'
+                }
+              /> */}
           </S.Wrapper>
-        </S.Content>
-        <S.BtnWrapper>
+        </S.Box>
+        <S.ButtonsWrapper>
           <Button
             title="Excluir"
             variants="danger-outline"
+            isLoading={isLoading}
             onPress={() => setModalVisible(true)}
           />
           <Link
@@ -92,9 +83,9 @@ export function AddressDetailsModal({
               params: { addressId: address.id },
             }}
           >
-            <Button title="Editar" />
+            <Button title="Editar" isLoading={isLoading} />
           </Link>
-        </S.BtnWrapper>
+        </S.ButtonsWrapper>
       </S.Container>
     </ModalHalfScreen>
   )
