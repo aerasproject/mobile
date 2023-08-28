@@ -12,8 +12,8 @@ import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
 import { EmptyBox } from '@/components/empty-box'
 import { ModalRefProps } from '@/components/modal-half-screen'
-import { AddressesModal } from '@/components/modals/addresses-modal'
-import { AddressAndEquipmentDetailsModal } from '@/components/modals/address-and-equipment-details-modal'
+import { AddressesModal } from '@/components/modal-half-screen/addresses-modal'
+import { AddressAndEquipmentDetailsModal } from '@/components/modal-half-screen/address-and-equipment-details-modal'
 
 import * as S from './styles'
 
