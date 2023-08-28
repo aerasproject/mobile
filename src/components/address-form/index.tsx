@@ -235,7 +235,7 @@ export function AddressForm({ initialData }: AddressFormProps) {
         />
         <Link asChild href="/(client)/dashboard/home/">
           <Button
-            variants="danger-raw"
+            variants="danger-ghost"
             title="Cancelar"
             isLoading={isLoading}
             disabled={isLoading}

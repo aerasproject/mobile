@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components'
 import styled, { css } from 'styled-components/native'
 
-import { ButtonProps } from '.'
+import { ButtonProps } from '@/components/button'
 
 type Props = Pick<ButtonProps, 'variants'>
 
@@ -21,7 +21,7 @@ const containerModifiers = {
     background-color: transparent;
     border: 1px solid ${theme.COLORS.ERROR};
   `,
-  'danger-raw': () => css`
+  'danger-ghost': () => css`
     background-color: transparent;
   `,
   ghost: () => css`
@@ -42,7 +42,7 @@ const textModifiers = {
   'danger-outline': (theme: DefaultTheme) => css`
     color: ${theme.COLORS.ERROR};
   `,
-  'danger-raw': (theme: DefaultTheme) => css`
+  'danger-ghost': (theme: DefaultTheme) => css`
     color: ${theme.COLORS.ERROR};
   `,
   ghost: (theme: DefaultTheme) => css`
@@ -52,12 +52,13 @@ const textModifiers = {
 
 export const Container = styled.TouchableOpacity<Props>`
   ${({ theme, variants }) => css`
-    height: 56px;
     min-width: 120px;
 
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    gap: 8px;
 
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 

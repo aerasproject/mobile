@@ -3,14 +3,14 @@ import { TextInputProps } from 'react-native'
 import * as S from './styles'
 
 type InputProps = TextInputProps & {
-  label: string
+  label?: string
   errorMessage?: string
 }
 
 export function Input({ label, errorMessage, ...rest }: InputProps) {
   return (
     <S.Container>
-      <S.Label hasError={errorMessage}>{label}</S.Label>
+      {!!label && <S.Label>{label}</S.Label>}
       <S.Input hasError={errorMessage} {...rest} />
       {!!errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
     </S.Container>

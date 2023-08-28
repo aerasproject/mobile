@@ -73,7 +73,7 @@ export default function ProfileScreen() {
       />
       <S.Title>Senha e Segurança</S.Title>
       <Button variants="ghost" title="Alterar senha" />
-      <Button variants="danger-raw" title="Sair" onPress={signOut} />
+      <Button variants="danger-ghost" title="Sair" onPress={signOut} />
     </S.Container>
   )
 }
