@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Alert } from 'react-native'
 import { Link, useRouter } from 'expo-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
@@ -11,17 +10,14 @@ import { useAddress } from '@/hooks/use-address'
 
 import { EquipmentDTO } from '@/dtos'
 
-import { api } from '@/lib/axios'
-
-import { AppError } from '@/utils/app-error'
+import { useCreateEquipment } from '@/hooks/equipments/use-create'
+import { useUpdateEquipment } from '@/hooks/equipments/use-update'
 
 import { Input } from '@/components/input'
 import { Button } from '@/components/button'
 import { Select } from '@/components/select'
 
 import * as S from './styles'
-import { useCreateEquipment } from '@/hooks/equipments/use-create'
-import { useUpdateEquipment } from '@/hooks/equipments/use-update'
 
 const formSchema = z.object({
   name: z.string().min(3),
