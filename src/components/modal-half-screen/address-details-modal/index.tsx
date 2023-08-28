@@ -36,6 +36,9 @@ export function AddressDetailsModal({
   }
 
   const description = `Você deseja mesmo excluir o endereço "${address.name}"??`
+  const formattedEnvironments = address.environments
+    .map((env) => env.name + ', ')
+    .join('')
 
   return (
     <ModalHalfScreen ref={modalRef} height="80%">
@@ -61,12 +64,7 @@ export function AddressDetailsModal({
             <InfoBox label="Bairro" value={address.neighborhood} />
             <InfoBox label="Cidade" value={address.city} />
             <InfoBox label="Estado" value={address.state} />
-            {/* <InfoBox
-                label="Ambientes"
-                value={
-                  address.environments.map((env) => env.name + ', ') || '-'
-                }
-              /> */}
+            <InfoBox label="Ambientes" value={formattedEnvironments || '-'} />
           </S.Wrapper>
         </S.Box>
         <S.ButtonsWrapper>

@@ -24,12 +24,12 @@ export function EquipmentDetailsModal({
 }: EquipmentDetailsModalProps) {
   const router = useRouter()
   const { mainAddress } = useAddress()
-  const deleteEquipment = useDeleteEquipment()
+  const { mutate, isLoading } = useDeleteEquipment()
 
   const [isModalVisible, setModalVisible] = useState(false)
 
   async function onConfirm() {
-    deleteEquipment.mutate(equipment.id)
+    mutate(equipment.id)
 
     setModalVisible(false)
     modalRef.current?.toggle()
@@ -46,6 +46,7 @@ export function EquipmentDetailsModal({
         onConfirm={onConfirm}
         isModalVisible={isModalVisible}
         setModalVisible={setModalVisible}
+        isLoading={isLoading}
       />
       <S.Container>
         <S.Header>
