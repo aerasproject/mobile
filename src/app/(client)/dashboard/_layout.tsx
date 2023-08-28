@@ -1,8 +1,10 @@
 import { Button } from 'react-native'
 import { Stack, useRouter } from 'expo-router'
+import { useAuth } from '@/hooks/use-auth'
 
 export default function ClientLayout() {
   const router = useRouter()
+  const { user } = useAuth()
 
   return (
     <Stack
@@ -79,6 +81,14 @@ export default function ClientLayout() {
         name="equipments/index"
         options={{
           headerTitle: 'Lista de Equipamentos',
+          headerTintColor: '#FFFFFF',
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="profile/index"
+        options={{
+          headerTitle: user.name,
           headerTintColor: '#FFFFFF',
           headerShadowVisible: false,
         }}
