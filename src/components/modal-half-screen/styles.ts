@@ -18,10 +18,11 @@ export const Content = styled.TouchableOpacity<Props>`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
 
   height: ${({ height }) => height};
+  align-items: center;
 `
 
 export const ActionIcon = styled.View`
-  margin: 8px 0;
+  margin: 8px;
   width: 60px;
   height: 6px;
   border-radius: 8px;

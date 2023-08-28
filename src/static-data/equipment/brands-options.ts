@@ -1,4 +1,5 @@
 export const brands = [
+  { label: 'Selecione a marca', value: '', id: 0 },
   { label: 'Admiral', value: 'Admiral', id: 1 },
   { label: 'Agratto', value: 'Agratto', id: 2 },
   { label: 'Britania', value: 'Britania', id: 3 },

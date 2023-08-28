@@ -3,9 +3,12 @@ export default {
     LINEAR_GRADIENT: ['#22BDF4', '#0067E9'],
 
     WHITE: '#FFFFFF',
+    BLACK: '#171717',
 
     // BRAND: '#0051B6',
     BRAND: '#0167E9',
+
+    BLUE_100: '#cde4fb',
 
     GREEN_LIGHT: '#00ECA0',
     SUCCESS: '#5EC375',
