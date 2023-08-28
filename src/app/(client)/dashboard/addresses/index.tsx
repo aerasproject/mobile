@@ -4,9 +4,10 @@ import { Link } from 'expo-router'
 
 import { AddressDTO } from '@/dtos'
 
-import { useGetAll } from '@/hooks/addresses/use-get-all'
+import { useGetAllAddresses } from '@/hooks/addresses/use-get-all-addresses'
 
 import { Loading } from '@/components/loading'
+import { EmptyBox } from '@/components/empty-box'
 import { Button } from '@/components/button'
 import { ModalRefProps } from '@/components/modal-half-screen'
 import { AddressCard } from '@/components/address-card'
@@ -17,7 +18,7 @@ import * as S from './styles'
 export default function Addresses() {
   const modalRef = useRef<ModalRefProps>(null)
 
-  const { data: addresses, isLoading } = useGetAll()
+  const { data: addresses, isLoading, isError } = useGetAllAddresses()
 
   const [selectedAddress, setSelectedAddress] = useState<AddressDTO>(
     {} as AddressDTO,
@@ -28,7 +29,11 @@ export default function Addresses() {
     setSelectedAddress(address)
   }
 
-  const hasAddresses = addresses?.length > 0
+  const hasAddresses = addresses && addresses?.length > 0
+
+  if (isError) {
+    return <EmptyBox title="Erro ao carregar de dados de equipamentos" />
+  }
 
   return (
     <>
