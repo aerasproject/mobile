@@ -17,7 +17,7 @@ export const Container = styled.View<Props>`
   `}
 `
 
-export const CircleName = styled.View`
+export const AvatarCircle = styled.View`
   position: absolute;
   top: -30px;
   left: 16px;
@@ -32,13 +32,13 @@ export const CircleName = styled.View`
   justify-content: center;
 `
 
-export const CircleNameText = styled.Text`
+export const AvatarCircleText = styled.Text`
   font-weight: bold;
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
 `
 
-export const CircleStar = styled.View`
+export const StarCircle = styled.View`
   position: absolute;
   top: -30px;
   left: 90px;

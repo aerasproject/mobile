@@ -5,6 +5,7 @@ import { AddressDTO } from '@/dtos'
 
 import { useDeleteAddress } from '@/hooks/addresses/use-delete'
 
+import { Badge } from '@/components/badge'
 import { InfoBox } from '@/components/info-box'
 import { Button } from '@/components/button'
 import { AlertModal } from '@/components/modals/alert-modal'
@@ -36,9 +37,9 @@ export function AddressDetailsModal({
   }
 
   const description = `Você deseja mesmo excluir o endereço "${address.name}"??`
-  const formattedEnvironments = address.environments
-    .map((env) => env.name + ', ')
-    .join('')
+
+  const formattedEnvironments =
+    address?.environments?.map((env) => env.name + ', ').join('') || '-'
 
   return (
     <ModalHalfScreen ref={modalRef} height="80%">
@@ -54,7 +55,7 @@ export function AddressDetailsModal({
           <S.TitleHeader>RBC</S.TitleHeader>
         </S.Header>
         <S.Box>
-          <S.Badge>Endereço sendo visualizado</S.Badge>
+          <Badge title="Endereço sendo visualizado" />
           <S.Title>{address.name}</S.Title>
           <S.Subtitle>5 equipamentos cadastrados</S.Subtitle>
           <S.Wrapper>
@@ -64,7 +65,7 @@ export function AddressDetailsModal({
             <InfoBox label="Bairro" value={address.neighborhood} />
             <InfoBox label="Cidade" value={address.city} />
             <InfoBox label="Estado" value={address.state} />
-            <InfoBox label="Ambientes" value={formattedEnvironments || '-'} />
+            <InfoBox label="Ambientes" value={formattedEnvironments} />
           </S.Wrapper>
         </S.Box>
         <S.ButtonsWrapper>

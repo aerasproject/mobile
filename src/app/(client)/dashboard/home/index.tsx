@@ -8,6 +8,7 @@ import { useAddress } from '@/hooks/use-address'
 import { useGetAllAddresses } from '@/hooks/addresses/use-get-all-addresses'
 import { useGetAllEquipments } from '@/hooks/equipments/use-get-all-equipments'
 
+import { Badge } from '@/components/badge'
 import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
 import { EmptyBox } from '@/components/empty-box'
@@ -123,8 +124,7 @@ export default function Dashboard() {
                 </S.EquipmentEnv>
                 <S.EquipmentName>{item.name}</S.EquipmentName>
                 <S.EquipmentBrand>{item.brand}</S.EquipmentBrand>
-                <S.Badge>Manutenção em dia</S.Badge>
-
+                <Badge title="Manutenção em dia" />
                 <Button
                   variants="white-outline"
                   title="Mais informações"

@@ -5,6 +5,7 @@ import { EquipmentDTO } from '@/dtos'
 import { formatNameAddress } from '@/utils/format-name-address'
 
 import { InfoBox } from '@/components/info-box'
+import { AvatarCircle } from '@/components/avatar-circle'
 import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
 
 import * as S from './styles'
@@ -26,9 +27,7 @@ export function AddressAndEquipmentDetailsModal({
     <ModalHalfScreen ref={modalRef} height="70%">
       <S.Container>
         <S.Header>
-          <S.Circle>
-            <S.CircleText>RBC</S.CircleText>
-          </S.Circle>
+          <AvatarCircle title="RBC" />
           <S.HeaderTitle>{mainAddress.name}</S.HeaderTitle>
         </S.Header>
 

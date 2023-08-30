@@ -2,6 +2,8 @@ import { Feather } from '@expo/vector-icons'
 
 import { EquipmentDTO } from '@/dtos'
 
+import { Badge } from '@/components/badge'
+
 import * as S from './styles'
 
 type EquipmentCardProps = {
@@ -14,7 +16,7 @@ export function EquipmentCard({ equipment, openModal }: EquipmentCardProps) {
     <S.Container>
       <S.Name>{equipment.name}</S.Name>
       <S.Wrapper>
-        <S.Badge>TAG5712</S.Badge>
+        <Badge title="TAG5712" />
         <S.PMOCCode>
           <S.PMOCCodeLabel>Código PMOC</S.PMOCCodeLabel>
           <S.PMOCCodeText>123456</S.PMOCCodeText>

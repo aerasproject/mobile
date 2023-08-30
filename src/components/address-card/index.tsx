@@ -2,6 +2,8 @@ import { Feather } from '@expo/vector-icons'
 
 import { AddressDTO } from '@/dtos'
 
+import { Badge } from '@/components/badge'
+
 import { formatNameAddress } from '@/utils/format-name-address'
 
 import * as S from './styles'
@@ -21,14 +23,14 @@ export function AddressCard({
 
   return (
     <S.Container isMain={isMain}>
-      {!!isMain && <S.Badge>Sendo visualizado</S.Badge>}
+      {!!isMain && <Badge title="Manutenção em dia" />}
 
-      <S.CircleName>
-        <S.CircleNameText>RBC</S.CircleNameText>
-      </S.CircleName>
-      <S.CircleStar>
+      <S.AvatarCircle>
+        <S.AvatarCircleText>RBC</S.AvatarCircleText>
+      </S.AvatarCircle>
+      <S.StarCircle>
         <Feather name="star" size={24} color="#00ECA0" />
-      </S.CircleStar>
+      </S.StarCircle>
       <S.Content>
         <S.AddressWrap>
           <S.AddressName>{address.name}</S.AddressName>

@@ -9,7 +9,6 @@ type Props = {
 export const Container = styled.View`
   width: 100%;
   gap: 8px;
-  background-color: transparent;
   border-radius: 8px;
 `
 
@@ -23,6 +22,7 @@ export const Input = styled(TextInput).attrs<Props>({
   placeholderTextColor: '#96999d',
 }) <Props>`
   border-radius: 8px;
+  opacity: ${({ editable }) => (editable === false ? 0.5 : 1)};
   height: 56px;
   padding: 0 16px;
   color: ${({ theme }) => theme.COLORS.GRAY_500};
@@ -30,6 +30,9 @@ export const Input = styled(TextInput).attrs<Props>({
     hasError
       ? `1px solid ${theme.COLORS.ERROR}`
       : `1px solid ${theme.COLORS.GRAY_200}`};
+
+  background-color: ${({ theme, editable }) =>
+    editable === false ? theme.COLORS.BLUE_100 : 'transparent'};
 `
 
 export const ErrorMessage = styled.Text`
