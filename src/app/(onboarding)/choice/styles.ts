@@ -36,5 +36,6 @@ export const Content = styled.View`
 
 export const Wrapper = styled.View`
   display: flex;
+  align-items: center;
   gap: 32px;
 `
