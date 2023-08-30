@@ -1,16 +1,16 @@
-import { useRef, useState } from 'react'
-import { FlatList, Text } from 'react-native'
 import { Link } from 'expo-router'
+import { useRef, useState } from 'react'
+import { FlatList } from 'react-native'
 
 import { AddressDTO } from '@/dtos'
 
 import { useGetAllAddresses } from '@/hooks/addresses/use-get-all-addresses'
 
+import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
 import { EmptyBox } from '@/components/empty-box'
-import { Button } from '@/components/button'
-import { ModalRefProps } from '@/components/modal-half-screen'
 import { AddressCard } from '@/components/address-card'
+import { ModalRefProps } from '@/components/modal-half-screen'
 import { AddressDetailsModal } from '@/components/modal-half-screen/address-details-modal'
 
 import * as S from './styles'
@@ -45,7 +45,7 @@ export default function Addresses() {
         </Link>
 
         {isLoading && <Loading variants="secondary" />}
-        {!hasAddresses && <Text>Nenhum endereço cadastrado</Text>}
+        {!hasAddresses && <EmptyBox title="Nenhum endereço cadastrado" />}
 
         <FlatList
           data={addresses}

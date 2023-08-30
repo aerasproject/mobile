@@ -7,8 +7,9 @@ export default function WorkerLayout() {
       screenOptions={{
         headerTintColor: '#ffffff',
         headerTitleAlign: 'center',
+        headerShadowVisible: false,
         headerStyle: {
-          backgroundColor: '#0051B6',
+          backgroundColor: '#0167E9',
         },
         tabBarActiveTintColor: '#0051B6',
         tabBarInactiveTintColor: '#81a8d8',
@@ -60,7 +61,7 @@ export default function WorkerLayout() {
       <Tabs.Screen
         name="profile/index"
         options={{
-          title: 'Perfil',
+          title: 'Meu Perfil',
           tabBarLabel: 'Perfil',
           tabBarIcon: ({ size, color }) => (
             <Feather name="user" size={size} color={color} />
