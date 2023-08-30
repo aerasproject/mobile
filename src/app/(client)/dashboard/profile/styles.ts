@@ -2,9 +2,10 @@ import styled from 'styled-components/native'
 
 export const Container = styled.ScrollView.attrs({
   contentContainerStyle: {
-    alignItems: 'center',
+    alignItems: 'stretch',
     gap: 8,
   },
 })`
-  padding: 32px 26px;
+  flex: 1;
+  padding: 0 16px;
 `
