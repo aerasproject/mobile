@@ -24,7 +24,7 @@ export const Strong = styled.Text`
   font-weight: bold;
 `
 
-export const WrapperInputs = styled.View`
+export const Form = styled.View`
   display: flex;
   flex-direction: column;
   gap: 16px;

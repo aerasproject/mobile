@@ -1,9 +1,9 @@
 import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import { z } from 'zod'
 
-import { Button } from '@/components/button'
 import { Input } from '@/components/input'
+import { Button } from '@/components/button'
 import { HeaderBlue } from '@/components/header-blue'
 
 import * as S from './styles'
@@ -24,8 +24,11 @@ const formSchema = z
 type FormValues = z.infer<typeof formSchema>
 
 export default function SignUp() {
+  const router = useRouter()
+  const { type } = useLocalSearchParams<{ type: 'client' | 'worker' }>()
+
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    // resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       cpf: '',
@@ -38,18 +41,26 @@ export default function SignUp() {
   async function onSubmit(data: FormValues) {
     // TODO: SEND DATA TO API
     console.log(data)
+
+    if (type === 'client') {
+      router.push('/(client)/dashboard/home/')
+    }
+
+    if (type === 'worker') {
+      router.push('/(onboarding)/worker-choice/')
+    }
   }
 
   return (
     <>
       <HeaderBlue
-        height={120}
         subtitle="Crie sua conta"
         title="Criar cadastro"
+        badge={type === 'client' ? 'Cliente' : 'Prestador de serviço'}
       />
       <S.Container>
         <S.Content>
-          <S.WrapperInputs>
+          <S.Form>
             <Controller
               name="name"
               control={form.control}
@@ -144,7 +155,7 @@ export default function SignUp() {
               title="Criar cadastro"
               onPress={form.handleSubmit(onSubmit)}
             />
-          </S.WrapperInputs>
+          </S.Form>
         </S.Content>
       </S.Container>
     </>
