@@ -51,6 +51,12 @@ export default function OnboardingLayout() {
           ),
         }}
       />
+      <Stack.Screen
+        name="worker-choice/index"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   )
 }
