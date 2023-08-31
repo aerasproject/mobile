@@ -1,16 +1,19 @@
+import { Badge } from '@/components/badge'
+
 import * as S from './styles'
 
 type HeaderBlueProps = {
-  height: number
   title?: string
   subtitle?: string
+  badge?: string
 }
 
-export function HeaderBlue({ height, title, subtitle }: HeaderBlueProps) {
+export function HeaderBlue({ title, subtitle, badge }: HeaderBlueProps) {
   return (
-    <S.Container height={height}>
+    <S.Container>
       {!!subtitle && <S.Subtitle>{subtitle}</S.Subtitle>}
       {!!title && <S.Title>{title}</S.Title>}
+      {!!badge && <Badge title={badge} />}
     </S.Container>
   )
 }

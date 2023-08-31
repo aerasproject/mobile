@@ -1,14 +1,11 @@
 import styled from 'styled-components/native'
 
-type ContainerProps = {
-  height: number
-}
-
-export const Container = styled.View<ContainerProps>`
-  min-height: ${({ height }) => height}px;
+export const Container = styled.View`
   background-color: #0167e9;
+  align-items: flex-start;
   justify-content: flex-end;
-  padding: 24px;
+  padding: 16px 24px;
+  gap: 8px;
 `
 
 export const Title = styled.Text`
