@@ -52,11 +52,7 @@ export default function SignIn() {
 
   return (
     <>
-      <HeaderBlue
-        height={120}
-        subtitle="Hora de logar"
-        title="Entrar na sua conta"
-      />
+      <HeaderBlue subtitle="Hora de logar" title="Entrar na sua conta" />
       {/* TODO: REMOVE CONTAINER AND USE ONLY CONTENT */}
       <S.Container>
         <S.Form>
