@@ -1,10 +1,13 @@
-import { Button } from 'react-native'
+import { Pressable } from 'react-native'
 import { Stack, useRouter } from 'expo-router'
+import { Feather } from '@expo/vector-icons'
+
 import { useAuth } from '@/hooks/use-auth'
+import { useMenu } from '@/hooks/use-menu'
 
 export default function ClientLayout() {
-  const router = useRouter()
   const { user } = useAuth()
+  const { setIsOpenMenu } = useMenu()
 
   return (
     <Stack
@@ -22,10 +25,9 @@ export default function ClientLayout() {
           headerTintColor: '#FFFFFF',
           headerShadowVisible: false,
           headerRight: () => (
-            <Button
-              title="Modal"
-              onPress={() => router.push('/(client)/dashboard/menu-nav/')}
-            />
+            <Pressable onPress={() => setIsOpenMenu((value) => !value)}>
+              <Feather name="menu" size={24} color="#FFFFFF" />
+            </Pressable>
           ),
         }}
       />
@@ -51,6 +53,11 @@ export default function ClientLayout() {
           headerTitleAlign: 'center',
           headerTintColor: '#FFFFFF',
           headerShadowVisible: false,
+          headerRight: () => (
+            <Pressable onPress={() => setIsOpenMenu((value) => !value)}>
+              <Feather name="menu" size={24} color="#FFFFFF" />
+            </Pressable>
+          ),
         }}
       />
       <Stack.Screen
@@ -81,8 +88,14 @@ export default function ClientLayout() {
         name="equipments/index"
         options={{
           headerTitle: 'Lista de Equipamentos',
+          headerTitleAlign: 'center',
           headerTintColor: '#FFFFFF',
           headerShadowVisible: false,
+          headerRight: () => (
+            <Pressable onPress={() => setIsOpenMenu((value) => !value)}>
+              <Feather name="menu" size={24} color="#FFFFFF" />
+            </Pressable>
+          ),
         }}
       />
       <Stack.Screen
@@ -91,6 +104,45 @@ export default function ClientLayout() {
           headerTitle: user.name,
           headerTintColor: '#FFFFFF',
           headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="faq/index"
+        options={{
+          headerTitle: 'faq',
+          headerTintColor: '#FFFFFF',
+          headerShadowVisible: false,
+          headerRight: () => (
+            <Pressable onPress={() => setIsOpenMenu((value) => !value)}>
+              <Feather name="menu" size={24} color="#FFFFFF" />
+            </Pressable>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="aeras-assist/index"
+        options={{
+          headerTitle: 'aeras-assist',
+          headerTintColor: '#FFFFFF',
+          headerShadowVisible: false,
+          headerRight: () => (
+            <Pressable onPress={() => setIsOpenMenu((value) => !value)}>
+              <Feather name="menu" size={24} color="#FFFFFF" />
+            </Pressable>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="notifications/index"
+        options={{
+          headerTitle: 'notifications',
+          headerTintColor: '#FFFFFF',
+          headerShadowVisible: false,
+          headerRight: () => (
+            <Pressable onPress={() => setIsOpenMenu((value) => !value)}>
+              <Feather name="menu" size={24} color="#FFFFFF" />
+            </Pressable>
+          ),
         }}
       />
     </Stack>
