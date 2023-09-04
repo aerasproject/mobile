@@ -19,7 +19,7 @@ export function MenuContextProvider({ children }: MenuContextProviderProps) {
   return (
     <MenuContext.Provider value={{ isOpenMenu, setIsOpenMenu }}>
       {children}
-      <MenuNav />
+      <MenuNav isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
     </MenuContext.Provider>
   )
 }

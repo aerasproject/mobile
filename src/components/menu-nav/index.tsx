@@ -3,7 +3,6 @@ import { Feather } from '@expo/vector-icons'
 import { Href, Link, usePathname } from 'expo-router'
 
 import { useAuth } from '@/hooks/use-auth'
-import { useMenu } from '@/hooks/use-menu'
 
 import { Button } from '@/components/button'
 
@@ -11,10 +10,14 @@ import * as S from './styles'
 
 type Icon = keyof typeof Feather.glyphMap
 
-export function MenuNav() {
+type MenuNavProps = {
+  isOpenMenu: boolean
+  setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function MenuNav({ isOpenMenu, setIsOpenMenu }: MenuNavProps) {
   const pathname = usePathname()
   const { user } = useAuth()
-  const { isOpenMenu, setIsOpenMenu } = useMenu()
 
   const routes = [
     {
