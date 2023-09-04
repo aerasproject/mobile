@@ -32,9 +32,8 @@ export const AuthContext = createContext({} as AuthContextDataProps)
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const router = useRouter()
 
-  const [isLoadingUserStorage, setIsLoadingUserStorage] = useState(true)
-
   const [user, setUser] = useState<UserDTO>({} as UserDTO)
+  const [isLoadingUserStorage, setIsLoadingUserStorage] = useState(true)
 
   function updateUserAndToken(userData: UserDTO, token: string) {
     api.defaults.headers.common.Authorization = `Bearer ${token}`
@@ -102,8 +101,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       if (user.id && token) {
         updateUserAndToken(user, token)
 
-        // router.replace('/(client)/dashboard/home/')
-        router.replace('/(worker)/maintenance/')
+        router.replace('/(client)/dashboard/home/')
+        // router.replace('/(worker)/maintenance/')
       } else {
         router.replace('/(onboarding)/welcome/')
       }
@@ -116,6 +115,12 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   useEffect(() => {
     loadUserData()
+  }, [])
+
+  useEffect(() => {
+    const subscribe = api.registerInterceptTokenManager(signOut)
+
+    return () => subscribe()
   }, [])
 
   return (
