@@ -32,12 +32,6 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="menu-nav/index"
-        options={{
-          presentation: 'modal',
-        }}
-      />
-      <Stack.Screen
         name="address/index"
         options={{
           headerTitle: 'Endereço',
