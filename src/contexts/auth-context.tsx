@@ -13,8 +13,17 @@ import {
   storageAuthTokenGet,
   storageAuthTokenRemove,
 } from '@/storage/storage-auth-token'
+import { storageMainAddressRemove } from '@/storage/storage-main-address'
 
 import { api } from '@/lib/axios'
+
+type Credentials = {
+  name: string
+  email: string
+  password: string
+  document: string
+  role: 'ADMIN'
+}
 
 type AuthContextProviderProps = {
   children: React.ReactNode
@@ -24,6 +33,7 @@ type AuthContextDataProps = {
   user: UserDTO
   signIn: (email: string, password: string) => Promise<void>
   signOut: () => Promise<void>
+  signUp: (data: Credentials) => Promise<void>
   isLoadingUserStorage: boolean
 }
 
@@ -31,7 +41,6 @@ export const AuthContext = createContext({} as AuthContextDataProps)
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const router = useRouter()
-
   const [user, setUser] = useState<UserDTO>({} as UserDTO)
   const [isLoadingUserStorage, setIsLoadingUserStorage] = useState(true)
 
@@ -80,7 +89,9 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       setIsLoadingUserStorage(true)
 
       setUser({} as UserDTO)
+
       await storageUserRemove()
+      await storageMainAddressRemove()
       await storageAuthTokenRemove()
 
       router.replace('/(onboarding)/welcome/')
@@ -113,6 +124,21 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }
 
+  async function signUp(data: Credentials) {
+    try {
+      const response = await api.post('/user', data)
+
+      const { user, token } = response.data
+
+      if (user && token) {
+        await storageUserAndTokenSave(user, token)
+        updateUserAndToken(user, token)
+      }
+    } catch (error) {
+      throw error
+    }
+  }
+
   useEffect(() => {
     loadUserData()
   }, [])
@@ -125,7 +151,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ user, signIn, signOut, isLoadingUserStorage }}
+      value={{ user, signIn, signOut, isLoadingUserStorage, signUp }}
     >
       {children}
     </AuthContext.Provider>
