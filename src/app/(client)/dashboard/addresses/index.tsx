@@ -1,6 +1,6 @@
 import { Link } from 'expo-router'
 import { useRef, useState } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 
 import { AddressDTO } from '@/dtos'
 
@@ -50,6 +50,7 @@ export default function Addresses() {
         <FlatList
           data={addresses}
           keyExtractor={(item) => item.id.toString()}
+          ListHeaderComponent={<View style={{ height: 36 }} />}
           renderItem={({ item }) => (
             <AddressCard address={item} openModal={() => openModal(item)} />
           )}
