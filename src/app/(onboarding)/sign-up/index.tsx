@@ -47,7 +47,7 @@ export default function SignUp() {
   const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm({
-    // resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       cpf: '',
@@ -59,14 +59,12 @@ export default function SignUp() {
 
   async function onSubmit(data: FormValues) {
     try {
-      // TODO: SEND DATA TO API
-      console.log(data)
-
       await signUp({
         name: data.name,
         email: data.email,
         password: data.password,
         document: data.cpf,
+        // TODO: Remove this hard coded role and replace it with a dynamic one
         role: 'ADMIN',
       })
 
