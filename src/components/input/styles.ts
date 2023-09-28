@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { TextInput } from 'react-native'
 import styled from 'styled-components/native'
 
@@ -20,7 +19,7 @@ export const Label = styled.Text<Props>`
 
 export const Input = styled(TextInput).attrs<Props>({
   placeholderTextColor: '#96999d',
-}) <Props>`
+})<Props>`
   border-radius: 8px;
   opacity: ${({ editable }) => (editable === false ? 0.5 : 1)};
   height: 56px;
