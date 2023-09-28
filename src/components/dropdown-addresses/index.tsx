@@ -26,6 +26,10 @@ export function DropdownAddresses() {
   const [isLoading, setIsLoading] = useState(false)
   const [addresses, setAddresses] = useState<AddressDTO[]>([])
 
+  function openAddressesModal() {
+    modalRef.current?.toggle()
+  }
+
   async function fetchAddresses() {
     try {
       setIsLoading(true)
@@ -49,10 +53,6 @@ export function DropdownAddresses() {
     }, []),
   )
 
-  function openAddressesModal() {
-    modalRef.current?.toggle()
-  }
-
   const fullAddress = formatNameAddress(mainAddress)
 
   if (isLoading) {
@@ -66,11 +66,11 @@ export function DropdownAddresses() {
       <S.Container>
         <S.BtnModal onPress={openAddressesModal}>
           <S.MainAddressName>
-            {mainAddress.name || 'Selecione um endereço'}
+            {mainAddress?.name || 'Selecione um endereço'}
           </S.MainAddressName>
-          <Ionicons name="ios-chevron-down" size={32} color="#ffffff" />
+          <Ionicons name="ios-chevron-down" size={30} color="#ffffff" />
         </S.BtnModal>
-        <S.MainAddress>{fullAddress}</S.MainAddress>
+        {mainAddress?.name && <S.MainAddress>{fullAddress}</S.MainAddress>}
       </S.Container>
     </>
   )

@@ -7,11 +7,12 @@ export const Container = styled.View`
 
 export const BtnModal = styled.Pressable`
   flex-direction: row;
-  gap: 16px;
+  align-items: center;
+  gap: 12px;
 `
 
 export const MainAddressName = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.XXL}px;
+  font-size: ${({ theme }) => theme.FONT_SIZE.XL}px;
   font-weight: 500;
   color: ${({ theme }) => theme.COLORS.WHITE};
 `
