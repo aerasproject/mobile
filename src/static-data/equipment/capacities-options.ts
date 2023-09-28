@@ -1,5 +1,4 @@
 export const capacities = [
-  { label: 'Selecione a capacidade', value: '', id: 0 },
   { label: '7.000', value: '7.000', id: 1 },
   { label: '7.500', value: '7.500', id: 2 },
   { label: '9.000', value: '9.000', id: 3 },

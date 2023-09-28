@@ -1,5 +1,4 @@
 export const types = [
-  { label: 'Selecione uma tipo', value: '', id: 0 },
   { label: 'Self Contained', value: 'Self Contained', id: 1 },
   { label: 'Split', value: 'Split', id: 2 },
   { label: 'Chiller', value: 'Chiller', id: 3 },
