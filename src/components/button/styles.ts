@@ -54,7 +54,7 @@ export const Container = styled.TouchableOpacity<Props>`
   ${({ theme, variants }) => css`
     min-width: 120px;
 
-    padding: 12px 16px;
+    padding: 16px 16px;
     border-radius: 8px;
     gap: 8px;
 
