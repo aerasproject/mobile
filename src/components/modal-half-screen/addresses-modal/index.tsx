@@ -6,6 +6,11 @@ import { AddressDTO } from '@/dtos'
 
 import { useAddress } from '@/hooks/use-address'
 
+import {
+  storageMainAddressSave,
+  storageMainAddressRemove,
+} from '@/storage/storage-main-address'
+
 import { Button } from '@/components/button'
 import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
 
@@ -19,9 +24,13 @@ type AddressesModalProps = {
 export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
   const { setMainAddress } = useAddress()
 
-  function handleSelectAddress(address: AddressDTO) {
-    modalRef.current?.toggle()
+  async function handleSelectAddress(address: AddressDTO) {
+    await storageMainAddressRemove()
+    await storageMainAddressSave(address)
+
     setMainAddress(address)
+
+    modalRef.current?.toggle()
   }
 
   return (
