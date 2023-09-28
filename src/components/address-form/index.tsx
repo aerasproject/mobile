@@ -18,13 +18,25 @@ import { Select } from '@/components/select'
 import * as S from './styles'
 
 const formSchema = z.object({
-  name: z.string().min(3),
-  street: z.string().min(3),
-  number: z.string().min(3),
+  name: z.string().min(3, {
+    message: 'O nome deve ter no mínimo 3 caracteres',
+  }),
+  street: z.string().min(3, {
+    message: 'A rua deve ter no mínimo 3 caracteres',
+  }),
+  number: z.string().min(1, {
+    message: 'O número deve ter no mínimo 1 caracter',
+  }),
   complement: z.string().optional(),
-  neighborhood: z.string().min(3),
-  city: z.string().min(3),
-  state: z.string().min(1),
+  neighborhood: z.string().min(3, {
+    message: 'O bairro deve ter no mínimo 3 caracteres',
+  }),
+  city: z.string().min(3, {
+    message: 'A cidade deve ter no mínimo 3 caracteres',
+  }),
+  state: z.string().min(1, {
+    message: 'Selecione o estado',
+  }),
 })
 
 type FormValues = z.infer<typeof formSchema>

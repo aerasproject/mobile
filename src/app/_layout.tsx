@@ -13,8 +13,6 @@ import { AddressContextProvider } from '@/contexts/address-context'
 
 import theme from '@/theme'
 
-// SplashScreen.preventAutoHideAsync()
-
 const queryClient = new QueryClient()
 
 export default function RootLayout() {

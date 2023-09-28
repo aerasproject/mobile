@@ -15,8 +15,12 @@ import { HeaderBlue } from '@/components/header-blue'
 import * as S from './styles'
 
 const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
+  email: z.string().email({
+    message: 'Digite um e-mail válido',
+  }),
+  password: z.string().min(6, {
+    message: 'A senha deve ter no mínimo 6 caracteres',
+  }),
 })
 
 type FormValues = z.infer<typeof formSchema>
@@ -56,49 +60,47 @@ export default function SignIn() {
       {/* TODO: REMOVE CONTAINER AND USE ONLY CONTENT */}
       <S.Container>
         <S.Form>
-          <S.WrapperInputs>
-            <Controller
-              name="email"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Input
-                  label="E-mail"
-                  autoCorrect={false}
-                  autoCapitalize="none"
-                  keyboardType="email-address"
-                  placeholder="Digite seu e-mail"
-                  returnKeyType="next"
-                  value={field.value}
-                  onBlur={field.onBlur}
-                  onChangeText={field.onChange}
-                  errorMessage={fieldState.error?.message}
-                />
-              )}
-            />
-            <Controller
-              name="password"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Input
-                  label="Senha"
-                  secureTextEntry
-                  autoCorrect={false}
-                  returnKeyType="next"
-                  placeholder="Digite sua senha"
-                  value={field.value}
-                  onBlur={field.onBlur}
-                  onChangeText={field.onChange}
-                  errorMessage={fieldState.error?.message}
-                />
-              )}
-            />
-            <Button
-              title="Entrar"
-              isLoading={isLoading}
-              disabled={isLoading}
-              onPress={form.handleSubmit(onSubmit)}
-            />
-          </S.WrapperInputs>
+          <Controller
+            name="email"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Input
+                label="E-mail"
+                autoCorrect={false}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                placeholder="Digite seu e-mail"
+                returnKeyType="next"
+                value={field.value}
+                onBlur={field.onBlur}
+                onChangeText={field.onChange}
+                errorMessage={fieldState.error?.message}
+              />
+            )}
+          />
+          <Controller
+            name="password"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Input
+                label="Senha"
+                secureTextEntry
+                autoCorrect={false}
+                returnKeyType="next"
+                placeholder="Digite sua senha"
+                value={field.value}
+                onBlur={field.onBlur}
+                onChangeText={field.onChange}
+                errorMessage={fieldState.error?.message}
+              />
+            )}
+          />
+          <Button
+            title="Entrar"
+            isLoading={isLoading}
+            disabled={isLoading}
+            onPress={form.handleSubmit(onSubmit)}
+          />
         </S.Form>
       </S.Container>
     </>

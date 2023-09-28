@@ -14,7 +14,9 @@ import { Button } from '@/components/button'
 import * as S from './styles'
 
 const formSchema = z.object({
-  name: z.string().min(2),
+  name: z.string().min(1, {
+    message: 'O nome deve ter no mínimo 1 caracteres',
+  }),
 })
 
 type FormValues = z.infer<typeof formSchema>

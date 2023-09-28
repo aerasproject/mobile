@@ -1,6 +1,12 @@
+import { useState } from 'react'
+import { Alert } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
 import { useLocalSearchParams, useRouter } from 'expo-router'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useAuth } from '@/hooks/use-auth'
 import { z } from 'zod'
+
+import { AppError } from '@/utils/app-error'
 
 import { Input } from '@/components/input'
 import { Button } from '@/components/button'
@@ -10,11 +16,21 @@ import * as S from './styles'
 
 const formSchema = z
   .object({
-    name: z.string().min(3),
-    cpf: z.string().min(11),
-    email: z.string().email(),
-    password: z.string().min(6),
-    confirmPassword: z.string().min(6),
+    name: z.string().min(3, {
+      message: 'O nome deve ter no mínimo 3 caracteres',
+    }),
+    cpf: z.string().min(11, {
+      message: 'O CPF deve ter no mínimo 11 caracteres',
+    }),
+    email: z.string().email({
+      message: 'Digite um e-mail válido',
+    }),
+    password: z.string().min(6, {
+      message: 'A senha deve ter no mínimo 6 caracteres',
+    }),
+    confirmPassword: z.string().min(6, {
+      message: 'A senha deve ter no mínimo 6 caracteres',
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'As senhas devem ser iguais',
@@ -24,8 +40,11 @@ const formSchema = z
 type FormValues = z.infer<typeof formSchema>
 
 export default function SignUp() {
+  const { signUp } = useAuth()
   const router = useRouter()
   const { type } = useLocalSearchParams<{ type: 'client' | 'worker' }>()
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm({
     // resolver: zodResolver(formSchema),
@@ -39,15 +58,32 @@ export default function SignUp() {
   })
 
   async function onSubmit(data: FormValues) {
-    // TODO: SEND DATA TO API
-    console.log(data)
+    try {
+      // TODO: SEND DATA TO API
+      console.log(data)
 
-    if (type === 'client') {
-      router.push('/(client)/dashboard/home/')
-    }
+      await signUp({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        document: data.cpf,
+        role: 'ADMIN',
+      })
 
-    if (type === 'worker') {
-      router.push('/(onboarding)/worker-choice/')
+      if (type === 'client') {
+        router.push('/(client)/dashboard/home/')
+      }
+
+      if (type === 'worker') {
+        router.push('/(onboarding)/sign-up/worker-choice/')
+      }
+    } catch (error) {
+      const isAppError = error instanceof AppError
+      if (isAppError) {
+        Alert.alert(error.message)
+      }
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -153,6 +189,8 @@ export default function SignUp() {
             </S.Span>
             <Button
               title="Criar cadastro"
+              isLoading={isLoading}
+              disabled={isLoading}
               onPress={form.handleSubmit(onSubmit)}
             />
           </S.Form>

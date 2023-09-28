@@ -20,12 +20,24 @@ import { Select } from '@/components/select'
 import * as S from './styles'
 
 const formSchema = z.object({
-  name: z.string().min(3),
-  brand: z.string().min(1),
-  voltage: z.string().min(1),
-  capacity: z.string().min(1),
-  type: z.string().min(1),
-  environmentId: z.coerce.number().min(1),
+  name: z.string().min(3, {
+    message: 'O nome deve ter no mínimo 3 caracteres',
+  }),
+  brand: z.string().min(1, {
+    message: 'Selecione a marca do equipamento',
+  }),
+  voltage: z.string().min(1, {
+    message: 'Selecione a voltagem do equipamento',
+  }),
+  capacity: z.string().min(1, {
+    message: 'Selecione a capacidade do equipamento',
+  }),
+  type: z.string().min(1, {
+    message: 'Selecione o tipo do equipamento',
+  }),
+  environmentId: z.coerce.number().min(1, {
+    message: 'Selecione o ambiente do equipamento',
+  }),
 })
 
 type FormValues = z.infer<typeof formSchema>

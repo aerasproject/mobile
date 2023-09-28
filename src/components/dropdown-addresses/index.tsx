@@ -70,7 +70,6 @@ export function DropdownAddresses() {
           </S.MainAddressName>
           <Ionicons name="ios-chevron-down" size={32} color="#ffffff" />
         </S.BtnModal>
-
         <S.MainAddress>{fullAddress}</S.MainAddress>
       </S.Container>
     </>
