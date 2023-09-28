@@ -49,11 +49,16 @@ export function AlertModal({
         <S.ButtonsWrapper>
           <Button
             title="Cancel"
-            variants="danger-outline"
+            variants="ghost"
             isLoading={isLoading}
             onPress={() => setModalVisible(false)}
           />
-          <Button title="Excluir" onPress={onConfirm} isLoading={isLoading} />
+          <Button
+            variants="danger-outline"
+            title="Excluir"
+            onPress={onConfirm}
+            isLoading={isLoading}
+          />
         </S.ButtonsWrapper>
       </S.Content>
     </Modal>

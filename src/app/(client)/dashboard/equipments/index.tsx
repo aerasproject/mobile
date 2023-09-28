@@ -66,7 +66,9 @@ export default function Equipments() {
         </Link>
 
         {isLoading && <Loading variants="secondary" />}
-        {!hasEquipment && <Text>Nenhum equipamento cadastrado</Text>}
+        {!hasEquipment && (
+          <EmptyBox title="Nenhum equipamento cadastrado nesse endereço" />
+        )}
 
         <FlatList
           data={equipments}

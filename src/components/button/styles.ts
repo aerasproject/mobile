@@ -7,11 +7,11 @@ type Props = Pick<ButtonProps, 'variants'>
 
 const containerModifiers = {
   primary: (theme: DefaultTheme) => css`
-    background-color: ${theme.COLORS.BRAND};
+    background-color: ${theme.COLORS.BLUE_800};
   `,
   'primary-outline': (theme: DefaultTheme) => css`
     background-color: transparent;
-    border: 1px solid ${theme.COLORS.BRAND};
+    border: 1px solid ${theme.COLORS.BLUE_800};
   `,
   'white-outline': (theme: DefaultTheme) => css`
     background-color: transparent;
@@ -34,7 +34,7 @@ const textModifiers = {
     color: ${theme.COLORS.WHITE};
   `,
   'primary-outline': (theme: DefaultTheme) => css`
-    color: ${theme.COLORS.BRAND};
+    color: ${theme.COLORS.BLUE_800};
   `,
   'white-outline': (theme: DefaultTheme) => css`
     color: ${theme.COLORS.WHITE};
@@ -46,7 +46,7 @@ const textModifiers = {
     color: ${theme.COLORS.ERROR};
   `,
   ghost: (theme: DefaultTheme) => css`
-    color: ${theme.COLORS.BRAND};
+    color: ${theme.COLORS.BLUE_800};
   `,
 }
 

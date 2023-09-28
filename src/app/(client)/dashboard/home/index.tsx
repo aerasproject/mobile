@@ -46,7 +46,7 @@ export default function Dashboard() {
     useCallback(() => {
       fetchAddresses()
 
-      if (addresses && addresses.length && !mainAddress) {
+      if (addresses && addresses.length && !mainAddress.id) {
         setMainAddress(addresses[0])
       }
     }, [addresses, fetchAddresses, mainAddress, setMainAddress]),
@@ -54,7 +54,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchEquipments()
-  }, [mainAddress])
+  }, [mainAddress.id])
 
   function openAddressesModal() {
     addressesModalRef.current?.toggle()
@@ -78,32 +78,34 @@ export default function Dashboard() {
 
       <S.Container>
         <S.Header>
-          {!addresses.length && (
+          {!addresses.length ? (
             <EmptyBox
               title="Nenhum endereço cadastrado"
               href="/(client)/dashboard/address/"
               icon={<Feather name="map-pin" size={32} color="#0051B6" />}
             />
-          )}
+          ) : (
+            <>
+              <S.BtnModal onPress={openAddressesModal}>
+                <S.MainAddressName>{mainAddress.name}</S.MainAddressName>
+                <Ionicons name="ios-chevron-down" size={32} color="#ffffff" />
+              </S.BtnModal>
 
-          <S.BtnModal onPress={openAddressesModal}>
-            <S.MainAddressName>{mainAddress.name}</S.MainAddressName>
-            <Ionicons name="ios-chevron-down" size={32} color="#ffffff" />
-          </S.BtnModal>
-
-          <S.NewEquipmentBtn
-            onPress={() => router.push('/(client)/dashboard/equipment/')}
-          >
-            <AntDesign name="pluscircleo" size={24} color="#ffffff" />
-            <S.NewEquipmentText>Novo equipamento</S.NewEquipmentText>
-          </S.NewEquipmentBtn>
-
-          {!equipments.length && (
-            <EmptyBox
-              title="Nenhum equipamento cadastrado"
-              href="/(client)/dashboard/equipment/"
-              icon={<Feather name="settings" size={32} color="#0051B6" />}
-            />
+              {!equipments.length ? (
+                <EmptyBox
+                  title="Nenhum equipamento cadastrado"
+                  href="/(client)/dashboard/equipment/"
+                  icon={<Feather name="settings" size={32} color="#0051B6" />}
+                />
+              ) : (
+                <S.NewEquipmentBtn
+                  onPress={() => router.push('/(client)/dashboard/equipment/')}
+                >
+                  <AntDesign name="pluscircleo" size={24} color="#ffffff" />
+                  <S.NewEquipmentText>Novo equipamento</S.NewEquipmentText>
+                </S.NewEquipmentBtn>
+              )}
+            </>
           )}
 
           <Carousel
@@ -126,6 +128,7 @@ export default function Dashboard() {
                 <S.EquipmentBrand>{item.brand}</S.EquipmentBrand>
                 <Badge title="Manutenção em dia" />
                 <Button
+                  style={{ marginTop: 16 }}
                   variants="white-outline"
                   title="Mais informações"
                   onPress={openEquipmentDetailsModal}

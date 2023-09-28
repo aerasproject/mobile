@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components/native'
+import { AntDesign } from '@expo/vector-icons'
 
 type Props = {
   isMain: boolean
+  isFavorite?: boolean
 }
 
 export const Container = styled.View<Props>`
@@ -12,8 +14,10 @@ export const Container = styled.View<Props>`
 
     padding: 16px;
     border-radius: 10px;
-    background-color: ${isMain ? theme.COLORS.GRAY_200 : 'transparent'};
-    border: 1px solid ${theme.COLORS.GRAY_200};
+    background-color: ${isMain ? theme.COLORS.GRAY_200 : theme.COLORS.WHITE};
+    border: ${isMain
+      ? `1px solid ${theme.COLORS.GRAY_300}`
+      : `1px solid ${theme.COLORS.GRAY_200}`};
   `}
 `
 
@@ -38,6 +42,12 @@ export const AvatarCircleText = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
 `
 
+export const StartIcon = styled(AntDesign).attrs<Props>((props) => ({
+  name: props.isFavorite ? 'star' : 'staro',
+  size: 24,
+  color: '#00ECA0',
+}))``
+
 export const StarCircle = styled.View`
   position: absolute;
   top: -30px;
@@ -54,29 +64,25 @@ export const StarCircle = styled.View`
   justify-content: center;
 `
 
-export const Badge = styled.Text`
-  ${({ theme }) => css`
-    padding: 8px 16px;
-    background-color: ${theme.COLORS.GREEN_LIGHT};
-    color: ${theme.COLORS.GRAY_500};
-    border-radius: 999px;
-  `}
+export const Content = styled.View`
+  margin-top: 24px;
+  gap: 8px;
+  align-items: flex-start;
 `
 
-export const Content = styled.View`
+export const Box = styled.View`
+  flex: 1;
+`
+
+export const Wrapper = styled.View`
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 16px;
-`
-
-export const AddressWrap = styled.View`
-  flex: 1;
+  gap: 24px;
 `
 
 export const AddressName = styled.Text`
   font-size: 20px;
-  margin-top: 24px;
   font-weight: 500;
 `
 

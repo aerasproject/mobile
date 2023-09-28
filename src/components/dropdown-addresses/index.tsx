@@ -65,7 +65,9 @@ export function DropdownAddresses() {
 
       <S.Container>
         <S.BtnModal onPress={openAddressesModal}>
-          <S.MainAddressName>{mainAddress.name}</S.MainAddressName>
+          <S.MainAddressName>
+            {mainAddress.name || 'Selecione um endereço'}
+          </S.MainAddressName>
           <Ionicons name="ios-chevron-down" size={32} color="#ffffff" />
         </S.BtnModal>
 

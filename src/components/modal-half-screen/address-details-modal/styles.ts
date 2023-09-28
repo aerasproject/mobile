@@ -1,13 +1,11 @@
-import { css } from 'styled-components'
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
   flex: 1;
-  gap: 16px;
 `
 
 export const Header = styled.View`
-  background-color: ${({ theme }) => theme.COLORS.BRAND};
+  background-color: ${({ theme }) => theme.COLORS.BLUE_800};
   height: 120px;
   align-items: center;
   justify-content: center;
@@ -21,43 +19,43 @@ export const TitleHeader = styled.Text`
   font-weight: bold;
 `
 
-export const Badge = styled.Text`
-  ${({ theme }) => css`
-    padding: 8px 16px;
-    background-color: ${theme.COLORS.GREEN_LIGHT};
-    color: ${theme.COLORS.GRAY_500};
-    border-radius: 999px;
-  `}
+export const Content = styled.View`
+  gap: 16px;
+
+  border-radius: 8px;
+  align-items: flex-start;
+  padding: 16px;
+
+  border-bottom-right-radius: 32px;
+  border-bottom-left-radius: 32px;
+
+  background-color: ${({ theme }) => theme.COLORS.GRAY_100};
 `
+
+export const Box = styled.View``
 
 export const Title = styled.Text`
   font-size: 20px;
   font-weight: 500;
-  margin-top: 16px;
 `
 
 export const Subtitle = styled.Text`
-  color: #171717;
-`
-
-export const Box = styled.View`
-  border-radius: 8px;
-  gap: 16px;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_100};
-  padding: 16px;
-  flex: 1;
-  border-bottom-right-radius: 32px;
-  border-bottom-left-radius: 32px;
+  color: ${({ theme }) => theme.COLORS.GRAY_300};
 `
 
 export const Wrapper = styled.View`
+  border-top-width: 1px;
+  border-top-color: #dfdfdf;
+  padding-top: 16px;
+
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 16px;
 `
 
 export const ButtonsWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   gap: 8px;
+  margin-top: 16px;
 `

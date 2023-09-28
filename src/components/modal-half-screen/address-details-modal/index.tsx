@@ -3,6 +3,7 @@ import { Link, useRouter } from 'expo-router'
 
 import { AddressDTO } from '@/dtos'
 
+import { useAddress } from '@/hooks/use-address'
 import { useDeleteAddress } from '@/hooks/addresses/use-delete'
 
 import { Badge } from '@/components/badge'
@@ -23,6 +24,7 @@ export function AddressDetailsModal({
   modalRef,
 }: AddressDetailsModalProps) {
   const router = useRouter()
+  const { mainAddress } = useAddress()
   const { mutate, isLoading } = useDeleteAddress()
 
   const [isModalVisible, setModalVisible] = useState(false)
@@ -37,6 +39,7 @@ export function AddressDetailsModal({
   }
 
   const description = `Você deseja mesmo excluir o endereço "${address.name}"??`
+  const isMainAddress = mainAddress?.id === address.id
 
   const formattedEnvironments =
     address?.environments?.map((env) => env.name + ', ').join('') || '-'
@@ -54,20 +57,24 @@ export function AddressDetailsModal({
         <S.Header>
           <S.TitleHeader>RBC</S.TitleHeader>
         </S.Header>
-        <S.Box>
-          <Badge title="Endereço sendo visualizado" />
-          <S.Title>{address.name}</S.Title>
-          <S.Subtitle>5 equipamentos cadastrados</S.Subtitle>
+        <S.Content>
+          {isMainAddress && <Badge title="Endereço sendo visualizado" />}
+
+          <S.Box>
+            <S.Title>{address.name}</S.Title>
+            <S.Subtitle>5 equipamentos cadastrados</S.Subtitle>
+          </S.Box>
+
           <S.Wrapper>
             <InfoBox label="Rua" value={address.street} />
-            <InfoBox label="Numero" value={address.number} />
+            <InfoBox label="Número" value={address.number} />
             <InfoBox label="Complemento" value={address.complement || '-'} />
             <InfoBox label="Bairro" value={address.neighborhood} />
             <InfoBox label="Cidade" value={address.city} />
             <InfoBox label="Estado" value={address.state} />
             <InfoBox label="Ambientes" value={formattedEnvironments} />
           </S.Wrapper>
-        </S.Box>
+        </S.Content>
         <S.ButtonsWrapper>
           <Button
             title="Excluir"
