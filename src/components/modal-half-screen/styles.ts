@@ -14,7 +14,7 @@ export const Content = styled.TouchableOpacity<Props>`
   margin-top: auto;
   border-top-right-radius: 32px;
   border-top-left-radius: 32px;
-  padding: 16px;
+  padding: 16px 0px;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
 
   height: ${({ height }) => height};
@@ -22,7 +22,7 @@ export const Content = styled.TouchableOpacity<Props>`
 `
 
 export const ActionIcon = styled.View`
-  margin: 8px;
+  margin: 16px 8px;
   width: 60px;
   height: 6px;
   border-radius: 8px;

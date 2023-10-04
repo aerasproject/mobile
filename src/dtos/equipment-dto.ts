@@ -9,5 +9,6 @@ export type EquipmentDTO = {
   voltage: string
   capacity: string
   type: string
+  environmentId: number
   environment: EnvironmentDTO | null
 }

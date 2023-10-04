@@ -34,7 +34,7 @@ export function AlertModal({
   return (
     <Modal
       backdropColor="black"
-      backdropOpacity={0.9}
+      backdropOpacity={1}
       animationIn="fadeIn"
       isVisible={isModalVisible}
     >

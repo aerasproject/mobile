@@ -1,6 +1,6 @@
 import { Link } from 'expo-router'
 import { FlatList } from 'react-native-gesture-handler'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, Feather } from '@expo/vector-icons'
 
 import { AddressDTO } from '@/dtos'
 
@@ -36,7 +36,10 @@ export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
   return (
     <ModalHalfScreen ref={modalRef} height="85%">
       <S.Container>
-        <S.Title>Endereços</S.Title>
+        <S.Box>
+          <Feather name="home" size={32} color="#00ECA0" />
+          <S.Title>Endereços Cadastrados</S.Title>
+        </S.Box>
         <FlatList
           data={addresses}
           keyExtractor={(item) => item.id.toString()}

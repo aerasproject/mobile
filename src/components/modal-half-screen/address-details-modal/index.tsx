@@ -3,7 +3,8 @@ import { Link, useRouter } from 'expo-router'
 
 import { AddressDTO } from '@/dtos'
 
-import { useAddress } from '@/hooks/use-address'
+import { useMainAddressStore } from '@/store/main-address-store'
+
 import { useDeleteAddress } from '@/hooks/addresses/use-delete'
 
 import { Badge } from '@/components/badge'
@@ -13,7 +14,6 @@ import { AlertModal } from '@/components/modals/alert-modal'
 import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
 
 import * as S from './styles'
-import { useMainAddressStore } from '@/store/main-address-store'
 
 type AddressDetailsModalProps = {
   address: AddressDTO
@@ -37,7 +37,7 @@ export function AddressDetailsModal({
     setModalVisible(false)
     modalRef.current?.toggle()
 
-    router.push('/(client)/dashboard/addresses/')
+    router.push('/(client)/(screens)/dashboard/addresses/')
   }
 
   const description = `Você deseja mesmo excluir o endereço "${address.name}"??`
@@ -85,7 +85,7 @@ export function AddressDetailsModal({
           <Link
             asChild
             href={{
-              pathname: '/(client)/dashboard/address',
+              pathname: '/(client)/(screens)/dashboard/address',
               params: { addressId: address.id },
             }}
           >

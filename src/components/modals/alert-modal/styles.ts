@@ -35,7 +35,5 @@ export const Description = styled.Text`
 `
 
 export const ButtonsWrapper = styled.View`
-  flex-direction: row;
   gap: 8px;
-  justify-content: space-between;
 `

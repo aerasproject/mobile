@@ -4,6 +4,8 @@ import styled from 'styled-components/native'
 export const Container = styled.View`
   flex: 1;
   gap: 16px;
+  padding: 8px;
+  width: 100%;
 `
 
 export const Header = styled.View`
@@ -70,10 +72,10 @@ export const Wrapper = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 32px;
+  width: 100%;
 `
 
 export const ButtonsWrapper = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
+  width: 100%;
   gap: 8px;
 `
