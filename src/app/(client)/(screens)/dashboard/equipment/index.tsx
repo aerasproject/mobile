@@ -49,6 +49,8 @@ export default function Address() {
     return <Loading variants="secondary" />
   }
 
+  console.log(equipment)
+
   return (
     <S.Container>
       <EquipmentForm initialData={equipment} />

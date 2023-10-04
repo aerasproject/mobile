@@ -14,21 +14,21 @@ export default function OnboardingLayout() {
       }}
     >
       <Stack.Screen
-        name="welcome/index"
+        name="(screens)/welcome/index"
         options={{
           headerTitle: '',
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="choice/index"
+        name="(screens)/choice/index"
         options={{
           headerTitle: '',
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="sign-up/index"
+        name="(screens)/sign-up/index"
         options={{
           headerTitle: '',
           headerShadowVisible: false,
@@ -40,7 +40,7 @@ export default function OnboardingLayout() {
         }}
       />
       <Stack.Screen
-        name="sign-in/index"
+        name="(screens)/sign-in/index"
         options={{
           headerTitle: '',
           headerShadowVisible: false,
@@ -52,7 +52,7 @@ export default function OnboardingLayout() {
         }}
       />
       <Stack.Screen
-        name="sign-up/worker-choice/index"
+        name="(screens)/sign-up/worker-choice/index"
         options={{
           headerShown: false,
         }}

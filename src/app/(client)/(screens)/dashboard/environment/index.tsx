@@ -47,7 +47,7 @@ export default function Environment() {
       })
 
       router.push({
-        pathname: '/(client)/dashboard/environments/',
+        pathname: '/(client)/(screens)/dashboard/environments/',
         params: { addressId, addressName },
       })
     } catch (error) {

@@ -48,7 +48,7 @@ export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
           )}
         />
 
-        <Link asChild href="/(client)/dashboard/address/">
+        <Link asChild href="/(client)/(screens)/dashboard/address/">
           <Button title="Cadastrar novo endereço" />
         </Link>
       </S.Container>

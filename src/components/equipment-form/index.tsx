@@ -97,7 +97,7 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
       })
     }
 
-    router.push('/(client)/dashboard/equipments/')
+    router.push('/(client)/(screens)/dashboard/equipments/')
   }
 
   const isLoading = createEquipment.isLoading || updateEquipment.isLoading
@@ -197,7 +197,7 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
           disabled={isLoading}
           onPress={form.handleSubmit(onSubmit)}
         />
-        <Link asChild href="/(client)/dashboard/home/">
+        <Link asChild href="/(client)/(screens)/dashboard/home/">
           <Button
             variants="danger-ghost"
             title="Cancelar"

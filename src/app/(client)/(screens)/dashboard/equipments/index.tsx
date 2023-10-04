@@ -61,7 +61,7 @@ export default function Equipments() {
       </S.Header>
 
       <S.Container>
-        <Link asChild href="/(client)/dashboard/equipment/">
+        <Link asChild href="/(client)/(screens)/dashboard/equipment/">
           <Button title="Cadastrar novo equipamento" />
         </Link>
 

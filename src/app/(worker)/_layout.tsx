@@ -19,7 +19,7 @@ export default function WorkerLayout() {
       }}
     >
       <Tabs.Screen
-        name="maintenance/index"
+        name="(screens)/maintenance/index"
         options={{
           tabBarLabel: 'MP',
           title: 'Manutenção Programada',
@@ -29,7 +29,7 @@ export default function WorkerLayout() {
         }}
       />
       <Tabs.Screen
-        name="responsibilities/index"
+        name="(screens)/responsibilities/index"
         options={{
           tabBarLabel: 'RT',
           title: 'Responsabilidades Técnicas',
@@ -39,7 +39,7 @@ export default function WorkerLayout() {
         }}
       />
       <Tabs.Screen
-        name="new-pmoc/index"
+        name="(screens)/new-pmoc/index"
         options={{
           title: 'Criar PMOC',
           tabBarLabel: 'Novo PMOC',
@@ -49,7 +49,7 @@ export default function WorkerLayout() {
         }}
       />
       <Tabs.Screen
-        name="alerts/index"
+        name="(screens)/alerts/index"
         options={{
           title: 'Notificações',
           tabBarLabel: 'Alertas',
@@ -59,7 +59,7 @@ export default function WorkerLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile/index"
+        name="(screens)/profile/index"
         options={{
           title: 'Meu Perfil',
           tabBarLabel: 'Perfil',

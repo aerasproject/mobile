@@ -49,6 +49,8 @@ export function AddressForm({ initialData }: AddressFormProps) {
   const { user } = useAuth()
   const router = useRouter()
 
+  console.log(initialData)
+
   const createAddress = useCreateAddress()
   const updateAddress = useUpdateAddress()
 
@@ -78,7 +80,7 @@ export function AddressForm({ initialData }: AddressFormProps) {
         neighborhood: data.neighborhood,
       })
 
-      router.push('/(client)/dashboard/addresses/')
+      router.push('/(client)/(screens)/dashboard/addresses/')
     } else {
       const address = await createAddress.mutateAsync({
         userId: user.id,
@@ -92,7 +94,7 @@ export function AddressForm({ initialData }: AddressFormProps) {
       })
 
       router.push({
-        pathname: '/(client)/dashboard/environments/',
+        pathname: '/(client)/(screens)/dashboard/environments/',
         params: {
           addressId: address.id,
           addressName: address.name,
@@ -224,7 +226,7 @@ export function AddressForm({ initialData }: AddressFormProps) {
           <Link
             asChild
             href={{
-              pathname: '/(client)/dashboard/environments/',
+              pathname: '/(client)/(screens)/dashboard/environments/',
               params: {
                 addressId: initialData.id,
                 addressName: initialData.name,
@@ -245,7 +247,7 @@ export function AddressForm({ initialData }: AddressFormProps) {
           isLoading={isLoading}
           disabled={isLoading}
         />
-        <Link asChild href="/(client)/dashboard/home/">
+        <Link asChild href="/(client)/(screens)/dashboard/home/">
           <Button
             variants="danger-ghost"
             title="Cancelar"

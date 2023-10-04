@@ -1,5 +1,5 @@
 import { Pressable } from 'react-native'
-import { Stack, useRouter } from 'expo-router'
+import { Stack } from 'expo-router'
 import { Feather } from '@expo/vector-icons'
 
 import { useAuth } from '@/hooks/use-auth'
@@ -18,7 +18,7 @@ export default function ClientLayout() {
       }}
     >
       <Stack.Screen
-        name="home/index"
+        name="dashboard/home/index"
         options={{
           headerTitle: 'Início',
           headerTitleAlign: 'center',
@@ -32,7 +32,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="address/index"
+        name="dashboard/address/index"
         options={{
           headerTitle: 'Endereço',
           headerTitleAlign: 'center',
@@ -41,7 +41,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="addresses/index"
+        name="dashboard/addresses/index"
         options={{
           headerTitle: 'Lista de endereços',
           headerTitleAlign: 'center',
@@ -55,7 +55,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="environments/index"
+        name="dashboard/environments/index"
         options={{
           headerTitle: 'Lista de ambientes',
           headerTintColor: '#FFFFFF',
@@ -63,7 +63,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="environment/index"
+        name="dashboard/environment/index"
         options={{
           headerTitle: 'Criar ambientes',
           headerTintColor: '#FFFFFF',
@@ -71,7 +71,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="equipment/index"
+        name="dashboard/equipment/index"
         options={{
           headerTitle: 'Equipamento',
           headerTintColor: '#FFFFFF',
@@ -79,7 +79,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="equipments/index"
+        name="dashboard/equipments/index"
         options={{
           headerTitle: 'Lista de Equipamentos',
           headerTitleAlign: 'center',
@@ -93,7 +93,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="profile/index"
+        name="dashboard/profile/index"
         options={{
           headerTitle: user.name,
           headerTintColor: '#FFFFFF',
@@ -101,7 +101,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="faq/index"
+        name="dashboard/faq/index"
         options={{
           headerTitle: 'faq',
           headerTintColor: '#FFFFFF',
@@ -114,7 +114,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="aeras-assist/index"
+        name="dashboard/aeras-assist/index"
         options={{
           headerTitle: 'aeras-assist',
           headerTintColor: '#FFFFFF',
@@ -127,7 +127,7 @@ export default function ClientLayout() {
         }}
       />
       <Stack.Screen
-        name="notifications/index"
+        name="dashboard/notifications/index"
         options={{
           headerTitle: 'notifications',
           headerTintColor: '#FFFFFF',

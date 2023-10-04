@@ -1,16 +1,10 @@
 import styled from 'styled-components/native'
-import { LinearGradient } from 'expo-linear-gradient'
 import { Image as ExpoImage } from 'expo-image'
 
 import aerasLogo from '@/assets/images/aeras.png'
 
 export const Container = styled.View`
   flex: 1;
-`
-
-export const Header = styled(LinearGradient)`
-  padding: 32px;
-  align-items: center;
 `
 
 export const Image = styled(ExpoImage).attrs({

@@ -40,7 +40,7 @@ export default function Addresses() {
       <AddressDetailsModal address={selectedAddress} modalRef={modalRef} />
 
       <S.Container>
-        <Link asChild href="/(client)/dashboard/address/">
+        <Link asChild href="/(client)/(screens)/dashboard/address/">
           <Button title="Cadastrar novo endereço" />
         </Link>
 

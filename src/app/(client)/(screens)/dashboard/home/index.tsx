@@ -81,7 +81,7 @@ export default function Dashboard() {
           {!addresses.length ? (
             <EmptyBox
               title="Nenhum endereço cadastrado"
-              href="/(client)/dashboard/address/"
+              href="/(client)/(screens)/dashboard/address/"
               icon={<Feather name="map-pin" size={32} color="#0051B6" />}
             />
           ) : (
@@ -94,12 +94,14 @@ export default function Dashboard() {
               {!equipments.length ? (
                 <EmptyBox
                   title="Nenhum equipamento cadastrado"
-                  href="/(client)/dashboard/equipment/"
+                  href="/(client)/(screens)/dashboard/equipment/"
                   icon={<Feather name="settings" size={32} color="#0051B6" />}
                 />
               ) : (
                 <S.NewEquipmentBtn
-                  onPress={() => router.push('/(client)/dashboard/equipment/')}
+                  onPress={() =>
+                    router.push('/(client)/(screens)/dashboard/equipment/')
+                  }
                 >
                   <AntDesign name="pluscircleo" size={24} color="#ffffff" />
                   <S.NewEquipmentText>Novo equipamento</S.NewEquipmentText>

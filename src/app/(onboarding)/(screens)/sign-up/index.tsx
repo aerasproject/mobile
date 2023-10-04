@@ -69,11 +69,11 @@ export default function SignUp() {
       })
 
       if (type === 'client') {
-        router.push('/(client)/dashboard/home/')
+        router.push('/(client)/(screens)/dashboard/home/')
       }
 
       if (type === 'worker') {
-        router.push('/(onboarding)/sign-up/worker-choice/')
+        router.push('/(onboarding)/(screens)/sign-up/worker-choice/')
       }
     } catch (error) {
       const isAppError = error instanceof AppError
@@ -88,8 +88,8 @@ export default function SignUp() {
   return (
     <>
       <HeaderBlue
-        subtitle="Crie sua conta"
         title="Criar cadastro"
+        subtitle="Crie sua conta"
         badge={type === 'client' ? 'Cliente' : 'Prestador de serviço'}
       />
       <S.Container>

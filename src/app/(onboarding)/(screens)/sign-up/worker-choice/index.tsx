@@ -24,7 +24,6 @@ export default function WorkerChoiceScreen() {
           </S.Wrapper>
           <AntDesign name="arrowright" size={20} color="white" />
         </S.CardContainer>
-
         <S.CardContainer variant="secondary">
           <S.Wrapper>
             <S.CardTitle variant="secondary">Responsável Técnico</S.CardTitle>

@@ -75,6 +75,7 @@ export default function Environments() {
               isModalVisible={isModalVisible}
               setModalVisible={setModalVisible}
               description={`Você deseja mesmo excluir o ambiente ${item.name}`}
+              isLoading={isLoading}
             />
 
             <S.EnvironmentCard>
@@ -91,7 +92,7 @@ export default function Environments() {
         asChild
         href={{
           params: { addressId, addressName },
-          pathname: '/(client)/dashboard/environment',
+          pathname: '/(client)/(screens)/dashboard/environment',
         }}
       >
         <Button title="Cadastrar novo ambiente" />

@@ -1,17 +1,15 @@
 import { Link } from 'expo-router'
 
-import theme from '@/theme'
-
 import { Button } from '@/components/button'
+
+import { HeaderLinearBlue } from '../../_components/header-linear-blue'
 
 import * as S from './styles'
 
 export default function Welcome() {
   return (
     <S.Container>
-      <S.Header colors={theme.COLORS.LINEAR_GRADIENT}>
-        <S.Title>Você em dia com as obrigações do seu negócio</S.Title>
-      </S.Header>
+      <HeaderLinearBlue title="Você em dia com as obrigações do seu negócio" />
       <S.Content>
         <S.Description>
           Mantenha-se informado, proativo e no controle, garantindo um ambiente

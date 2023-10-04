@@ -23,37 +23,37 @@ export function MenuNav({ isOpenMenu, setIsOpenMenu }: MenuNavProps) {
     {
       icon: 'home',
       label: 'Início',
-      href: `/(client)/dashboard/home/`,
+      href: `/(client)/(screens)/dashboard/home/`,
       active: pathname === '/dashboard/home',
     },
     {
       icon: 'settings',
       label: 'Equipamentos',
-      href: `/(client)/dashboard/equipments/`,
+      href: `/(client)/(screens)/dashboard/equipments/`,
       active: pathname === '/dashboard/equipments',
     },
     {
       icon: 'map-pin',
       label: 'Endereços',
-      href: `/(client)/dashboard/addresses/`,
+      href: `/(client)/(screens)/dashboard/addresses/`,
       active: pathname === '/dashboard/addresses',
     },
     {
       icon: 'shopping-bag',
       label: 'Aeras Assist',
-      href: `/(client)/dashboard/aeras-assist/`,
+      href: `/(client)/(screens)/dashboard/aeras-assist/`,
       active: pathname === '/dashboard/aeras-assist',
     },
     {
       icon: 'message-square',
       label: 'FAQ',
-      href: `/(client)/dashboard/faq/`,
+      href: `/(client)/(screens)/dashboard/faq/`,
       active: pathname === '/dashboard/faq',
     },
     {
       icon: 'bell',
       label: 'Notificações',
-      href: `/(client)/dashboard/notifications/`,
+      href: `/(client)/(screens)/dashboard/notifications/`,
       active: pathname === '/dashboard/notifications',
     },
   ]
@@ -66,7 +66,7 @@ export function MenuNav({ isOpenMenu, setIsOpenMenu }: MenuNavProps) {
           <S.Username>{user.name}</S.Username>
           <Link
             asChild
-            href="/(client)/dashboard/profile/"
+            href="/(client)/(screens)/dashboard/profile/"
             onPress={() => setIsOpenMenu(false)}
           >
             <Button variants="white-outline" title="Ver e editar perfil" />
