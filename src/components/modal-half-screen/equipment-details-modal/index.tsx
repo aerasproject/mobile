@@ -3,8 +3,9 @@ import { Link, useRouter } from 'expo-router'
 
 import { EquipmentDTO } from '@/dtos'
 
-import { useAddress } from '@/hooks/use-address'
 import { useDeleteEquipment } from '@/hooks/equipments/use-delete'
+
+import { useMainAddressStore } from '@/store/main-address-store'
 
 import { Button } from '@/components/button'
 import { Badge } from '@/components/badge'
@@ -25,7 +26,8 @@ export function EquipmentDetailsModal({
   modalRef,
 }: EquipmentDetailsModalProps) {
   const router = useRouter()
-  const { mainAddress } = useAddress()
+
+  const mainAddress = useMainAddressStore((state) => state.mainAddress)
   const { mutate, isLoading } = useDeleteEquipment()
 
   const [isModalVisible, setModalVisible] = useState(false)
@@ -36,7 +38,7 @@ export function EquipmentDetailsModal({
     setModalVisible(false)
     modalRef.current?.toggle()
 
-    router.push('/(client)/dashboard/equipments')
+    router.push('/(client)/(screens)/dashboard/equipments')
   }
 
   const description = `Você deseja mesmo excluir o equipamento “${equipment.name}”, cadastrado no ambiente “${equipment.environment?.name}”?`
@@ -81,7 +83,7 @@ export function EquipmentDetailsModal({
           <Link
             asChild
             href={{
-              pathname: '/(client)/dashboard/equipment',
+              pathname: '/(client)/(screens)/dashboard/equipment',
               params: { equipmentId: equipment.id },
             }}
           >

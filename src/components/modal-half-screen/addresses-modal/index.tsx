@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { AddressDTO } from '@/dtos'
 
-import { useAddress } from '@/hooks/use-address'
+import { useMainAddressStore } from '@/store/main-address-store'
 
 import {
   storageMainAddressSave,
@@ -22,7 +22,7 @@ type AddressesModalProps = {
 }
 
 export function AddressesModal({ addresses, modalRef }: AddressesModalProps) {
-  const { setMainAddress } = useAddress()
+  const setMainAddress = useMainAddressStore((state) => state.setMainAddress)
 
   async function handleSelectAddress(address: AddressDTO) {
     await storageMainAddressRemove()

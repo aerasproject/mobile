@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect } from 'react'
 
 import {
   storageMainAddressLoad,
@@ -8,6 +8,8 @@ import {
 
 import { useGetAllAddresses } from '@/hooks/addresses/use-get-all-addresses'
 
+import { useMainAddressStore } from '@/store/main-address-store'
+
 import { AddressDTO } from '@/dtos'
 
 type AddressContextProviderProps = {
@@ -16,7 +18,7 @@ type AddressContextProviderProps = {
 
 type AddressContextDataProps = {
   mainAddress: AddressDTO
-  setMainAddress: React.Dispatch<React.SetStateAction<AddressDTO>>
+  setMainAddress: (address: AddressDTO) => void
 }
 
 export const AddressContext = createContext({} as AddressContextDataProps)
@@ -26,7 +28,10 @@ export function AddressContextProvider({
 }: AddressContextProviderProps) {
   const { data: addresses } = useGetAllAddresses()
 
-  const [mainAddress, setMainAddress] = useState<AddressDTO>({} as AddressDTO)
+  const [mainAddress, setMainAddress] = useMainAddressStore((state) => [
+    state.mainAddress,
+    state.setMainAddress,
+  ])
 
   async function loadMainAddress() {
     const storageMainAddress = await storageMainAddressLoad()

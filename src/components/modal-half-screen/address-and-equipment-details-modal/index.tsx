@@ -1,4 +1,4 @@
-import { useAddress } from '@/hooks/use-address'
+import { useMainAddressStore } from '@/store/main-address-store'
 
 import { EquipmentDTO } from '@/dtos'
 
@@ -19,7 +19,7 @@ export function AddressAndEquipmentDetailsModal({
   equipment,
   modalRef,
 }: AddressAndEquipmentDetailsModalProps) {
-  const { mainAddress } = useAddress()
+  const mainAddress = useMainAddressStore((state) => state.mainAddress)
 
   const fullAddress = formatNameAddress(mainAddress)
 

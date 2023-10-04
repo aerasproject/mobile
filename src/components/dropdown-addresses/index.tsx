@@ -3,11 +3,11 @@ import { useCallback, useRef, useState } from 'react'
 import { useFocusEffect } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 
-import { useAddress } from '@/hooks/use-address'
-
 import { AddressDTO } from '@/dtos'
 
 import { api } from '@/lib/axios'
+
+import { useMainAddressStore } from '@/store/main-address-store'
 
 import { AppError } from '@/utils/app-error'
 import { formatNameAddress } from '@/utils/format-name-address'
@@ -21,7 +21,7 @@ import * as S from './styles'
 export function DropdownAddresses() {
   const modalRef = useRef<ModalRefProps>(null)
 
-  const { mainAddress } = useAddress()
+  const mainAddress = useMainAddressStore((state) => state.mainAddress)
 
   const [isLoading, setIsLoading] = useState(false)
   const [addresses, setAddresses] = useState<AddressDTO[]>([])

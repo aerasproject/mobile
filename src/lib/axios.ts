@@ -10,6 +10,7 @@ type APIInstanceProps = AxiosInstance & {
 
 const api = axios.create({
   baseURL: 'http://192.168.0.18:8080',
+  // baseURL: 'https://aeras-backend-dev.herokuapp.com/',
 }) as APIInstanceProps
 
 api.registerInterceptTokenManager = (signOut) => {

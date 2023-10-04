@@ -15,9 +15,7 @@ export const Container = styled.View<Props>`
     padding: 16px;
     border-radius: 10px;
     background-color: ${isMain ? theme.COLORS.GRAY_200 : theme.COLORS.WHITE};
-    border: ${isMain
-      ? `1px solid ${theme.COLORS.GRAY_300}`
-      : `1px solid ${theme.COLORS.GRAY_200}`};
+    border: 1px solid ${theme.COLORS.GRAY_200};
   `}
 `
 

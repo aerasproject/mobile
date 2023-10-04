@@ -4,7 +4,8 @@ import { useFocusEffect, useRouter } from 'expo-router'
 import { Ionicons, Feather, AntDesign } from '@expo/vector-icons'
 import Carousel from 'react-native-snap-carousel'
 
-import { useAddress } from '@/hooks/use-address'
+import { useMainAddressStore } from '@/store/main-address-store'
+
 import { useGetAllAddresses } from '@/hooks/addresses/use-get-all-addresses'
 import { useGetAllEquipments } from '@/hooks/equipments/use-get-all-equipments'
 
@@ -26,7 +27,10 @@ export default function Dashboard() {
   const addressesModalRef = useRef<ModalRefProps>(null)
   const equipmentDetailsModalRef = useRef<ModalRefProps>(null)
 
-  const { mainAddress, setMainAddress } = useAddress()
+  const [mainAddress, setMainAddress] = useMainAddressStore((state) => [
+    state.mainAddress,
+    state.setMainAddress,
+  ])
 
   const {
     data: addresses,
@@ -39,7 +43,7 @@ export default function Dashboard() {
     data: equipments,
     isLoading: isLoadingEquipments,
     isError: isErrorEquipments,
-    refetch: fetchEquipments,
+    refetch: refetchEquipments,
   } = useGetAllEquipments(mainAddress.id)
 
   useFocusEffect(
@@ -53,7 +57,7 @@ export default function Dashboard() {
   )
 
   useEffect(() => {
-    fetchEquipments()
+    refetchEquipments()
   }, [mainAddress.id])
 
   function openAddressesModal() {

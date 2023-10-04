@@ -13,6 +13,7 @@ import { AlertModal } from '@/components/modals/alert-modal'
 import { ModalHalfScreen, ModalRefProps } from '@/components/modal-half-screen'
 
 import * as S from './styles'
+import { useMainAddressStore } from '@/store/main-address-store'
 
 type AddressDetailsModalProps = {
   address: AddressDTO
@@ -24,7 +25,8 @@ export function AddressDetailsModal({
   modalRef,
 }: AddressDetailsModalProps) {
   const router = useRouter()
-  const { mainAddress } = useAddress()
+  const mainAddress = useMainAddressStore((state) => state.mainAddress)
+
   const { mutate, isLoading } = useDeleteAddress()
 
   const [isModalVisible, setModalVisible] = useState(false)
@@ -59,12 +61,10 @@ export function AddressDetailsModal({
         </S.Header>
         <S.Content>
           {isMainAddress && <Badge title="Endereço sendo visualizado" />}
-
           <S.Box>
             <S.Title>{address.name}</S.Title>
             <S.Subtitle>5 equipamentos cadastrados</S.Subtitle>
           </S.Box>
-
           <S.Wrapper>
             <InfoBox label="Rua" value={address.street} />
             <InfoBox label="Número" value={address.number} />

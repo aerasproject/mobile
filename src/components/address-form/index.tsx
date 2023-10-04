@@ -49,8 +49,6 @@ export function AddressForm({ initialData }: AddressFormProps) {
   const { user } = useAuth()
   const router = useRouter()
 
-  console.log(initialData)
-
   const createAddress = useCreateAddress()
   const updateAddress = useUpdateAddress()
 

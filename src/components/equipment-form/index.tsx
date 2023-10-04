@@ -6,7 +6,7 @@ import { z } from 'zod'
 
 import { voltages, capacities, brands, types } from '@/static-data/equipment'
 
-import { useAddress } from '@/hooks/use-address'
+import { useMainAddressStore } from '@/store/main-address-store'
 
 import { EquipmentDTO } from '@/dtos'
 
@@ -48,7 +48,7 @@ type EquipmentFormProps = {
 
 export function EquipmentForm({ initialData }: EquipmentFormProps) {
   const router = useRouter()
-  const { mainAddress } = useAddress()
+  const mainAddress = useMainAddressStore((state) => state.mainAddress)
 
   const createEquipment = useCreateEquipment()
   const updateEquipment = useUpdateEquipment()

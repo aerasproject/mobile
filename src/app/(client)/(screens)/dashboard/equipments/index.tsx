@@ -1,10 +1,11 @@
 import { useCallback, useRef, useState } from 'react'
-import { FlatList, Text } from 'react-native'
+import { FlatList } from 'react-native'
 import { Link, useFocusEffect } from 'expo-router'
 
 import { EquipmentDTO } from '@/dtos'
 
-import { useAddress } from '@/hooks/use-address'
+import { useMainAddressStore } from '@/store/main-address-store'
+
 import { useGetAllEquipments } from '@/hooks/equipments/use-get-all-equipments'
 
 import { EmptyBox } from '@/components/empty-box'
@@ -20,7 +21,8 @@ import * as S from './styles'
 export default function Equipments() {
   const modalRef = useRef<ModalRefProps>(null)
 
-  const { mainAddress } = useAddress()
+  const mainAddress = useMainAddressStore((state) => state.mainAddress)
+
   const {
     data: equipments,
     isError,

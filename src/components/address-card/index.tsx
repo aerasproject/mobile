@@ -4,10 +4,11 @@ import { AddressDTO } from '@/dtos'
 
 import { Badge } from '@/components/badge'
 
+import { useMainAddressStore } from '@/store/main-address-store'
+
 import { formatNameAddress } from '@/utils/format-name-address'
 
 import * as S from './styles'
-import { useAddress } from '@/hooks/use-address'
 
 type AddressCardProps = {
   address: AddressDTO
@@ -20,7 +21,7 @@ export function AddressCard({
   isFavorite = false,
   openModal,
 }: AddressCardProps) {
-  const { mainAddress } = useAddress()
+  const mainAddress = useMainAddressStore((state) => state.mainAddress)
 
   const isMainAddress = mainAddress?.id === address.id
   const fullAddress = formatNameAddress(address)
