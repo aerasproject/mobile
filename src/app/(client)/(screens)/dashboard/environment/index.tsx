@@ -79,10 +79,17 @@ export default function Environment() {
         )}
       />
       <Button
-        title="Criar"
+        title="Cadastrar ambiente"
         isLoading={isLoading}
         disabled={isLoading}
         onPress={form.handleSubmit(onSubmit)}
+      />
+      <Button
+        variants="danger-outline"
+        title="Cancelar"
+        isLoading={isLoading}
+        disabled={isLoading}
+        onPress={() => router.push('/(client)/(screens)/dashboard/addresses')}
       />
     </S.Container>
   )

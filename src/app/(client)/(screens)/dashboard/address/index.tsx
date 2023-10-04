@@ -9,7 +9,8 @@ import { AppError } from '@/utils/app-error'
 import { AddressDTO } from '@/dtos'
 
 import { Loading } from '@/components/loading'
-import { AddressForm } from '@/components/address-form'
+
+import { AddressForm } from '@/app/(client)/_components/address-form'
 
 import * as S from './styles'
 
