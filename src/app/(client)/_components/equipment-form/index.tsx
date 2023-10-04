@@ -57,7 +57,7 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
     return mainAddress.environments.map((env) => ({
       id: env.id,
       label: env.name,
-      value: env.id.toString(),
+      value: env.id,
     }))
   })
 
@@ -81,7 +81,7 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
         name: data.name,
         type: data.type,
         voltage: data.voltage,
-        environmentId: data.environmentId,
+        environmentId: Number(data.environmentId),
         addressId: mainAddress.id,
         equipmentId: initialData.id,
       })
@@ -92,7 +92,7 @@ export function EquipmentForm({ initialData }: EquipmentFormProps) {
         name: data.name,
         type: data.type,
         voltage: data.voltage,
-        environmentId: data.environmentId,
+        environmentId: Number(data.environmentId),
         addressId: mainAddress.id,
       })
     }

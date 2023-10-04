@@ -4,7 +4,7 @@ import * as S from './styles'
 
 export type ItemProps = {
   label: string
-  value: string
+  value: string | number
 }
 
 type SelectProps = PickerProps & {
