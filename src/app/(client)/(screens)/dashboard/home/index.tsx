@@ -9,13 +9,12 @@ import { useMainAddressStore } from '@/store/main-address-store'
 import { useGetAllAddresses } from '@/hooks/addresses/use-get-all-addresses'
 import { useGetAllEquipments } from '@/hooks/equipments/use-get-all-equipments'
 
-import { Badge } from '@/components/badge'
-import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
 import { EmptyBox } from '@/components/empty-box'
 import { ModalRefProps } from '@/components/modal-half-screen'
 import { AddressesModal } from '@/components/modal-half-screen/addresses-modal'
-import { AddressAndEquipmentDetailsModal } from '@/components/modal-half-screen/address-and-equipment-details-modal'
+
+import { EquipmentHome } from '../../../_components/equipment-home'
 
 import * as S from './styles'
 
@@ -23,9 +22,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window')
 
 export default function Dashboard() {
   const router = useRouter()
-
   const addressesModalRef = useRef<ModalRefProps>(null)
-  const equipmentDetailsModalRef = useRef<ModalRefProps>(null)
 
   const [mainAddress, setMainAddress] = useMainAddressStore((state) => [
     state.mainAddress,
@@ -64,10 +61,6 @@ export default function Dashboard() {
     addressesModalRef.current?.toggle()
   }
 
-  function openEquipmentDetailsModal() {
-    equipmentDetailsModalRef.current?.toggle()
-  }
-
   if (isErrorAddresses || isErrorEquipments) {
     return <EmptyBox title="Erro ao carregar de endereços e equipamentos" />
   }
@@ -98,49 +91,27 @@ export default function Dashboard() {
               {!equipments.length ? (
                 <EmptyBox
                   title="Nenhum equipamento cadastrado"
-                  href="/(client)/(screens)/dashboard/equipment/"
+                  href="/(client)/(screens)/dashboard/equipment"
                   icon={<Feather name="settings" size={32} color="#0051B6" />}
                 />
               ) : (
                 <S.NewEquipmentBtn
                   onPress={() =>
-                    router.push('/(client)/(screens)/dashboard/equipment/')
+                    router.push('/(client)/(screens)/dashboard/equipment')
                   }
                 >
-                  <AntDesign name="pluscircleo" size={24} color="#ffffff" />
+                  <AntDesign name="pluscircleo" size={20} color="#ffffff" />
                   <S.NewEquipmentText>Novo equipamento</S.NewEquipmentText>
                 </S.NewEquipmentBtn>
               )}
             </>
           )}
-
           <Carousel
             data={equipments}
             sliderWidth={SCREEN_WIDTH}
             useScrollView={true}
             itemWidth={Math.round(SCREEN_WIDTH * 0.8)}
-            renderItem={({ item }) => (
-              // TODO: Criar componente de equipamento
-              <S.EquipmentContainer>
-                <AddressAndEquipmentDetailsModal
-                  equipment={item}
-                  modalRef={equipmentDetailsModalRef}
-                />
-                <S.ImageAC />
-                <S.EquipmentEnv>
-                  {item.environment?.name || 'Sem ambiente'}
-                </S.EquipmentEnv>
-                <S.EquipmentName>{item.name}</S.EquipmentName>
-                <S.EquipmentBrand>{item.brand}</S.EquipmentBrand>
-                <Badge title="Manutenção em dia" />
-                <Button
-                  style={{ marginTop: 16 }}
-                  variants="white-outline"
-                  title="Mais informações"
-                  onPress={openEquipmentDetailsModal}
-                />
-              </S.EquipmentContainer>
-            )}
+            renderItem={({ item }) => <EquipmentHome equipment={item} />}
           />
         </S.Header>
         <S.Content>
