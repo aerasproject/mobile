@@ -9,7 +9,8 @@ import { api } from '@/lib/axios'
 import { AppError } from '@/utils/app-error'
 
 import { Loading } from '@/components/loading'
-import { EquipmentForm } from '@/app/(client)/_components/equipment-form'
+
+import { EquipmentForm } from '../../../_components/equipment-form'
 
 import * as S from './styles'
 

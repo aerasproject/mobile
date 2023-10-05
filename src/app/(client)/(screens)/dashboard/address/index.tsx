@@ -10,7 +10,7 @@ import { AddressDTO } from '@/dtos'
 
 import { Loading } from '@/components/loading'
 
-import { AddressForm } from '@/app/(client)/_components/address-form'
+import { AddressForm } from '../../../_components/address-form'
 
 import * as S from './styles'
 

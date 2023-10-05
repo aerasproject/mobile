@@ -35,9 +35,13 @@ const formSchema = z.object({
   type: z.string().min(1, {
     message: 'Selecione o tipo do equipamento',
   }),
-  environmentId: z.coerce.number().min(1, {
-    message: 'Selecione o ambiente do equipamento',
-  }),
+  environmentId: z.coerce
+    .number({
+      invalid_type_error: 'Selecione o ambiente do equipamento',
+    })
+    .min(1, {
+      message: 'Selecione o ambiente do equipamento',
+    }),
 })
 
 type FormValues = z.infer<typeof formSchema>

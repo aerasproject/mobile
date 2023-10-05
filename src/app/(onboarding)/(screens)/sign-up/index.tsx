@@ -10,7 +10,8 @@ import { AppError } from '@/utils/app-error'
 
 import { Input } from '@/components/input'
 import { Button } from '@/components/button'
-import { HeaderBlue } from '@/app/(onboarding)/_components/header-blue'
+
+import { HeaderBlue } from '../../_components/header-blue'
 
 import * as S from './styles'
 
